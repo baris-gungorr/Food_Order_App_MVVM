@@ -1,13 +1,11 @@
 package com.barisgungorr.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignInBinding
+import androidx.fragment.app.Fragment
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -23,15 +21,14 @@ class SignUpFragment : Fragment() {
         val view = binding.root
 
         auth = FirebaseAuth.getInstance()
-
-        binding.textView.setOnClickListener {
-            // Navigation kodlaması
-        }
-
         binding.buttonSignUp.setOnClickListener {
             val email = binding.emailText.text.toString()
                 val pass = binding.passText.text.toString()
             val confirmPass = binding.confirmPassText.text.toString()
+
+            binding.textView.setOnClickListener {
+                // Navigation kodlaması
+            }
 
 
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {

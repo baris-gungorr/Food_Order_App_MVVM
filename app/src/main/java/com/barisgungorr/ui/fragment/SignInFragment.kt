@@ -1,13 +1,14 @@
 package com.barisgungorr.ui.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
+
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignInBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -24,8 +25,10 @@ class SignInFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
-        binding.textView.setOnClickListener {
-            // Navigation kodlamasıı
+        binding.textViewText.setOnClickListener {
+
+            Navigation.findNavController(it).navigate(R.id.signToSignUp)
+
         }
 
         binding.buttonSignIn.setOnClickListener {
@@ -33,27 +36,24 @@ class SignInFragment : Fragment() {
             val email = binding.emailText.text.toString()
             val pass = binding.passText.text.toString()
 
-
-
             if (email.isNotEmpty() && pass.isNotEmpty() ) {
 
                     auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener{
                         if (it.isSuccessful) {
-                            // Navigation geçiş kodlaması
+
+                            Navigation.findNavController(view).navigate(R.id.signToSignUp)
 
                         }else {
                             Toast.makeText(requireContext(),it.exception.toString(), Toast.LENGTH_SHORT).show()
-
 
                         }
                     }
 
                 }else {
-                    Toast.makeText(requireContext(),"Parolalar uyuşmuyor", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),"Alanlar Boş Bırakılamaz", Toast.LENGTH_SHORT).show()
                 }
+
         }
-
-
 
         return view
     }
@@ -65,4 +65,5 @@ class SignInFragment : Fragment() {
             //Navigation kodlaması
         }
     }
+
 }

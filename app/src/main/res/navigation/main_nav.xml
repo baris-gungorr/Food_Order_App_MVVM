@@ -9,12 +9,23 @@
         android:id="@+id/signInFragment"
         android:name="com.barisgungorr.ui.fragment.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/signToSignUp"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/signToMain"
+            app:destination="@id/mainFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.barisgungorr.ui.fragment.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/signUpToSignIn"
+            app:destination="@id/signInFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.barisgungorr.ui.fragment.MainFragment"
