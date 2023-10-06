@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/signInFragment">
 
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="com.barisgungorr.ui.fragment.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" />
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.barisgungorr.ui.fragment.SignInFragment"

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#EBEBF2</color>
+
+    <color name="kk">#BF213E</color>
+    <color name="ka">#D93250</color>
+    <color name="sa">#F2D4C2</color>
+    <color name="koyu">#BF8D7A</color>
+
 </resources>
