@@ -25,7 +25,7 @@ class SignInFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         binding.textView.setOnClickListener {
-            // Navigation kodlaması
+            // Navigation kodlamasıı
         }
 
         binding.buttonSignIn.setOnClickListener {
