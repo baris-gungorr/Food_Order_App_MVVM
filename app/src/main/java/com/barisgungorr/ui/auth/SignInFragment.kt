@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.fragment
+package com.barisgungorr.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -32,7 +32,7 @@ class SignInFragment : Fragment() {
         auth = Firebase.auth
 
         auth.currentUser?.let {
-       //     findNavController().navigate(R.id.signToMain)
+            findNavController().navigate(R.id.signToMain)
         }
 
         binding.textViewSign.setOnClickListener {
