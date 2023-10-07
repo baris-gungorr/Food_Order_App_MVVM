@@ -6,56 +6,74 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignUpBinding
+import com.barisgungorr.utils.snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
-    private lateinit var auth:FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        val view = binding.root
+        return binding.root
+    }
 
-        auth = FirebaseAuth.getInstance()
-        binding.buttonSignUp.setOnClickListener {
-            val email = binding.emailText.text.toString()
-                val pass = binding.passText.text.toString()
-            val confirmPass = binding.confirmPassText.text.toString()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            binding.textView.setOnClickListener {
-                // Navigation kodlaması
-            }
+        auth = Firebase.auth
 
+        binding.textView2.setOnClickListener {
+            findNavController().navigate(R.id.signUpToSignIn)
+        }
+        checkUserInfo()
+    }
 
-            if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
-            if (pass == confirmPass) {
+    private fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+        return emailRegex.matches(email)
+    }
 
-                auth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener{
-                    if (it.isSuccessful) {
-                        // Navigation geçiş kodlaması
+    private fun checkUserInfo() {
+        with(binding) {
+            binding.buttonSignUp.setOnClickListener {
+                val email = emailText.text.toString()
+                val pass = passText.text.toString()
 
-                    }else {
-                        Toast.makeText(requireContext(),it.exception.toString(),Toast.LENGTH_SHORT).show()
-
-
+                if (email.isNotEmpty() && isValidEmail(email ) && pass.length >= 6) {
+                    if (email.endsWith(".com")) {
+                        signUp(email, pass)
+                    } else {
+                        requireView().snackbar("Missing email address!")
                     }
                 }
-
-            }else {
-                Toast.makeText(requireContext(),"Parolalar uyuşmuyor",Toast.LENGTH_SHORT).show()
+                else if (email.isNotEmpty() && isValidEmail(email) && pass.length < 6){
+                    requireView().snackbar("Password length must be minimum 6 characters long")
+                }
+                else if (email.isEmpty() && pass.isEmpty()){
+                    requireView().snackbar("Fill in the blanks!")
+                }
+                else {
+                    requireView().snackbar("Missing email address or password!")
+                }
             }
-            }else {
-                Toast.makeText(requireContext(),"Boş alanlara izin verilmez",Toast.LENGTH_SHORT).show()
-            }
-
         }
-
-
-
-        return view
+    }
+    private fun signUp(email:String, password:String){
+        auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
+            findNavController().navigate(R.id.signToMain)
+            requireView().snackbar("Sign up successfully!")
+        }.addOnFailureListener {
+            requireView().snackbar("Please sign in!")
+        }
     }
 }

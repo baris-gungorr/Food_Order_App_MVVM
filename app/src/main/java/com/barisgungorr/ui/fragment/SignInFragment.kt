@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.barisgungorr.bootcamprecipeapp.R
-
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignInBinding
+import com.barisgungorr.utils.snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class SignInFragment : Fragment() {
@@ -21,49 +22,65 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignInBinding.inflate(inflater, container, false)
-        val view = binding.root
+       return binding.root
 
-        auth = FirebaseAuth.getInstance()
+    }
 
-        binding.textViewText.setOnClickListener {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            Navigation.findNavController(it).navigate(R.id.signToSignUp)
+        auth = Firebase.auth
 
+        auth.currentUser?.let {
+       //     findNavController().navigate(R.id.signToMain)
         }
 
-        binding.buttonSignIn.setOnClickListener {
+        binding.textViewSign.setOnClickListener {
+            findNavController().navigate(R.id.signToSignUp)
+        }
 
-            val email = binding.emailText.text.toString()
-            val pass = binding.passText.text.toString()
+        checkUserInfo()
 
-            if (email.isNotEmpty() && pass.isNotEmpty() ) {
+    }
 
-                    auth.signInWithEmailAndPassword(email,pass).addOnCompleteListener{
-                        if (it.isSuccessful) {
+    private fun isValidEmail(email: String): Boolean {
+        val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+        return emailRegex.matches(email)
+    }
 
-                            Navigation.findNavController(view).navigate(R.id.signToSignUp)
+    private fun checkUserInfo() {
+       with(binding) {
+           buttonSignIn.setOnClickListener {
 
-                        }else {
-                            Toast.makeText(requireContext(),it.exception.toString(), Toast.LENGTH_SHORT).show()
+            val email = emailText.text.toString()
+            val pass = passText.text.toString()
 
-                        }
-                    }
-
-                }else {
-                    Toast.makeText(requireContext(),"Alanlar Boş Bırakılamaz", Toast.LENGTH_SHORT).show()
+            if (email.isNotEmpty() && isValidEmail(email) && pass.length >= 6) {
+                if (email.endsWith(".com")) {
+                    signIn(email, pass)
+                } else {
+                    requireView().snackbar("Missing email address!")
                 }
-
+            }
+            else if (email.isNotEmpty() && isValidEmail(email) && pass.length < 6){
+                requireView().snackbar("Password length must be minimum 6 characters long")
+            }
+            else if (email.isEmpty() && pass.isEmpty()){
+                requireView().snackbar("Fill in the blanks!")
+            }
+            else if (email.isEmpty() && pass.isEmpty()){
+                requireView().snackbar("Fields cannot be left blank!")
+            }
+           }
         }
-
-        return view
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        if (auth.currentUser != null) {
-            //Navigation kodlaması
-        }
+private fun signIn(email:String, password:String){
+    auth.signInWithEmailAndPassword(email,password).addOnSuccessListener {
+        findNavController().navigate(R.id.signToMain)
+        requireView().snackbar("Sign in successfully!")
+    }.addOnFailureListener {
+        requireView().snackbar("Please sign up!")
     }
-
+}
 }
