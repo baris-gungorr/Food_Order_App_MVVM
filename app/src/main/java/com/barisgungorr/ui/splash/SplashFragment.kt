@@ -25,7 +25,7 @@ class SplashFragment : Fragment() {
    Handler(Looper.getMainLooper()).postDelayed({
             val action = SplashFragmentDirections.splashToSign()
             findNavController().navigate(action)
-        },3000)
+        },2000)
 
         return binding.root
     }

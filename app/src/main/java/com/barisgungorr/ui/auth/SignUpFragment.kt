@@ -68,7 +68,7 @@ class SignUpFragment : Fragment() {
     }
     private fun signUp(email:String, password:String){
         auth.createUserWithEmailAndPassword(email,password).addOnSuccessListener {
-            findNavController().navigate(R.id.signToMain)
+            findNavController().navigate(R.id.signUpToSignIn)
             requireView().snackbar("Sign up successfully!")
         }.addOnFailureListener {
             requireView().snackbar("Please sign in!")

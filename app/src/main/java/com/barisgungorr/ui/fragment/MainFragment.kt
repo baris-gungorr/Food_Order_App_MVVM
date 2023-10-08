@@ -15,6 +15,7 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.adapter.HomeCardAdapter
+import com.barisgungorr.ui.retrofit.HomeMealsDao
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
@@ -24,6 +25,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
+
 
 
         binding.searchView.setOnQueryTextListener(object :OnQueryTextListener {

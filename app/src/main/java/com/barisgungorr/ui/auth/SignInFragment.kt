@@ -32,7 +32,7 @@ class SignInFragment : Fragment() {
         auth = Firebase.auth
 
         auth.currentUser?.let {
-            findNavController().navigate(R.id.signToMain)
+       //     findNavController().navigate(R.id.signToMain)
         }
 
         binding.textViewSign.setOnClickListener {
@@ -68,8 +68,8 @@ class SignInFragment : Fragment() {
             else if (email.isEmpty() && pass.isEmpty()){
                 requireView().snackbar("Fill in the blanks!")
             }
-            else if (email.isEmpty() && pass.isEmpty()){
-                requireView().snackbar("Fields cannot be left blank!")
+            else {
+                requireView().snackbar("Missing email address or password!")
             }
            }
         }

@@ -5,7 +5,13 @@ import com.barisgungorr.utils.constants.Constans
 import retrofit2.http.GET
 
 interface HomeMealsDao {
-    @GET(Constans.GET_FULL_MEALS)
-    fun mealsGet() : Meals
+   // @GET(Constans.GET_FULL_MEALS)
+    //fun mealsGet() : Meals
+
+    // http://kasimadalan.pe.hu/ -> BASE_URL
+        // yemekler/tumYemekleriGetir.php ->apiUrl
+
+    @GET("yemekler/tumYemekleriGetir.php")
+     fun getMeals() : Meals
 
 }
