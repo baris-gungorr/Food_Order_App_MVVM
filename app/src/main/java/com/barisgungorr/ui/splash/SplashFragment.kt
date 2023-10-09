@@ -13,14 +13,12 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSplashBinding
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater, container, false)
-
 
    Handler(Looper.getMainLooper()).postDelayed({
             val action = SplashFragmentDirections.splashToSign()
@@ -29,5 +27,4 @@ class SplashFragment : Fragment() {
 
         return binding.root
     }
-
 }

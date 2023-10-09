@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
@@ -16,9 +17,11 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.adapter.HomeCardAdapter
 import com.barisgungorr.ui.retrofit.HomeMealsDao
+import com.barisgungorr.ui.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
+    private lateinit var viewModel : MainViewModel
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +49,14 @@ class MainFragment : Fragment() {
             }
             false
         }
-
         return binding.root
 
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val tempViewModel: MainViewModel by viewModels()
+        viewModel = tempViewModel
+    }
 }

@@ -1,4 +1,6 @@
 package com.barisgungorr.ui.viewmodel
 
-class DetailsViewModel {
+import androidx.lifecycle.ViewModel
+
+class DetailsViewModel: ViewModel() {
 }

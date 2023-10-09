@@ -1,4 +1,6 @@
 package com.barisgungorr.ui.viewmodel
 
-class FavoriteViewModel {
+import androidx.lifecycle.ViewModel
+
+class FavoriteViewModel : ViewModel() {
 }

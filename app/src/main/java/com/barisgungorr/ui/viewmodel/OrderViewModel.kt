@@ -1,4 +1,6 @@
 package com.barisgungorr.ui.viewmodel
 
-class OrderViewModel {
+import androidx.lifecycle.ViewModel
+
+class OrderViewModel: ViewModel() {
 }
