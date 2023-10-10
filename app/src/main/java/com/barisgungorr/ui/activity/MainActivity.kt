@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.splashFragment,
                      R.id.orderFragment,
                 R.id.favoriteFragment,
+                    R.id.detailsFragment,
 
                 -> {
                     binding.bottomNavView.visibility = View.GONE
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                     binding.bottomNavView.visibility = View.GONE
                          binding.bottomNavView.visibility = View.GONE
                     binding.bottomNavView.visibility = View.GONE
+                        binding.bottomNavView.visibility = View.GONE
 
                 }
             }

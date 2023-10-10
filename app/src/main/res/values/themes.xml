@@ -25,6 +25,11 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/kk</item>
+        <item name="colorControlActivated">@color/koyu</item>
+    </style>
+
    <style name="bottomNavigationView">
     <item name="colorSecondaryContainer">@color/ka</item>
 </style>
