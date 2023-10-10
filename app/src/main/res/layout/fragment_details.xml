@@ -103,6 +103,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <ImageButton
+        android:id="@+id/buttonFavorite2"
+        android:layout_width="51dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:background="@drawable/heart_null"
+        android:backgroundTint="@color/kk"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
         android:layout_height="0dp"

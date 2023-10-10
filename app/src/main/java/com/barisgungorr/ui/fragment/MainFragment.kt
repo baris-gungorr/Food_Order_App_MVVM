@@ -20,6 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var viewModel : MainViewModel
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,17 +28,19 @@ class MainFragment : Fragment() {
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
+        binding.progressBar.visibility = View.VISIBLE
+
         binding.Rv.layoutManager = GridLayoutManager(requireContext(), 3)
 
 
         viewModel.mealList.observe(viewLifecycleOwner) {
             val adapter = HomeCardAdapter(viewModel,requireContext(),it)
 
+
             binding.Rv.adapter = adapter
+            binding.progressBar.visibility = View.GONE
 
         }
-
-
 
         binding.searchView.setOnQueryTextListener(object :OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -66,5 +69,8 @@ class MainFragment : Fragment() {
 
         val tempViewModel: MainViewModel by viewModels()
         viewModel = tempViewModel
+
     }
+
+
 }

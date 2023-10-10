@@ -16,6 +16,9 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor ( var mRepo: MealsRepository) : ViewModel(){
     var mealList = MutableLiveData<List<Yemekler>>()
+
+
+
     init {
         getMeals()
 
@@ -24,6 +27,7 @@ class MainViewModel @Inject constructor ( var mRepo: MealsRepository) : ViewMode
 fun getMeals() {
     CoroutineScope(Dispatchers.Main).launch {
         mealList.value = mRepo.getMeals()
+
     }
 }
 }

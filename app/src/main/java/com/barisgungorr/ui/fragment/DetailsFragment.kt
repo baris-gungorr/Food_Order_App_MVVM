@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
@@ -26,6 +27,8 @@ class DetailsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
+
+
 
         val bundle : DetailsFragmentArgs by navArgs()
         val getMeals = bundle.meal
