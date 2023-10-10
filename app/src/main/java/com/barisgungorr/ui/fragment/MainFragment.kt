@@ -27,7 +27,8 @@ class MainFragment : Fragment() {
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        binding.Rv.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.Rv.layoutManager = GridLayoutManager(requireContext(), 3)
+
 
         viewModel.mealList.observe(viewLifecycleOwner) {
             val adapter = HomeCardAdapter(viewModel,requireContext(),it)

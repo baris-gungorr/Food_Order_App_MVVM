@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_detailsFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
+        <argument
+            android:name="meal"
+            app:argType="com.barisgungorr.data.entity.Yemekler" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"

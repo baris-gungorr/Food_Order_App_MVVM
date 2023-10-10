@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.HomeCardBinding
 import com.barisgungorr.data.entity.Yemekler
+import com.barisgungorr.ui.fragment.MainFragmentDirections
 import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.bumptech.glide.Glide
 
@@ -32,12 +34,16 @@ class HomeCardAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val meal = mealList[position]
 
-        holder.binding.imageTitle.text = meal.yemek_adi
-        holder.binding.imagePrice.text = meal.yemek_fiyat
+        holder.binding.cardView.setOnClickListener {
+            val go = MainFragmentDirections.actionMainFragmentToDetailsFragment(meal = meal)
+            Navigation.findNavController(it).navigate(go)
 
-       // Glide.with(holder.itemView.context)
-         //   .load(meal.yemek_resim_adi)
-           // .into(holder.binding.imageMeal)
+        }
+
+        holder.binding.imageTitle.text = meal.yemek_adi
+        holder.binding.imagePrice.text = "Price: ${meal.yemek_fiyat} $"
+
+
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${meal.yemek_resim_adi}"
         Glide.with(mContext).load(url).into(holder.binding.imageMeal)
