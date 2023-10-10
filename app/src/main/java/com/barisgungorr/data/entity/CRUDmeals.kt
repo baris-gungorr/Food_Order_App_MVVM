@@ -1,6 +1,6 @@
 package com.barisgungorr.data.entity
 
-class CRUDmeals( var success: Int,
+data class CRUDmeals( var success: Int,
                  var message: String) {
 
 }

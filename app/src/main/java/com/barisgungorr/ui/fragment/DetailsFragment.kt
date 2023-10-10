@@ -11,7 +11,9 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
 import com.barisgungorr.ui.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var viewModel : DetailsViewModel

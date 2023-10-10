@@ -32,7 +32,7 @@ class SignInFragment : Fragment() {
         auth = Firebase.auth
 
         auth.currentUser?.let {
-       //     findNavController().navigate(R.id.signToMain)
+            findNavController().navigate(R.id.signToMain)
         }
 
         binding.textViewSign.setOnClickListener {

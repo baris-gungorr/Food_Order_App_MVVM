@@ -9,16 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
-import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.adapter.HomeCardAdapter
-import com.barisgungorr.ui.retrofit.HomeMealsDao
 import com.barisgungorr.ui.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var viewModel : MainViewModel
@@ -28,6 +26,15 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate(inflater, container, false)
+
+        binding.Rv.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        viewModel.mealList.observe(viewLifecycleOwner) {
+            val adapter = HomeCardAdapter(viewModel,requireContext(),it)
+
+            binding.Rv.adapter = adapter
+
+        }
 
 
 

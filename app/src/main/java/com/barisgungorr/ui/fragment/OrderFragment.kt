@@ -12,7 +12,9 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
 import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.barisgungorr.ui.viewmodel.OrderViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OrderFragment : Fragment() {
     private lateinit var binding: FragmentOrderBinding
     private lateinit var viewModel : OrderViewModel

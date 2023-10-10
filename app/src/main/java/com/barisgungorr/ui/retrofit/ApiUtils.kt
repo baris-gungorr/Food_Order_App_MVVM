@@ -4,14 +4,10 @@ import com.barisgungorr.utils.constants.Constans.BASE_URL
 
 class ApiUtils {
     companion object {
-    val BASE_URL = "http://kasimadalan.pe.hu/ "
+    val BASE_URL = "http://kasimadalan.pe.hu/"
 
-       suspend fun getMealsDao(): HomeMealsDao {
+        fun getMealsDao(): HomeMealsDao {
             return RetrofitClient.getClient(BASE_URL).create(HomeMealsDao::class.java)
         }
-
-
-
-
     }
 }
