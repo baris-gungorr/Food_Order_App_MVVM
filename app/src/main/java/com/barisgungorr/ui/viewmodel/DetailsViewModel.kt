@@ -8,4 +8,6 @@ import javax.inject.Inject
 
 class DetailsViewModel : ViewModel() {
 
+
+
 }

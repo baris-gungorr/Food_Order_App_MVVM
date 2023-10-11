@@ -9,6 +9,7 @@ import kotlinx.coroutines.withContext
 class MealsDataSource(var mdao:HomeMealsDao) {
     suspend fun getMeals() : List<Yemekler> = withContext(Dispatchers.IO) {
         return@withContext mdao.getMeals().yemekler
-
     }
+
+
 }

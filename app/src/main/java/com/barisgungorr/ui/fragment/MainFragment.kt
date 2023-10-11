@@ -72,5 +72,4 @@ class MainFragment : Fragment() {
 
     }
 
-
 }

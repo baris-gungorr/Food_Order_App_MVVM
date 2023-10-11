@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
@@ -21,6 +23,9 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var viewModel : DetailsViewModel
     private var piece = 0
+    private  var boolean = false
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +33,12 @@ class DetailsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
 
+        binding.buttonFavoriteNull.setOnClickListener {
 
+            binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
+            Toast.makeText(requireContext(),"ADD YOUR FAVORİTE!",Toast.LENGTH_LONG).show()
+
+        }
 
         val bundle : DetailsFragmentArgs by navArgs()
         val getMeals = bundle.meal
