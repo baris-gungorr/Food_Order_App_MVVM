@@ -14,6 +14,7 @@ import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
+import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +24,7 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var viewModel : DetailsViewModel
     private var piece = 0
-    private  var boolean = false
+
 
 
     override fun onCreateView(
@@ -38,7 +39,10 @@ class DetailsFragment : Fragment() {
             binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
             Toast.makeText(requireContext(),"ADD YOUR FAVORİTE!",Toast.LENGTH_LONG).show()
 
+
+
         }
+
 
         val bundle : DetailsFragmentArgs by navArgs()
         val getMeals = bundle.meal
