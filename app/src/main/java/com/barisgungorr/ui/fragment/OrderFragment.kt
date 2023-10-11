@@ -32,4 +32,10 @@ class OrderFragment : Fragment() {
         val tempViewModel: OrderViewModel by viewModels()
         viewModel = tempViewModel
     }
+
+    fun addMeals(mealsName:String,meals_image_name:String,meals_price:Int,meals_order_piece:Int,user_name:String) {
+        viewModel.addMeals(mealsName,meals_image_name,meals_price,meals_order_piece,user_name)
+    }
+
+
 }
