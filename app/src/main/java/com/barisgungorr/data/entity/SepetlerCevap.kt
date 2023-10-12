@@ -1,4 +1,8 @@
 package com.barisgungorr.data.entity
 
-class SepetlerCevap {
+import com.google.gson.annotations.SerializedName
+
+data class SepetlerCevap (@SerializedName("sepet_yemekler") var yemekler:MutableList<Sepetler>,
+                          @SerializedName("success") var success:Int) {
+
 }

@@ -12,5 +12,12 @@ import javax.inject.Inject
 @HiltViewModel
 class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel() {
 
+    fun getBasketMeals() {
+        CoroutineScope(Dispatchers.Main).launch {
+            mrepo.getBasketMeals()
+        }
+
+    }
+
 
 }

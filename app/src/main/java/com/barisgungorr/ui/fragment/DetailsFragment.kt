@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
@@ -65,9 +66,10 @@ class DetailsFragment : Fragment() {
 
         binding.buttonAddCard.setOnClickListener {
             addMeals(getMeals.yemek_adi,getMeals.yemek_resim_adi,getMeals.yemek_fiyat,piece,"barisGungor")
+
+            Toast.makeText(requireContext(), "ADDED TO CARD!", Toast.LENGTH_LONG).show()
+
         }
-
-
 
         return binding.root
     }
@@ -79,20 +81,8 @@ class DetailsFragment : Fragment() {
         viewModel = tempViewModel
     }
 
-    fun addMeals(
-       yemek_adi: String,
-       yemek_resim_adi: String,
-       yemek_fiyat: Int,
-       yemek_siparis_adet: Int,
-       kullanici_adi: String
-    ) {
-        viewModel.addMeals(
-            yemek_adi,
-            yemek_resim_adi,
-            yemek_fiyat,
-            yemek_siparis_adet,
-            kullanici_adi
-        )
-
+    fun addMeals(yemek_adi:String,yemek_resim_adi: String,yemek_fiyat: Int,yemek_siparis_adet: Int,kullanici_adi: String) {
+        viewModel.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
     }
+
 }

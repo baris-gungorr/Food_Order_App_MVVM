@@ -2,6 +2,7 @@ package com.barisgungorr.ui.retrofit
 
 import com.barisgungorr.data.entity.CRUDmeals
 import com.barisgungorr.data.entity.Meals
+import com.barisgungorr.data.entity.SepetlerCevap
 import com.barisgungorr.utils.constants.Constans
 import retrofit2.Call
 import retrofit2.http.Field
@@ -26,5 +27,9 @@ interface HomeMealsDao {
                           @Field("yemek_fiyat") yemek_fiyat :Int,
                           @Field("yemek_siparis_adet") yemek_siparis_adet:Int,
                           @Field("kullanici_adi") kullanici_adi:String) : CRUDmeals
+
+    @POST("yemekler/sepettekiYemekleriGetir.php")
+    @FormUrlEncoded
+    suspend fun getBasketMeals( @Field("kullanici_adi") kullanici_adi: String) : SepetlerCevap
 
 }
