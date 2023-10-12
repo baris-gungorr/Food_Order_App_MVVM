@@ -11,15 +11,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class MealsRepository @Inject constructor(var mDao: MealsDataSource) {
+class MealsRepository (var mDao: MealsDataSource) {
 
     suspend fun getMeals(): List<Yemekler> = mDao.getMeals()
 
-    suspend fun addMeals(mealsName:String,meals_image_name:String,meals_price:Int,meals_order_piece:Int,user_name:String) =
-        mDao.addMeals(mealsName, meals_image_name, meals_price, meals_order_piece, user_name)
+    suspend fun addMeals(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,yemek_siparis_adet:Int,kullanici_adi:String) =
+        mDao.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
 
 
-
-
-
-    }
+}

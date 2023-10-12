@@ -13,16 +13,11 @@ class MealsDataSource(var mdao:HomeMealsDao) {
         return@withContext mdao.getMeals().yemekler
     }
 
-    suspend fun addMeals(mealsName:String,meals_image_name:String,meals_price:Int,meals_order_piece:Int,user_name:String) {
-        val success  = mdao.addMeals(mealsName,meals_image_name,meals_price,meals_order_piece,user_name)
+    suspend fun addMeals(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,yemek_siparis_adet:Int,kullanici_adi:String) {
+        val success  = mdao.addMeals(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
         Log.e("Meals Save","SUCCESFULLY : ${success.success} - Mesaj : ${success.message}")
 
 
+
     }
-
-
-
-
-
-
 }

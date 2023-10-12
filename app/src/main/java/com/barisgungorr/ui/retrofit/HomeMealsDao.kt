@@ -21,12 +21,10 @@ interface HomeMealsDao {
 
     @POST("yemekler/sepeteYemekEkle.php")
     @FormUrlEncoded
-    suspend fun addMeals( @Field("yemek_adi") meals_name:String,
-                          @Field("yemek_resim_adi") meals_image_name:String,
-                          @Field("yemek_fiyat") meals_price:Int,
-                          @Field("yemek_siparis_adet") meals_order_piece:Int,
-                          @Field("kullanici_adi") user_name:String) : CRUDmeals
-
-
+    suspend fun addMeals( @Field("yemek_adi") yemek_adi:String,
+                          @Field("yemek_resim_adi") yemek_resim_adi:String,
+                          @Field("yemek_fiyat") yemek_fiyat :Int,
+                          @Field("yemek_siparis_adet") yemek_siparis_adet:Int,
+                          @Field("kullanici_adi") kullanici_adi:String) : CRUDmeals
 
 }
