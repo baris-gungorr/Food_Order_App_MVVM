@@ -23,6 +23,7 @@ class MealsDataSource(var mdao:HomeMealsDao) {
 
     suspend fun getBasketMeals(kullanici_adi: String) : List<Sepetler> = withContext(Dispatchers.IO) {
         val succes = mdao.getBasketMeals(kullanici_adi)
+        Log.e("GetBasketMeals","SUCCESFULLY GetBasketMeals")
         return@withContext succes.yemekler
     }
 }

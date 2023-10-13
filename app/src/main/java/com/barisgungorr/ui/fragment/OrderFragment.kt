@@ -6,32 +6,57 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
-import com.barisgungorr.ui.viewmodel.MainViewModel
+import com.barisgungorr.ui.adapter.HomeCardAdapter
+import com.barisgungorr.ui.adapter.OrderAdapter
 import com.barisgungorr.ui.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class OrderFragment : Fragment() {
     private lateinit var binding: FragmentOrderBinding
-    private lateinit var viewModel : OrderViewModel
+    private lateinit var viewModel: OrderViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentOrderBinding.inflate(inflater, container, false)
-       return binding.root
+
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager = layoutManager
+
+
+        viewModel.basketList.observe(viewLifecycleOwner) {
+
+
+            val adapter = OrderAdapter(requireContext(), it, viewModel)
+
+            binding.recyclerView.adapter = adapter
+
+
+        }
+        return binding.root
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val tempViewModel: OrderViewModel by viewModels()
-        viewModel = tempViewModel
 
 
+
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            val tempViewModel: OrderViewModel by viewModels()
+            viewModel = tempViewModel
+
+
+        }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getBasketMeals("BarisGungor")
     }
+
 }
+

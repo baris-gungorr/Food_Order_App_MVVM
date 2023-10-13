@@ -9,5 +9,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FavoriteViewModel @Inject constructor(var mRepo: MealsRepository) : ViewModel() {
+
     var mealList = MutableLiveData<List<Yemekler>>()
 }

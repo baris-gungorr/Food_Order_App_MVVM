@@ -18,8 +18,9 @@ import com.barisgungorr.ui.fragment.DetailsFragmentArgs
 import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding

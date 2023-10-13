@@ -17,10 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor ( var mRepo: MealsRepository) : ViewModel(){
     var mealList = MutableLiveData<List<Yemekler>>()
-    var basketList : MutableLiveData<MutableList<Sepetler>> = MutableLiveData()
-
-
-
+    var basketList : MutableLiveData<List<Sepetler>> = MutableLiveData()
 
     init {
         getMeals()
@@ -29,7 +26,23 @@ class MainViewModel @Inject constructor ( var mRepo: MealsRepository) : ViewMode
 
 fun getMeals() {
     CoroutineScope(Dispatchers.Main).launch {
-        mealList.value = mRepo.getMeals()
+        try {
+            mealList.value = mRepo.getMeals()
+        }catch (e:Exception) {
+
+        }
+
+      /*
+        fun getBasketMeals(kullanici_adi:String) {
+            CoroutineScope(Dispatchers.Main).launch {
+                try {
+                   basketList.value = mRepo.getBasketMeals(kullanici_adi)
+                }catch (e:Exception) {
+                }
+            }
+        }
+*/
+
 
     }
 }

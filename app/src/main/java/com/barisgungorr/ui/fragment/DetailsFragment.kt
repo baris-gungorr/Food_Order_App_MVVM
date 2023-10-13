@@ -34,7 +34,6 @@ class DetailsFragment : Fragment() {
             binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
             Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
 
-
         }
 
 
@@ -66,6 +65,10 @@ class DetailsFragment : Fragment() {
 
         binding.buttonAddCard.setOnClickListener {
             addMeals(getMeals.yemek_adi,getMeals.yemek_resim_adi,getMeals.yemek_fiyat,piece,"barisGungor")
+
+            val cardTransition = DetailsFragmentDirections.detailsToOrder()
+            Navigation.findNavController(it).navigate(cardTransition)
+
 
             Toast.makeText(requireContext(), "ADDED TO CARD!", Toast.LENGTH_LONG).show()
 

@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.databinding.CardDesignBinding
-import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
-import com.barisgungorr.bootcamprecipeapp.databinding.HomeCardBinding
 import com.barisgungorr.data.entity.Sepetler
-import com.barisgungorr.data.entity.Yemekler
-import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.barisgungorr.ui.viewmodel.OrderViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.integrity.internal.t
 
-class OrderAdapter(var mContext: Context,var mealList: MutableList<Sepetler>,viewModel: OrderViewModel)
+class OrderAdapter(var mContext: Context,
+                   var mealList: List<Sepetler>,
+                   viewModel: OrderViewModel)
     : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
     inner class ViewHolder(var binding: CardDesignBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -26,7 +25,7 @@ class OrderAdapter(var mContext: Context,var mealList: MutableList<Sepetler>,vie
     }
 
     override fun getItemCount(): Int {
-      return mealList.size
+        return mealList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -43,8 +42,8 @@ class OrderAdapter(var mContext: Context,var mealList: MutableList<Sepetler>,vie
             k.OrderDeleteImage.setOnClickListener {
                 Snackbar.make(it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
                 ).setAction("YES") {
-                    viewModel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
-                    sepetBosalt(position)
+                  //  viewModel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
+                    removeBasket(position)
 
                 }.show()
             }
@@ -70,7 +69,7 @@ class OrderAdapter(var mContext: Context,var mealList: MutableList<Sepetler>,vie
     }
 
     fun removeBasket(position: Int) {
-        mealList.removeAt(position)
+      //  mealList.removeAt(position)
         notifyItemRemoved(position)
         if (mealList.isEmpty()) {
 
@@ -79,10 +78,10 @@ class OrderAdapter(var mContext: Context,var mealList: MutableList<Sepetler>,vie
         }
     }
 
-    private fun calculatePrice():String {
-        var totalPrice = "0"
+    private fun calculatePrice(): Double {
+        var totalPrice = 0.0
         for (item in mealList) {
-            totalPrice += item.yemek_fiyat
+            totalPrice += item.yemek_fiyat * item.yemek_siparis_adet
 
         }
         return totalPrice

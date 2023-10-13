@@ -42,6 +42,8 @@ class MainFragment : Fragment() {
 
         }
 
+
+
         binding.searchView.setOnQueryTextListener(object :OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
@@ -49,6 +51,7 @@ class MainFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+
                 return false
             }
         })
@@ -71,5 +74,4 @@ class MainFragment : Fragment() {
         viewModel = tempViewModel
 
     }
-
 }
