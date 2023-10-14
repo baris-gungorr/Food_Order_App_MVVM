@@ -32,4 +32,5 @@ interface HomeMealsDao {
     @FormUrlEncoded
     suspend fun getBasketMeals( @Field("kullanici_adi") kullanici_adi: String) : SepetlerCevap
 
+
 }
