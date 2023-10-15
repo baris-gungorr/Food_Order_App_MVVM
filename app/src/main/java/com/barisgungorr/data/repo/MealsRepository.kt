@@ -21,5 +21,7 @@ class MealsRepository @Inject constructor (var mDao: MealsDataSource) {
 
     suspend fun getBasketMeals(kullanici_adi: String) : List<Sepetler> = mDao.getBasketMeals(kullanici_adi)
 
-    suspend fun search(searchKeyword:String) : List<Yemekler> =mDao.search(searchKeyword)
+    suspend fun search(searchKeyword:String) : List<Yemekler> = mDao.search(searchKeyword)
+
+    suspend fun delete (kullanici_adi: String,sepet_yemek_id:Int) = mDao.delete(kullanici_adi, sepet_yemek_id)
 }

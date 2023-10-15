@@ -27,5 +27,16 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
 
             }
         }
+
     }
+
+    fun delete(sepet_yemek_id: Int, kullanici_adi: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            mrepo.delete(kullanici_adi, sepet_yemek_id)
+            getBasketMeals(kullanici_adi)
+        }
+
+    }
+
+
 }

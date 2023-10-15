@@ -14,7 +14,7 @@ import com.google.android.play.integrity.internal.t
 
 class OrderAdapter(var mContext: Context,
                    var mealList: List<Sepetler>,
-                   viewModel: OrderViewModel)
+                   var viewmodel: OrderViewModel)
     : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
     inner class ViewHolder(var binding: CardDesignBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -42,11 +42,13 @@ class OrderAdapter(var mContext: Context,
             k.OrderDeleteImage.setOnClickListener {
                 Snackbar.make(it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
                 ).setAction("YES") {
-                  //  viewModel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
+                    viewmodel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
+
                     removeBasket(position)
 
                 }.show()
             }
+
 
             k.ButtonMinus.setOnClickListener {
                 if (basket.yemek_siparis_adet > 1) {
@@ -66,6 +68,7 @@ class OrderAdapter(var mContext: Context,
         } else {
             holder.itemView.visibility = View.GONE
         }
+
     }
 
     fun removeBasket(position: Int) {

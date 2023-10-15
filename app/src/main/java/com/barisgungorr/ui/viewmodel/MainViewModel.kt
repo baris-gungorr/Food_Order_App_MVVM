@@ -20,7 +20,6 @@ class MainViewModel @Inject constructor ( var mRepo: MealsRepository) : ViewMode
 
     init {
         getMeals()
-
     }
 
 fun getMeals() {

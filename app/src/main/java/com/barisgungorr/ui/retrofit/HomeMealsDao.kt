@@ -12,10 +12,10 @@ import retrofit2.http.POST
 
 interface HomeMealsDao {
    // @GET(Constans.GET_FULL_MEALS)
-    //fun mealsGet() : Meals
+
 
     // http://kasimadalan.pe.hu/ -> BASE_URL
-        // yemekler/tumYemekleriGetir.php ->apiUrl
+
 
     @GET("yemekler/tumYemekleriGetir.php")
     suspend fun getMeals() : Meals
@@ -31,6 +31,11 @@ interface HomeMealsDao {
     @POST("yemekler/sepettekiYemekleriGetir.php")
     @FormUrlEncoded
     suspend fun getBasketMeals( @Field("kullanici_adi") kullanici_adi: String) : SepetlerCevap
+
+    @POST("yemekler/sepettenYemekSil.php")
+    @FormUrlEncoded
+    suspend fun delete(@Field("kullanici_adi") kullanici_adi: String,
+                       @Field("sepet_yemek_id") sepet_yemek_id:Int) : CRUDmeals
 
 
 }
