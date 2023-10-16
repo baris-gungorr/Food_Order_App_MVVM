@@ -16,6 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor ( var mRepo: MealsRepository) : ViewModel(){
+    private val cacheList = mutableListOf<Yemekler>()
     var mealList = MutableLiveData<List<Yemekler>>()
 
     init {
@@ -25,7 +26,11 @@ class MainViewModel @Inject constructor ( var mRepo: MealsRepository) : ViewMode
 fun getMeals() {
     CoroutineScope(Dispatchers.Main).launch {
         try {
-            mealList.value = mRepo.getMeals()
+            //mealList.value = mRepo.getMeals()
+            val meals = mRepo.getMeals()
+            mealList.value = meals
+            cacheList.addAll(meals)
+
         }catch (e:Exception) {
 
         }
@@ -34,7 +39,14 @@ fun getMeals() {
     fun search(searchKeyword:String) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                mealList.value = mRepo.search(searchKeyword)
+                if (searchKeyword.isEmpty()) {
+                    mealList.value = cacheList
+                } else {
+                    mealList.value = cacheList.filter {
+                        it.yemek_adi.lowercase().contains(searchKeyword.lowercase())
+                    }
+                }
+
             }catch (e:Exception) {
             }
         }
