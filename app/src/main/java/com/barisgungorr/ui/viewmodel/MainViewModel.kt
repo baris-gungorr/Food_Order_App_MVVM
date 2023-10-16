@@ -31,10 +31,12 @@ fun getMeals() {
         }
     }
     }
-
     fun search(searchKeyword:String) {
         CoroutineScope(Dispatchers.Main).launch {
-            mealList.value = mRepo.search(searchKeyword)
+            try {
+                mealList.value = mRepo.search(searchKeyword)
+            }catch (e:Exception) {
+            }
         }
     }
 }

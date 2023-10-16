@@ -12,14 +12,19 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
+import com.barisgungorr.data.repo.MealsRepository
 import com.barisgungorr.ui.adapter.HomeCardAdapter
 import com.barisgungorr.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private lateinit var viewModel : MainViewModel
+
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -52,7 +57,6 @@ class MainFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-
                 search(newText)
                 return false
             }

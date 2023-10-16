@@ -31,8 +31,8 @@ class MealsDataSource(var mdao:HomeMealsDao) {
        val list = ArrayList<Yemekler>()
 
        val m1 = Yemekler("Ayran",3,1,"ayran.png")
-         //   val m2 = Yemekler("Baklava",25,2,"baklava.png")
-        //val m3 = Yemekler("Fanta",6,3,"fanta.png")
+       // val m2 = Yemekler("Baklava",25,2,"baklava.png")
+       // val m3 = Yemekler("Fanta",6,3,"fanta.png")
          //    val m4 = Yemekler("Izgara somon",55,4,"izgarasomon.png")
        // val m5 = Yemekler("Izgara tavuk",27,5,"izgaratavuk.png")
          //    val m6 = Yemekler("Kadayıf",22,6,"kadayif.png")
@@ -46,8 +46,8 @@ class MealsDataSource(var mdao:HomeMealsDao) {
           //  val m14 = Yemekler("Tiramisu",23,14,"tiramisu.png")
 
         list.add(m1)
-         //   list.add(m2)
-       // list.add(m3)
+       //     list.add(m2)
+        //list.add(m3)
         //    list.add(m4)
       //  list.add(m5)
       //      list.add(m6)
@@ -67,7 +67,7 @@ class MealsDataSource(var mdao:HomeMealsDao) {
     suspend fun delete (kullanici_adi: String,sepet_yemek_id:Int) {
         val success = mdao.delete(kullanici_adi, sepet_yemek_id)
 
-        Log.e("Kişi sil" , "Başarı : ${success.success}  - Mesaj: ${success.message}")
+        Log.e("Meals Delete" , "Success : ${success.success}  - Message: ${success.message}")
 
     }
 }

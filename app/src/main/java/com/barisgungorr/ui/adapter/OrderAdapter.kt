@@ -18,9 +18,8 @@ class OrderAdapter(var mContext: Context,
     : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
     inner class ViewHolder(var binding: CardDesignBinding) : RecyclerView.ViewHolder(binding.root)
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CardDesignBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = CardDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -40,53 +39,53 @@ class OrderAdapter(var mContext: Context,
             val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.yemek_resim_adi}"
             Glide.with(mContext).load(url).into(k.imageOrder)
             k.OrderDeleteImage.setOnClickListener {
-                Snackbar.make(it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
+                Snackbar.make(
+                    it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
                 ).setAction("YES") {
                     viewmodel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
-
                     removeBasket(position)
-
+                    updateTotalPrice()
                 }.show()
             }
-
 
             k.ButtonMinus.setOnClickListener {
                 if (basket.yemek_siparis_adet > 1) {
                     basket.yemek_siparis_adet--
                     k.PieceText.text = "${basket.yemek_siparis_adet}"
                     k.OrderMealsPrice.text = "${basket.yemek_siparis_adet * basket.yemek_fiyat} ₺"
-
+                    updateTotalPrice()
                 }
             }
 
             k.ButtonPlus.setOnClickListener {
-                basket.yemek_siparis_adet ++
+                basket.yemek_siparis_adet++
                 k.PieceText.text = "${basket.yemek_siparis_adet}"
                 k.OrderMealsPrice.text = "${basket.yemek_siparis_adet * basket.yemek_fiyat} ₺"
+                updateTotalPrice()
             }
-
         } else {
             holder.itemView.visibility = View.GONE
         }
-
     }
 
     fun removeBasket(position: Int) {
-      //  mealList.removeAt(position)
-        notifyItemRemoved(position)
-        if (mealList.isEmpty()) {
-
-        } else if (position == mealList.size) {
-            calculatePrice()
+        if (position == mealList.size - 1) {
+            updateTotalPrice()
         }
     }
 
-    private fun calculatePrice(): Double {
-        var totalPrice = 0.0
+    private fun updateTotalPrice() {
+        var totalPrice = calculatePrice()
+        viewmodel.totalPrice = totalPrice
+
+    }
+
+    private fun calculatePrice(): Int {
+        var totalPrice = 0
         for (item in mealList) {
             totalPrice += item.yemek_fiyat * item.yemek_siparis_adet
-
         }
         return totalPrice
     }
 }
+

@@ -45,30 +45,20 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonAddCard"
-        android:layout_width="126dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_48sdp"
+
         android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/kk"
         android:text="Confirm"
         android:textColor="@color/white"
-        android:textSize="20sp"
 
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textViewAmounth"
-        android:layout_width="127dp"
-        android:layout_height="42dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:text="Amount"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
