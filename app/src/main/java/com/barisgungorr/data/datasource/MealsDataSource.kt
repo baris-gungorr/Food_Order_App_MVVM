@@ -12,7 +12,6 @@ import retrofit2.http.Field
 
 class MealsDataSource(var mdao:HomeMealsDao) {
     suspend fun getMeals() : List<Yemekler> = withContext(Dispatchers.IO) {
-
         return@withContext mdao.getMeals().yemekler
     }
 
