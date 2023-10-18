@@ -32,12 +32,13 @@ class OrderAdapter(var mContext: Context,
         val basket = mealList[position]
 
         if (mealList.size > 0) {
+
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.yemek_resim_adi}"
+        Glide.with(mContext).load(url).into(k.imageOrder)
             k.OrderMealsName.text = "${basket.yemek_adi}"
             k.OrderMealsPrice.text = "${basket.yemek_fiyat * basket.yemek_siparis_adet} ₺"
             k.PieceText.text = "${basket.yemek_siparis_adet}"
 
-            val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.yemek_resim_adi}"
-            Glide.with(mContext).load(url).into(k.imageOrder)
             k.OrderDeleteImage.setOnClickListener {
                 Snackbar.make(
                     it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
@@ -53,7 +54,7 @@ class OrderAdapter(var mContext: Context,
                     basket.yemek_siparis_adet--
                     k.PieceText.text = "${basket.yemek_siparis_adet}"
                     k.OrderMealsPrice.text = "${basket.yemek_siparis_adet * basket.yemek_fiyat} ₺"
-                    updateTotalPrice()
+                   updateTotalPrice()
                 }
             }
 
@@ -68,14 +69,15 @@ class OrderAdapter(var mContext: Context,
         }
     }
 
-    fun removeBasket(position: Int) {
+
+fun removeBasket(position: Int) {
         if (position == mealList.size - 1) {
             updateTotalPrice()
         }
     }
 
     private fun updateTotalPrice() {
-        var totalPrice = calculatePrice()
+        val totalPrice = calculatePrice()
         viewmodel.totalPrice = totalPrice
 
     }

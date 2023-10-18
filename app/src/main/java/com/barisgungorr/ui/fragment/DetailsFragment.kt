@@ -7,10 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
+import com.barisgungorr.data.entity.Meals
+import com.barisgungorr.data.entity.Yemekler
+import com.barisgungorr.ui.favorite.FavoriteFragmentDirections
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,21 +26,12 @@ class DetailsFragment : Fragment() {
     private lateinit var viewModel: DetailsViewModel
     private var piece = 0
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-
-        binding.buttonFavoriteNull.setOnClickListener {
-
-            binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
-            Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
-
-        }
-
 
         val bundle: DetailsFragmentArgs by navArgs()
         val getMeals = bundle.meal
@@ -47,6 +43,13 @@ class DetailsFragment : Fragment() {
         binding.textViewPrice.text = "${getMeals.yemek_fiyat} ₺"
         binding.mealsPieceText.text = "${piece}"
 
+        binding.buttonFavoriteNull.setOnClickListener {
+
+
+            binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
+            Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
+
+        }
 
         binding.buttonMinus.setOnClickListener {
             if (piece > 1) {
@@ -69,8 +72,11 @@ class DetailsFragment : Fragment() {
             val cardTransition = DetailsFragmentDirections.detailsToOrder()
             Navigation.findNavController(it).navigate(cardTransition)
 
-
             Toast.makeText(requireContext(), "ADDED TO CARD!", Toast.LENGTH_LONG).show()
+
+        }
+        binding.imageViewBack.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.detailsToMain)
 
         }
 
@@ -87,5 +93,4 @@ class DetailsFragment : Fragment() {
     fun addMeals(yemek_adi:String,yemek_resim_adi: String,yemek_fiyat: Int,yemek_siparis_adet: Int,kullanici_adi: String) {
         viewModel.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
     }
-
 }

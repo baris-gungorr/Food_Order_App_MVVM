@@ -15,7 +15,9 @@
             app:destination="@id/signUpFragment" />
         <action
             android:id="@+id/signToMain"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -34,6 +36,9 @@
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/mainToSign"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -51,7 +56,15 @@
             app:destination="@id/favoriteFragment" />
         <action
             android:id="@+id/detailsToOrder"
-            app:destination="@id/orderFragment" />
+            app:destination="@id/orderFragment"
+            app:popUpTo="@id/detailsFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/detailsToFavorite"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/detailsToMain"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
@@ -60,7 +73,8 @@
         tools:layout="@layout/fragment_order" >
         <action
             android:id="@+id/orderToMain"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/splashFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -70,7 +84,9 @@
         <action
             android:id="@+id/splashToSign"
             app:destination="@id/signInFragment"
-            app:enterAnim="@android:anim/slide_in_left" />
+            app:enterAnim="@android:anim/slide_in_left"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -78,10 +94,10 @@
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <action
-            android:id="@+id/action_favoriteFragment_to_orderFragment"
-            app:destination="@id/orderFragment" />
+            android:id="@+id/favoriteToMain"
+            app:destination="@id/mainFragment" />
         <argument
-            android:name="meals"
+            android:name="meal"
             app:argType="com.barisgungorr.data.entity.Yemekler" />
     </fragment>
 </navigation>

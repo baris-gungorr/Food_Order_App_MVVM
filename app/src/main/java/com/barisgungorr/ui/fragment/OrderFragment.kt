@@ -1,5 +1,6 @@
 package com.barisgungorr.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -30,60 +31,60 @@ class OrderFragment : Fragment() {
     private lateinit var binding: FragmentOrderBinding
     private lateinit var viewModel: OrderViewModel
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentOrderBinding.inflate(inflater, container, false)
         val layoutManager = LinearLayoutManager(requireContext())
+
         binding.recyclerView.layoutManager = layoutManager
 
+
         viewModel.basketList.observe(viewLifecycleOwner) {
-            val adapter = OrderAdapter(requireContext(), it, viewModel)
+            val adapter = it?.let { it1 -> OrderAdapter(requireContext(), it1, viewModel) }
+            binding.recyclerView.adapter = adapter
+
+
 
             binding.apply {
                 if (binding.recyclerView.adapter != null &&
-                    binding.recyclerView.adapter?.itemCount == null
-                ) {
-
-                } else {
+                    binding.recyclerView.adapter?.itemCount != null) {
 
 
                     binding.recyclerView.adapter = adapter
-
                     viewModel.orderTotalPrice()
                     updatePrice()
                 }
             }
+        }
 
-            binding.buttonAddCard.setOnClickListener{
+
+            binding.buttonAddCard.setOnClickListener {
 
                 binding.completeImage.setImageResource(R.drawable.r)
                 binding.completeImage.visibility = View.VISIBLE
 
-                val goToHomePageDelay = 2000L // 2 saniye gecikme
-                Handler().postDelayed({
-
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(3000)
                     Navigation.findNavController(it).navigate(R.id.orderToMain)
-                }, goToHomePageDelay)
+                }
 
-                    clearBasket()
-
-
-
+                clearBasket()
             }
+
+
+
+            return binding.root
+
         }
-
-        return binding.root
-    }
-
-
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             val tempViewModel: OrderViewModel by viewModels()
             viewModel = tempViewModel
-
 
         }
 
@@ -100,8 +101,6 @@ class OrderFragment : Fragment() {
 
         viewModel.clearBasket()
     }
-
-
 
 }
 

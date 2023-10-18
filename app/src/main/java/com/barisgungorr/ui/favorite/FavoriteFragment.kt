@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavArgs
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +17,7 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteBinding
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.ui.adapter.FavoriteAdapter
 import com.barisgungorr.ui.adapter.HomeCardAdapter
+import com.barisgungorr.ui.adapter.OrderAdapter
 import com.barisgungorr.ui.fragment.DetailsFragmentArgs
 import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.barisgungorr.ui.viewmodel.MainViewModel
@@ -34,7 +38,21 @@ class FavoriteFragment : Fragment() {
 
 
 
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.layoutManager = layoutManager
 
+        viewModel.mealList.observe(viewLifecycleOwner) {
+
+            val adapter = FavoriteAdapter(viewModel,requireContext(),it)
+
+            binding.recyclerView.adapter = adapter
+
+        }
+
+        binding.imageViewBack.setOnClickListener {
+           Navigation.findNavController(it).navigate(R.id.favoriteToMain)
+
+        }
 
         return binding.root
     }
@@ -44,5 +62,4 @@ class FavoriteFragment : Fragment() {
         val tempViewModel: FavoriteViewModel by viewModels()
         viewModel = tempViewModel
     }
-
 }

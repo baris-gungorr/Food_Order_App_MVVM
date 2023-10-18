@@ -17,7 +17,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white">
 
+
+
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageViewLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout_icon"
+        tools:src="@drawable/logout_icon" />
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -35,7 +48,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.SearchView
+    <SearchView
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -70,6 +83,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
         />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

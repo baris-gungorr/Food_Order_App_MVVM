@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel() {
-    var basketList : MutableLiveData<List<Sepetler>> = MutableLiveData()
+    var basketList : MutableLiveData<List<Sepetler>?> = MutableLiveData()
     var totalPrice = 0
 
     init {
@@ -28,7 +28,7 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
                 basketList.value = mrepo.getBasketMeals(kullanici_adi)
                 orderTotalPrice()
             }catch (e:Exception) {
-
+               basketList.value = null
             }
         }
 
@@ -55,8 +55,12 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
     }
     fun getOrder() {
         CoroutineScope(Dispatchers.Main).launch {
-            mrepo.getBasketMeals("BarisGungor")
-            orderTotalPrice()
+            try {
+                mrepo.getBasketMeals("BarisGungor")
+                orderTotalPrice()
+            }catch (e:Exception) {
+            }
+
         }
     }
 
@@ -73,7 +77,5 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
     fun clearBasket() {
         basketList.value = mutableListOf()
     }
-
-
-
 }
+
