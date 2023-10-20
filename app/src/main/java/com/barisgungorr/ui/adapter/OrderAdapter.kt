@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.databinding.CardDesignBinding
 import com.barisgungorr.data.entity.Sepetler
@@ -44,6 +45,7 @@ class OrderAdapter(var mContext: Context,
                     it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
                 ).setAction("YES") {
                     viewmodel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
+                    Toast.makeText(mContext,"${basket.yemek_adi} Deleted",Toast.LENGTH_SHORT)
                     removeBasket(position)
                     updateTotalPrice()
                 }.show()

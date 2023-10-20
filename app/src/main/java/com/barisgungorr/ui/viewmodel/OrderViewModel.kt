@@ -2,7 +2,10 @@ package com.barisgungorr.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.barisgungorr.data.entity.Sepetler
+import com.barisgungorr.data.entity.SepetlerCevap
+import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.data.repo.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -11,9 +14,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
+
 @HiltViewModel
 class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel() {
-    var basketList : MutableLiveData<List<Sepetler>?> = MutableLiveData()
+   var basketList : MutableLiveData<List<Sepetler>?> = MutableLiveData()
+
     var totalPrice = 0
 
     init {
@@ -23,15 +28,17 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
     }
 
     fun getBasketMeals(kullanici_adi:String) {
+
         CoroutineScope(Dispatchers.Main).launch {
+
             try {
                 basketList.value = mrepo.getBasketMeals(kullanici_adi)
+
                 orderTotalPrice()
             }catch (e:Exception) {
                basketList.value = null
             }
         }
-
     }
 
     fun delete(sepet_yemek_id: Int, kullanici_adi: String) {
@@ -41,7 +48,6 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
             orderLastItem()
 
         }
-
     }
 
     fun orderTotalPrice(): String{
@@ -60,7 +66,6 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
                 orderTotalPrice()
             }catch (e:Exception) {
             }
-
         }
     }
 
@@ -71,11 +76,14 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
             basketList.value = lastItem
             totalPrice = lastItem.sumOf { it.yemek_fiyat * it.yemek_siparis_adet }
         }
-
-
     }
     fun clearBasket() {
         basketList.value = mutableListOf()
+
     }
 }
+
+
+
+
 

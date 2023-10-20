@@ -73,17 +73,16 @@ class MainFragment : Fragment() {
             }
             false
         }
-        binding.imageViewLogOut.setOnClickListener {view ->
+
+        binding.imageViewLogOut.setOnClickListener { view ->
             Snackbar.make(
                 view, "Are you exiting ?", Snackbar.LENGTH_LONG
 
             ).setAction("YES") {
-            Firebase.auth.signOut()
-            findNavController().navigate(R.id.mainToSign)
-
+                Firebase.auth.signOut()
+                findNavController().navigate(R.id.mainToSign)
 
             }.show()
-
 
         }
 

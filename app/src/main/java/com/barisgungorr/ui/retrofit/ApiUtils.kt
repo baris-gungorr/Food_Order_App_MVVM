@@ -1,5 +1,6 @@
 package com.barisgungorr.ui.retrofit
 
+import com.barisgungorr.utils.constants.Constans
 import com.barisgungorr.utils.constants.Constans.BASE_URL
 
 class ApiUtils {

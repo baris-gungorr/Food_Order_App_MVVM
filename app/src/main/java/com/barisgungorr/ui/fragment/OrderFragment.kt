@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
+import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.ui.adapter.HomeCardAdapter
 import com.barisgungorr.ui.adapter.OrderAdapter
 import com.barisgungorr.ui.viewmodel.OrderViewModel
@@ -45,22 +46,12 @@ class OrderFragment : Fragment() {
 
         viewModel.basketList.observe(viewLifecycleOwner) {
             val adapter = it?.let { it1 -> OrderAdapter(requireContext(), it1, viewModel) }
-            binding.recyclerView.adapter = adapter
-
-
-
-            binding.apply {
-                if (binding.recyclerView.adapter != null &&
-                    binding.recyclerView.adapter?.itemCount != null) {
-
 
                     binding.recyclerView.adapter = adapter
                     viewModel.orderTotalPrice()
                     updatePrice()
-                }
-            }
-        }
 
+                }
 
             binding.buttonAddCard.setOnClickListener {
 
@@ -69,13 +60,12 @@ class OrderFragment : Fragment() {
 
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(3000)
+
                     Navigation.findNavController(it).navigate(R.id.orderToMain)
                 }
 
                 clearBasket()
             }
-
-
 
             return binding.root
 

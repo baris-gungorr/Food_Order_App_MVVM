@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavDirections
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.data.entity.Meals
+import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.favorite.FavoriteFragmentDirections
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
@@ -25,6 +26,7 @@ class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var viewModel: DetailsViewModel
     private var piece = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +47,10 @@ class DetailsFragment : Fragment() {
 
         binding.buttonFavoriteNull.setOnClickListener {
 
-
             binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
             Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
 
+            save(getMeals.yemek_adi,getMeals.yemek_resim_adi)
         }
 
         binding.buttonMinus.setOnClickListener {
@@ -75,6 +77,8 @@ class DetailsFragment : Fragment() {
             Toast.makeText(requireContext(), "ADDED TO CARD!", Toast.LENGTH_LONG).show()
 
         }
+
+
         binding.imageViewBack.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.detailsToMain)
 
@@ -89,8 +93,13 @@ class DetailsFragment : Fragment() {
         val tempViewModel: DetailsViewModel by viewModels()
         viewModel = tempViewModel
     }
-
     fun addMeals(yemek_adi:String,yemek_resim_adi: String,yemek_fiyat: Int,yemek_siparis_adet: Int,kullanici_adi: String) {
         viewModel.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
     }
+    fun save(yemek_adi: String,yemek_resim_adi: String){
+        viewModel.save(yemek_adi, yemek_resim_adi)
+    }
 }
+
+
+

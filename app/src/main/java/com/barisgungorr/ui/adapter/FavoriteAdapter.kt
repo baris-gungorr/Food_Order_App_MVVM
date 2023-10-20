@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.databinding.FavoriteCardBinding
+import com.barisgungorr.data.entity.Favorite
 import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 
 class FavoriteAdapter(var viewModel: FavoriteViewModel,
-                        var mContext: Context,
-
-                        var mealList:List<Yemekler>)
+                      var mContext: Context,
+                      var favoriteList:List<Favorite>)
                         :  RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: FavoriteCardBinding) : RecyclerView.ViewHolder(binding.root)
@@ -24,13 +24,12 @@ class FavoriteAdapter(var viewModel: FavoriteViewModel,
     }
 
     override fun getItemCount(): Int {
-      return mealList.size
+      return favoriteList.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val meal = mealList[position]
+        val meal = favoriteList[position]
         val t = holder.binding
-
 
        t.textViewMealName.text = meal.yemek_adi
 
@@ -41,11 +40,12 @@ class FavoriteAdapter(var viewModel: FavoriteViewModel,
             Snackbar.make(
                 it, "${meal.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
             ).setAction("YES") {
-             //   viewModel.delete(meal.yemek_id,"BarisGungor")
+                deleteF(meal.yemek_id)
 
             }.show()
         }
-
     }
-
+    fun deleteF(yemek_id:Int) {
+        viewModel.deleteF(yemek_id )
+    }
 }
