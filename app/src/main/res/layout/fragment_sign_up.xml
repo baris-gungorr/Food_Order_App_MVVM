@@ -23,11 +23,11 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="150dp"
+        android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="SIGN UP"
+        android:text="@string/kayitOlBaslik"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -55,7 +55,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your Email"
+            android:hint="@string/eMailGir"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +80,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type Your Password"
+            android:hint="@string/sifreGir"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +104,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Retype Your Password"
+            android:hint="@string/sifreTekrarGir"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,9 +114,10 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:background="@color/kk"
-        android:text="Sign Up"
+        android:text="@string/kayitOlButon"
         android:textColor="@color/white"
         android:textStyle="bold"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -139,8 +140,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="Sign In !"
+        android:layout_marginBottom="14dp"
+        android:text="@string/girisYapText"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

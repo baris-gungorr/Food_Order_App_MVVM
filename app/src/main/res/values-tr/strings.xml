@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">OrderApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="girisYapBaslik">GİRİŞ YAP</string>
+    <string name="eMailGirGirisYap">Email adresinizi girin</string>
+    <string name="sifreGirGirisYap">Parolanızı girin</string>
+    <string name="girisYapButon">GİRİŞ YAP</string>
+    <string name="Yada">Ya da </string>
+    <string name="signUpText">KAYIT OL</string>
+
+    <string name="kayitOlBaslik">KAYIT OL</string>
+    <string name="eMailGir">Email adresinizi girin</string>
+    <string name="sifreGir">Parolanızı girin</string>
+    <string name="sifreTekrarGir">Parolanızı tekrar girin</string>
+    <string name="kayitOlButon">KAYIT OL</string>
+    <string name="girisYapText">Giriş yap</string>
+
+    <string name="AnasayfaBaslik">ANASAYFA</string>
+
+    <string name="DetayBaslik">DETAY SAYFASI</string>
+    <string name="sepetEkleButon">SEPETE EKLE</string>
+
+    <string name="cardBaslik">SEPETİM</string>
+    <string name="sepetiOnaylaButon">SEPETİ ONAYLA</string>
+
+    <string name="favoriteBaslik">FAVORİLERİM</string>
+
+
+
+
+
+
+
+</resources>

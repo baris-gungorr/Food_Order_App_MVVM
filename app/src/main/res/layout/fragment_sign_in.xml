@@ -40,7 +40,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type your Email"
+            android:hint="@string/eMailGirGirisYap"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +64,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type Your Password"
+            android:hint="@string/sifreGirGirisYap"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
         android:background="@color/kk"
-        android:text="Sıgn ın"
+        android:text="@string/girisYapButon"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -90,6 +90,7 @@
         android:layout_height="210dp"
         android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
@@ -101,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="59dp"
-        android:text="SIGN UP!"
+        android:text="@string/signUpText"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,11 +112,11 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="151dp"
+        android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="SIGN IN"
+        android:text="@string/girisYapBaslik"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -129,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Or"
+        android:text="@string/Yada"
         android:textColor="#121111"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewSign"

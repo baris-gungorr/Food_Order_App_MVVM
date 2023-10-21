@@ -1,5 +1,34 @@
 <resources>
     <string name="app_name">OrderApp</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="girisYapBaslik">SIGN IN</string>
+    <string name="eMailGirGirisYap">Type your Email</string>
+    <string name="sifreGirGirisYap">Type your Password</string>
+    <string name="girisYapButon">SIGN IN</string>
+    <string name="Yada">Or</string>
+    <string name="signUpText">SIGN UP</string>
+
+    <string name="kayitOlBaslik">SIGN UP</string>
+    <string name="eMailGir">Type your Email</string>
+    <string name="sifreGir">Type your Password</string>
+    <string name="sifreTekrarGir">Retype Your Password</string>
+    <string name="kayitOlButon">SIGN UP</string>
+    <string name="girisYapText">Sign In</string>
+
+    <string name="AnasayfaBaslik">HOME SCREEN</string>
+
+    <string name="DetayBaslik">DETAİLS SCREEN</string>
+    <string name="sepetEkleButon">ADD TO CARD</string>
+
+    <string name="cardBaslik">MY CARD</string>
+    <string name="sepetiOnaylaButon">CONFİRM</string>
+
+    <string name="favoriteBaslik">MY FAVORİTES</string>
+
+
+
+
+
+
+
 </resources>
