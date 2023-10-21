@@ -27,8 +27,14 @@
 </table>
 
 📸 Videos
+ <!-- Video -->
+<div align="left">
 
- [https://drive.google.com/file/d/1UfvVho9a1OpOMq8Q72P9oJNV9BIjTH_M/view?usp=share_link]
+https://github.com/baris-gungorr/Food_Order_App_MVVM/assets/121685398/3cca073d-b2c0-4814-918c-003c0af88675
+
+
+  <video src= "VIDEO.mp4"/>
+</div>
 
 
 👇 Structures Used
