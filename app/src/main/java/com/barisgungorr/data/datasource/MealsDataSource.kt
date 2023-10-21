@@ -38,8 +38,8 @@ class MealsDataSource(var mdao:HomeMealsDao,var fdao:FavoriteDao) {
         Log.e("Meals Delete" , "Success : ${success.success}  - Message: ${success.message}")
 
     }
-    suspend fun save(yemek_adi: String,yemek_resim_adi: String) {
-        val newFavorite = Favorite(0,yemek_adi, yemek_resim_adi)
+    suspend fun save(yemek_id: Int,yemek_adi: String,yemek_resim_adi: String) {
+        val newFavorite = Favorite(yemek_id,yemek_adi, yemek_resim_adi)
       fdao.save(newFavorite)
     }
     suspend fun getFavorites() : List<Favorite>  = withContext(Dispatchers.IO) {
@@ -55,6 +55,7 @@ class MealsDataSource(var mdao:HomeMealsDao,var fdao:FavoriteDao) {
 
         return@withContext fdao.searchF(searchKeyword)
     }
+
 
 }
 

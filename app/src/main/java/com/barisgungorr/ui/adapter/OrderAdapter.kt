@@ -45,7 +45,6 @@ class OrderAdapter(var mContext: Context,
                     it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
                 ).setAction("YES") {
                     viewmodel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
-                    Toast.makeText(mContext,"${basket.yemek_adi} Deleted",Toast.LENGTH_SHORT)
                     removeBasket(position)
                     updateTotalPrice()
                 }.show()

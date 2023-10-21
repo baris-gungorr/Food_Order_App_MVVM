@@ -50,7 +50,7 @@ class DetailsFragment : Fragment() {
             binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
             Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
 
-            save(getMeals.yemek_adi,getMeals.yemek_resim_adi)
+            save(getMeals.yemek_id,getMeals.yemek_adi,getMeals.yemek_resim_adi)
         }
 
         binding.buttonMinus.setOnClickListener {
@@ -96,10 +96,8 @@ class DetailsFragment : Fragment() {
     fun addMeals(yemek_adi:String,yemek_resim_adi: String,yemek_fiyat: Int,yemek_siparis_adet: Int,kullanici_adi: String) {
         viewModel.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
     }
-    fun save(yemek_adi: String,yemek_resim_adi: String){
-        viewModel.save(yemek_adi, yemek_resim_adi)
+    fun save(yemek_id:Int,yemek_adi: String,yemek_resim_adi: String){
+        viewModel.save(yemek_id,yemek_adi, yemek_resim_adi)
     }
 }
-
-
 

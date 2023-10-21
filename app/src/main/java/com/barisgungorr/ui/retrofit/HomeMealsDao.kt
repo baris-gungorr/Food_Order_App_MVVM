@@ -39,8 +39,10 @@ interface HomeMealsDao {
                        @Field("sepet_yemek_id") sepet_yemek_id:Int) : CRUDmeals
 
     suspend fun save(@Field("yemek_id") yemek_id:Int,
-                    @Field("yemek_adi") yemek_adi: String,
+                     @Field("yemek_adi") yemek_adi: String,
                      @Field("yemek_resim_adi") yemek_resim_adi: String) :FavoriteSuccess
+
+
 
 
 }

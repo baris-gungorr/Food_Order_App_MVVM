@@ -67,6 +67,11 @@ class OrderFragment : Fragment() {
                 clearBasket()
             }
 
+        binding.imageViewBackk?.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.orderToMain)
+
+        }
+
             return binding.root
 
         }

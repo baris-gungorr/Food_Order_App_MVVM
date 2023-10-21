@@ -27,13 +27,15 @@ class MealsRepository @Inject constructor (var mDao: MealsDataSource,fdao:Favori
 
     suspend fun delete (kullanici_adi: String,sepet_yemek_id:Int) = mDao.delete(kullanici_adi, sepet_yemek_id)
 
-    suspend fun save(yemek_adi: String,yemek_resim_adi: String) = mDao.save (yemek_adi, yemek_resim_adi)
+    suspend fun save(yemek_id:Int,yemek_adi: String,yemek_resim_adi: String) = mDao.save (yemek_id,yemek_adi, yemek_resim_adi)
 
     suspend fun getFavorites(): List<Favorite> = mDao.getFavorites()
 
     suspend fun deleteF (yemek_id:Int) = mDao.deleteF(yemek_id)
 
     suspend fun searchF(searchKeyword:String) : List<Favorite> = mDao.searchF(searchKeyword)
+
+
 
 
 
