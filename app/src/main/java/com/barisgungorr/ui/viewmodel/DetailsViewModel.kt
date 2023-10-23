@@ -1,5 +1,8 @@
 package com.barisgungorr.ui.viewmodel
 
+import android.content.Context
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,13 +31,22 @@ class DetailsViewModel @Inject constructor(var mrepo: MealsRepository) : ViewMod
         kullanici_adi: String
     ) {
         CoroutineScope(Dispatchers.Main).launch {
-            mrepo.addMeals(
-                yemek_adi,
-                yemek_resim_adi,
-                yemek_fiyat,
-                yemek_siparis_adet,
-                kullanici_adi
-            )
+            try {
+                val isProductInBasket = isProductInBasket(yemek_adi)
+                if (isProductInBasket) {
+
+                } else {
+                    mrepo.addMeals(
+                        yemek_adi,
+                        yemek_resim_adi,
+                        yemek_fiyat,
+                        yemek_siparis_adet,
+                        kullanici_adi
+                    )
+                }
+            } catch (e: Exception) {
+
+            }
         }
     }
 
@@ -54,5 +66,9 @@ class DetailsViewModel @Inject constructor(var mrepo: MealsRepository) : ViewMod
             mrepo.save(yemek_id,yemek_adi, yemek_resim_adi)
         }
     }
-
+    fun isProductInBasket(productName: String): Boolean {
+        val basketItems = basketList.value ?: emptyList()
+        return basketItems.any { it.yemek_adi == productName }
+    }
 }
+

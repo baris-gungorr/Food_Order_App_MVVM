@@ -25,7 +25,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private lateinit var viewModel: DetailsViewModel
-    private var piece = 0
+    private var piece = 1
+
 
 
     override fun onCreateView(
@@ -50,7 +51,7 @@ class DetailsFragment : Fragment() {
             binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
             Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
 
-            save(getMeals.yemek_id,getMeals.yemek_adi,getMeals.yemek_resim_adi)
+           viewModel.save(getMeals.yemek_id,getMeals.yemek_adi,getMeals.yemek_resim_adi)
         }
 
         binding.buttonMinus.setOnClickListener {
@@ -69,19 +70,17 @@ class DetailsFragment : Fragment() {
         }
 
         binding.buttonAddCard.setOnClickListener {
-            addMeals(getMeals.yemek_adi,getMeals.yemek_resim_adi,getMeals.yemek_fiyat,piece,"barisGungor")
-
-            val cardTransition = DetailsFragmentDirections.detailsToOrder()
-            Navigation.findNavController(it).navigate(cardTransition)
-
-            Toast.makeText(requireContext(), "ADDED TO CARD!", Toast.LENGTH_LONG).show()
-
+            val isAlreadyInCart = viewModel.isProductInBasket(getMeals.yemek_adi)
+            if (isAlreadyInCart) {
+                Toast.makeText(requireContext(), "This product is available in your cart", Toast.LENGTH_LONG).show()
+            } else {
+                viewModel.addMeals(getMeals.yemek_adi,getMeals.yemek_resim_adi,getMeals.yemek_fiyat,piece,"barisGungor")
+                Toast.makeText(requireContext(), "ADDED TO CARD!", Toast.LENGTH_LONG).show()
+            }
         }
-
 
         binding.imageViewBack.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.detailsToMain)
-
         }
 
         return binding.root
@@ -93,11 +92,6 @@ class DetailsFragment : Fragment() {
         val tempViewModel: DetailsViewModel by viewModels()
         viewModel = tempViewModel
     }
-    fun addMeals(yemek_adi:String,yemek_resim_adi: String,yemek_fiyat: Int,yemek_siparis_adet: Int,kullanici_adi: String) {
-        viewModel.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
-    }
-    fun save(yemek_id:Int,yemek_adi: String,yemek_resim_adi: String){
-        viewModel.save(yemek_id,yemek_adi, yemek_resim_adi)
-    }
+
 }
 

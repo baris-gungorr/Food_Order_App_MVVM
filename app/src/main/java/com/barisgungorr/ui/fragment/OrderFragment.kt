@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
@@ -54,14 +55,20 @@ class OrderFragment : Fragment() {
                 }
 
             binding.buttonAddCard.setOnClickListener {
+                val isBasketEmpty =viewModel.basketList.value == null ||viewModel.basketList.value?.isEmpty() == true
+                if (isBasketEmpty) {
+                    Toast.makeText(requireContext(), "Please add product to cart!", Toast.LENGTH_LONG).show()
+                } else {
 
-                binding.completeImage.setImageResource(R.drawable.r)
-                binding.completeImage.visibility = View.VISIBLE
+                    binding.completeImage.setImageResource(R.drawable.r)
+                    binding.completeImage.visibility = View.VISIBLE
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    delay(3000)
+                    CoroutineScope(Dispatchers.Main).launch {
+                        delay(3000)
 
-                    Navigation.findNavController(it).navigate(R.id.orderToMain)
+                        Navigation.findNavController(it).navigate(R.id.orderToMain)
+
+                }
                 }
 
                 clearBasket()

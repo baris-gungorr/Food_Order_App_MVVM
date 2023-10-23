@@ -14,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class MealsRepository @Inject constructor (var mDao: MealsDataSource,fdao:FavoriteDao) {
+class MealsRepository @Inject constructor (var mDao: MealsDataSource) {
 
     suspend fun getMeals(): List<Yemekler> = mDao.getMeals()
 
