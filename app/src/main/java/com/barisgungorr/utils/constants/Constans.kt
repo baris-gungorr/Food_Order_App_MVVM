@@ -1,7 +1,5 @@
 package com.barisgungorr.utils.constants
 
-import retrofit2.http.DELETE
-
 object Constans {
   const  val BASE_URL = "http://kasimadalan.pe.hu/yemekler/"
 

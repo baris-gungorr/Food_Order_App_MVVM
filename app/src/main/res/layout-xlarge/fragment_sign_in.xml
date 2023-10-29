@@ -40,7 +40,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/eMailGirGirisYap"
+            android:hint="@string/addEmailSignIn"
             android:inputType="textEmailAddress"
             android:textSize="34sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,19 +63,19 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/sifreGirGirisYap"
+            android:hint="@string/addPasswordSignIn"
             android:inputType="textPassword"
             android:textSize="34sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonSignIn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="927dp"
+        android:layout_height="105dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="628dp"
         android:background="@color/kk"
-        android:text="@string/girisYapButon"
+        android:text="@string/signInButton"
         android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -101,12 +101,13 @@
         android:id="@+id/textViewSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="60dp"
         android:text="@string/signUpText"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -115,7 +116,7 @@
         android:layout_height="78dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/girisYapBaslik"
+        android:text="@string/signInTitle"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"
@@ -129,7 +130,7 @@
         android:layout_width="152dp"
         android:layout_height="67dp"
         android:layout_marginBottom="224dp"
-        android:text="@string/Yada"
+        android:text="@string/Or"
         android:textAlignment="center"
         android:textColor="#121111"
         android:textSize="34sp"

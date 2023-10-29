@@ -2,10 +2,7 @@ package com.barisgungorr.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.barisgungorr.data.entity.Sepetler
-import com.barisgungorr.data.entity.SepetlerCevap
-import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.data.repo.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -46,14 +43,13 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
             mrepo.delete(kullanici_adi, sepet_yemek_id)
             getBasketMeals(kullanici_adi)
             orderLastItem()
-
         }
     }
 
     fun orderTotalPrice(): String{
         var total = 0
-        basketList.value?.forEach {
-            total += it.yemek_siparis_adet * it.yemek_fiyat
+        basketList.value?.forEach { orders ->
+            total += orders.meals_order_piece * orders.meals_price
 
         }
        totalPrice = total
@@ -65,6 +61,7 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
                 mrepo.getBasketMeals("BarisGungor")
                 orderTotalPrice()
             }catch (e:Exception) {
+
             }
         }
     }
@@ -74,7 +71,7 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
             val lastItem = basketList.value!!.toMutableList()
             lastItem.removeAt(lastItem.lastIndex)
             basketList.value = lastItem
-            totalPrice = lastItem.sumOf { it.yemek_fiyat * it.yemek_siparis_adet }
+            totalPrice = lastItem.sumOf { it.meals_price * it.meals_order_piece }
         }
     }
     fun clearBasket() {

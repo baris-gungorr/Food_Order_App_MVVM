@@ -8,8 +8,8 @@ import java.io.Serializable
 
 @Entity(tableName = "fav")
 data class Favorite(@PrimaryKey(autoGenerate = true)
-                    @ColumnInfo (name = "yemek_id") @NotNull var yemek_id:Int,
-                    @ColumnInfo (name = "yemek_adi") @NotNull  val yemek_adi:String,
-                    @ColumnInfo (name = "yemek_resim_adi") @NotNull  val yemek_resim_adi:String):Serializable {
+                    @ColumnInfo (name = "yemek_id") @NotNull var meals_id:Int,
+                    @ColumnInfo (name = "yemek_adi") @NotNull  val meals_name:String,
+                    @ColumnInfo (name = "yemek_resim_adi") @NotNull  val meals_image_name:String):Serializable {
 
 }

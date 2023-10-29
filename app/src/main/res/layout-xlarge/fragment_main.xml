@@ -38,7 +38,7 @@
         android:layout_height="62dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/AnasayfaBaslik"
+        android:text="@string/MainTitlee"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"

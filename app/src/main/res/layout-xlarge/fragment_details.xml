@@ -7,8 +7,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="962dp"
+        android:layout_height="133dp"
         android:background="@color/kk"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -21,14 +21,14 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="250dp"
-        android:layout_height="35dp"
+        android:layout_width="430dp"
+        android:layout_height="81dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/DetayBaslik"
+        android:text="@string/DetailsTitle"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
@@ -52,7 +52,7 @@
         android:layout_height="143dp"
 
         android:layout_marginTop="552dp"
-        android:text="Yemek adı"
+        android:text="MEALS NAME"
         android:textAlignment="center"
         android:textSize="60sp"
         android:textStyle="bold"
@@ -138,7 +138,7 @@
         android:layout_height="@dimen/_48sdp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/kk"
-        android:text="@string/sepetEkleButon"
+        android:text="@string/addCardButton"
         android:textColor="@color/white"
 
         android:textSize="60sp"

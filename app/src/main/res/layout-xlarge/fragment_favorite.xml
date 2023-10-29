@@ -41,7 +41,7 @@
         android:layout_height="72dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/favoriteBaslik"
+        android:text="@string/favoriteTitle"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"

@@ -1,29 +1,41 @@
 <resources>
     <string name="app_name">OrderApp</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="girisYapBaslik">SIGN IN</string>
-    <string name="eMailGirGirisYap">Type your Email</string>
-    <string name="sifreGirGirisYap">Type your Password</string>
-    <string name="girisYapButon">SIGN IN</string>
-    <string name="Yada">Or</string>
+    <string name="signInTitle">SIGN IN</string>
+    <string name="addEmailSignIn">Type your Email</string>
+    <string name="addPasswordSignIn">Type your Password</string>
+    <string name="signInButton">SIGN IN</string>
+    <string name="Or">Or</string>
     <string name="signUpText">SIGN UP</string>
 
-    <string name="kayitOlBaslik">SIGN UP</string>
-    <string name="eMailGir">Type your Email</string>
-    <string name="sifreGir">Type your Password</string>
-    <string name="sifreTekrarGir">Retype Your Password</string>
-    <string name="kayitOlButon">SIGN UP</string>
-    <string name="girisYapText">Sign In</string>
+    <string name="signUpTitle">SIGN UP</string>
+    <string name="addEmail">Type your Email</string>
+    <string name="addPassword">Type your Password</string>
+    <string name="retryPassword">Retype Your Password</string>
+    <string name="signUpButton">SIGN UP</string>
+    <string name="signInText">Sign In</string>
 
-    <string name="AnasayfaBaslik">HOME SCREEN</string>
+    <string name="MainTitlee">HOME SCREEN</string>
+    <string name="AreYouExit">Are you exit ?</string>
+    <string name="setTitleAlert">Order App</string>
+    <string name="buttonYes">YES</string>
+    <string name="buttonNo">NO</string>
+    <string name="textLogOut">LOG OUT</string>
 
-    <string name="DetayBaslik">DETAİLS SCREEN</string>
-    <string name="sepetEkleButon">ADD TO CARD</string>
 
-    <string name="cardBaslik">MY CARD</string>
-    <string name="sepetiOnaylaButon">CONFİRM</string>
+    <string name="DetailsTitle">DETAİLS SCREEN</string>
+    <string name="addCardButton">ADD TO CARD</string>
 
-    <string name="favoriteBaslik">MY FAVORİTES</string>
+    <string name="cardTitle">MY CARD</string>
+    <string name="approvalButton">CONFİRM</string>
+    <string name="removeTextOrder">Remove from card?</string>
+
+
+
+    <string name="favoriteTitle">MY FAVORİTES</string>
+    <string name="removeText">Delete?</string>
+    <string name="yesText">YES</string>
+
 
 
 

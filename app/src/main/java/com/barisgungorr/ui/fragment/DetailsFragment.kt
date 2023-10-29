@@ -7,16 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
-import com.barisgungorr.data.entity.Meals
-import com.barisgungorr.data.entity.Sepetler
-import com.barisgungorr.data.entity.Yemekler
-import com.barisgungorr.ui.favorite.FavoriteFragmentDirections
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint

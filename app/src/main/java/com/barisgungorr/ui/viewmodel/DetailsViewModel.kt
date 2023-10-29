@@ -1,12 +1,7 @@
 package com.barisgungorr.ui.viewmodel
 
-import android.content.Context
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.barisgungorr.data.entity.Meals
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.data.repo.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -57,6 +52,7 @@ class DetailsViewModel @Inject constructor(var mrepo: MealsRepository) : ViewMod
                 basketList.value = mrepo.getBasketMeals(kullanici_adi)
 
             } catch (e: Exception) {
+
             }
         }
     }
@@ -68,7 +64,7 @@ class DetailsViewModel @Inject constructor(var mrepo: MealsRepository) : ViewMod
     }
     fun isProductInBasket(productName: String): Boolean {
         val basketItems = basketList.value ?: emptyList()
-        return basketItems.any { it.yemek_adi == productName }
+        return basketItems.any { it.meals_name == productName }
     }
 }
 

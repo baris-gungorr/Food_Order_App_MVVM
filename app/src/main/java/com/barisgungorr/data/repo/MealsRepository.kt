@@ -1,42 +1,27 @@
 package com.barisgungorr.data.repo
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.barisgungorr.data.datasource.MealsDataSource
 import com.barisgungorr.data.entity.Favorite
-import com.barisgungorr.data.entity.Meals
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.data.entity.Yemekler
-import com.barisgungorr.room.FavoriteDao
-import com.barisgungorr.ui.retrofit.HomeMealsDao
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import javax.inject.Inject
 
-class MealsRepository @Inject constructor (var mDao: MealsDataSource) {
+class MealsRepository @Inject constructor (private val mDao: MealsDataSource) {
 
     suspend fun getMeals(): List<Yemekler> = mDao.getMeals()
 
-    suspend fun addMeals(yemek_adi:String,yemek_resim_adi:String,yemek_fiyat:Int,yemek_siparis_adet:Int,kullanici_adi:String) =
-        mDao.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+    suspend fun addMeals(meals_name:String,meals_image_name:String,meals_price:Int,meals_order_piece:Int,userName:String) =
+        mDao.addMeals(meals_name, meals_image_name , meals_price,meals_order_piece, userName)
 
-    suspend fun getBasketMeals(kullanici_adi: String) : List<Sepetler> = mDao.getBasketMeals(kullanici_adi)
+    suspend fun getBasketMeals(userName: String) : List<Sepetler> = mDao.getBasketMeals(userName)
 
-    suspend fun search(searchKeyword:String) : List<Yemekler> = mDao.search(searchKeyword)
+    suspend fun delete (userName: String,card_meals_id:Int) = mDao.delete(userName, card_meals_id)
 
-    suspend fun delete (kullanici_adi: String,sepet_yemek_id:Int) = mDao.delete(kullanici_adi, sepet_yemek_id)
-
-    suspend fun save(yemek_id:Int,yemek_adi: String,yemek_resim_adi: String) = mDao.save (yemek_id,yemek_adi, yemek_resim_adi)
+    suspend fun save(meals_id:Int,meals_name: String,meals_image_name: String) = mDao.save (meals_id,meals_name,meals_image_name)
 
     suspend fun getFavorites(): List<Favorite> = mDao.getFavorites()
 
-    suspend fun deleteF (yemek_id:Int) = mDao.deleteF(yemek_id)
+    suspend fun deleteF (meals_id:Int) = mDao.deleteF(meals_id)
 
     suspend fun searchF(searchKeyword:String) : List<Favorite> = mDao.searchF(searchKeyword)
-
-
-
-
-
 }

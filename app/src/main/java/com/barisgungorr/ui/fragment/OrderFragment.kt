@@ -1,26 +1,18 @@
 package com.barisgungorr.ui.fragment
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
-import com.barisgungorr.data.entity.Sepetler
-import com.barisgungorr.ui.adapter.HomeCardAdapter
 import com.barisgungorr.ui.adapter.OrderAdapter
 import com.barisgungorr.ui.viewmodel.OrderViewModel
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +24,7 @@ import kotlinx.coroutines.launch
 class OrderFragment : Fragment() {
     private lateinit var binding: FragmentOrderBinding
     private lateinit var viewModel: OrderViewModel
+
 
 
     override fun onCreateView(
@@ -94,12 +87,12 @@ class OrderFragment : Fragment() {
         super.onResume()
         viewModel.getOrder()
     }
-    fun updatePrice(){
+    private fun updatePrice(){
         viewModel.orderTotalPrice().toInt()
 
     }
 
-    fun clearBasket() {
+    private fun clearBasket() {
 
         viewModel.clearBasket()
     }

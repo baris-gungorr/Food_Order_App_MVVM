@@ -40,7 +40,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/eMailGirGirisYap"
+            android:hint="@string/addEmailSignIn"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -64,7 +64,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/sifreGirGirisYap"
+            android:hint="@string/addPasswordSignIn"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
         android:background="@color/kk"
-        android:text="@string/girisYapButon"
+        android:text="@string/signInButton"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -116,7 +116,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/girisYapBaslik"
+        android:text="@string/signInTitle"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -130,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/Yada"
+        android:text="@string/Or"
         android:textColor="#121111"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textViewSign"

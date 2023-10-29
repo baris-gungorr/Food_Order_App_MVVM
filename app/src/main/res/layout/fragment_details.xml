@@ -25,7 +25,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/DetayBaslik"
+        android:text="@string/DetailsTitle"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="8dp"
-        android:text="Yemek adı"
+        android:text="Meals Name"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -156,7 +156,7 @@
         android:layout_height="@dimen/_48sdp"
         android:layout_marginBottom="8dp"
         android:backgroundTint="@color/kk"
-        android:text="@string/sepetEkleButon"
+        android:text="@string/addCardButton"
         android:textColor="@color/white"
 
         android:textSize="20sp"

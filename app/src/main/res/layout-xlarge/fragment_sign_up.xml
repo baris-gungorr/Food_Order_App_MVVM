@@ -27,7 +27,7 @@
         android:layout_height="67dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/kayitOlBaslik"
+        android:text="@string/signUpTitle"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"
@@ -55,8 +55,9 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/eMailGir"
-            android:inputType="textEmailAddress" />
+            android:hint="@string/addEmail"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -80,8 +81,9 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/sifreGir"
-            android:inputType="textPassword" />
+            android:hint="@string/addPassword"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -104,8 +106,9 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/sifreTekrarGir"
-            android:inputType="textPassword" />
+            android:hint="@string/retryPassword"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -114,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:background="@color/kk"
-        android:text="@string/kayitOlButon"
+        android:text="@string/signUpButton"
         android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -142,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
-        android:text="@string/girisYapText"
+        android:text="@string/signInText"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

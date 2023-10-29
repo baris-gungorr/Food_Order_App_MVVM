@@ -1,10 +1,8 @@
 package com.barisgungorr.ui.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.barisgungorr.data.entity.Favorite
-import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.data.repo.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope

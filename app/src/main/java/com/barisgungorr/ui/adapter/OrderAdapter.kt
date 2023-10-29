@@ -1,23 +1,24 @@
 package com.barisgungorr.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.CardDesignBinding
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.ui.viewmodel.OrderViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.play.integrity.internal.t
 
-class OrderAdapter(var mContext: Context,
-                   var mealList: List<Sepetler>,
-                   var viewmodel: OrderViewModel)
+class OrderAdapter(
+    private val mContext: Context,
+    private val mealList: List<Sepetler>,
+    private val viewModel: OrderViewModel)
     : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
-    inner class ViewHolder(var binding: CardDesignBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: CardDesignBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = CardDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -28,50 +29,48 @@ class OrderAdapter(var mContext: Context,
         return mealList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val k = holder.binding
         val basket = mealList[position]
 
-        if (mealList.size > 0) {
 
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.yemek_resim_adi}"
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.meals_image_name}"
         Glide.with(mContext).load(url).into(k.imageOrder)
-            k.OrderMealsName.text = "${basket.yemek_adi}"
-            k.OrderMealsPrice.text = "${basket.yemek_fiyat * basket.yemek_siparis_adet} ₺"
-            k.PieceText.text = "${basket.yemek_siparis_adet}"
+            k.OrderMealsName.text = "${basket.meals_name}"
+            k.OrderMealsPrice.text = "${basket.meals_price * basket.meals_order_piece} ₺"
+            k.PieceText.text = "${basket.meals_order_piece}"
 
             k.OrderDeleteImage.setOnClickListener {
                 Snackbar.make(
-                    it, "${basket.yemek_adi} Remove From Card ?", Snackbar.LENGTH_LONG
-                ).setAction("YES") {
-                    viewmodel.delete(basket.sepet_yemek_id, basket.kullanici_adi)
+                    it, "${basket.meals_name} ${it.resources.getString(R.string.removeText)}", Snackbar.LENGTH_LONG
+
+                ).setAction(R.string.yesText) {
+                    viewModel.delete(basket.card_meals_id, basket.user_name)
                     removeBasket(position)
                     updateTotalPrice()
                 }.show()
             }
 
             k.ButtonMinus.setOnClickListener {
-                if (basket.yemek_siparis_adet > 1) {
-                    basket.yemek_siparis_adet--
-                    k.PieceText.text = "${basket.yemek_siparis_adet}"
-                    k.OrderMealsPrice.text = "${basket.yemek_siparis_adet * basket.yemek_fiyat} ₺"
+                if (basket.meals_order_piece > 1) {
+                    basket.meals_order_piece--
+                    k.PieceText.text = "${basket.meals_order_piece}"
+                    k.OrderMealsPrice.text = "${basket.meals_order_piece * basket.meals_price} ₺"
                    updateTotalPrice()
                 }
             }
 
             k.ButtonPlus.setOnClickListener {
-                basket.yemek_siparis_adet++
-                k.PieceText.text = "${basket.yemek_siparis_adet}"
-                k.OrderMealsPrice.text = "${basket.yemek_siparis_adet * basket.yemek_fiyat} ₺"
+                basket.meals_order_piece++
+                k.PieceText.text = "${basket.meals_order_piece}"
+                k.OrderMealsPrice.text = "${basket.meals_order_piece * basket.meals_price} ₺"
                 updateTotalPrice()
             }
-        } else {
-            holder.itemView.visibility = View.GONE
+
         }
-    }
 
-
-fun removeBasket(position: Int) {
+private fun removeBasket(position: Int) {
         if (position == mealList.size - 1) {
             updateTotalPrice()
         }
@@ -79,14 +78,14 @@ fun removeBasket(position: Int) {
 
     private fun updateTotalPrice() {
         val totalPrice = calculatePrice()
-        viewmodel.totalPrice = totalPrice
+        viewModel.totalPrice = totalPrice
 
     }
 
     private fun calculatePrice(): Int {
         var totalPrice = 0
         for (item in mealList) {
-            totalPrice += item.yemek_fiyat * item.yemek_siparis_adet
+            totalPrice += item.meals_price * item.meals_order_piece
         }
         return totalPrice
     }
