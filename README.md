@@ -4,27 +4,28 @@
 <table>
   <tr>
     <td align="center">
-      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/blob/main/app/src/main/res/orderApp/si.png" alt="TO_DO_APP" width="250">
+      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/assets/121685398/3c63598c-abe9-4b78-bede-a8ac8885d131" alt="TO_DO_APP" width="250">
     </td>
     <td align="center">
-      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/blob/main/app/src/main/res/orderApp/su.png" alt="NOTLARIM" width="250">
+      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/assets/121685398/2c9a8fd1-7c02-4500-b9f7-4d0388805370" alt="NOTLARIM" width="250">
     </td>
     <td align="center">
-      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/blob/main/app/src/main/res/orderApp/main.png" alt="NOTLARIM" width="250">
+      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/assets/121685398/98383824-9fde-4035-bc03-afae0d4a5d18" alt="NOTLARIM" width="250">
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/blob/main/app/src/main/res/orderApp/fav.png" alt="NOTLARIM" width="250">
+      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/assets/121685398/e768a771-c065-4d9d-9517-5680cd7a2a36" alt="NOTLARIM" width="250">
     </td>
     <td align="center">
-      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/blob/main/app/src/main/res/orderApp/or.png" alt="NOTLARIM" width="250">
+      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/assets/121685398/0559d08f-4038-4381-8b2d-d50f1daad734" alt="NOTLARIM" width="250">
     </td>
     <td align="center">
-      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/blob/main/app/src/main/res/orderApp/sea.png" alt="NOTLARIM" width="250">
+      <img src="https://github.com/baris-gungorr/Food_Order_App_MVVM/assets/121685398/8815b336-66d2-4cf3-97b9-e68a3b18dc2c" alt="NOTLARIM" width="250">
     </td>
   </tr>
 </table>
+
 
 📸 Videos
  <!-- Video -->
