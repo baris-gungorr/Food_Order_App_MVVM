@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
 import com.barisgungorr.ui.adapter.OrderAdapter
+import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.barisgungorr.ui.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -23,9 +24,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class OrderFragment : Fragment() {
     private lateinit var binding: FragmentOrderBinding
-    private lateinit var viewModel: OrderViewModel
-
-
+    private val viewModel: OrderViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +42,7 @@ class OrderFragment : Fragment() {
 
                     binding.recyclerView.adapter = adapter
                     viewModel.orderTotalPrice()
-                    updatePrice()
+                   viewModel.orderTotalPrice()
 
                 }
 
@@ -64,7 +63,7 @@ class OrderFragment : Fragment() {
                 }
                 }
 
-                clearBasket()
+              viewModel.clearBasket()
             }
 
         binding.imageViewBackk?.setOnClickListener {
@@ -76,25 +75,9 @@ class OrderFragment : Fragment() {
 
         }
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            val tempViewModel: OrderViewModel by viewModels()
-            viewModel = tempViewModel
-
-        }
-
     override fun onResume() {
         super.onResume()
         viewModel.getOrder()
-    }
-    private fun updatePrice(){
-        viewModel.orderTotalPrice().toInt()
-
-    }
-
-    private fun clearBasket() {
-
-        viewModel.clearBasket()
     }
 
 }

@@ -1,5 +1,6 @@
 package com.barisgungorr.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,17 +13,17 @@ import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
+import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
-    private lateinit var viewModel: DetailsViewModel
+    private val viewModel: DetailsViewModel by viewModels()
     private var piece = 1
 
-
-
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +39,7 @@ class DetailsFragment : Fragment() {
 
         binding.textMealsName.text = getMeals.yemek_adi
         binding.textViewPrice.text = "${getMeals.yemek_fiyat} ₺"
-        binding.mealsPieceText.text = "${piece}"
+        binding.mealsPieceText.text = "$piece"
 
         binding.buttonFavoriteNull.setOnClickListener {
 
@@ -51,14 +52,14 @@ class DetailsFragment : Fragment() {
         binding.buttonMinus.setOnClickListener {
             if (piece > 1) {
                 piece--
-                binding.mealsPieceText.text = "${piece}"
+                binding.mealsPieceText.text = "$piece"
                 binding.textViewPrice.text = "${piece * getMeals.yemek_fiyat.toDouble()} ₺"
             }
         }
 
         binding.buttonPlus.setOnClickListener {
             piece++
-            binding.mealsPieceText.text = "${piece}"
+            binding.mealsPieceText.text = "$piece"
             binding.textViewPrice.text = "${piece * getMeals.yemek_fiyat.toDouble()} ₺"
 
         }
@@ -79,13 +80,5 @@ class DetailsFragment : Fragment() {
 
         return binding.root
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val tempViewModel: DetailsViewModel by viewModels()
-        viewModel = tempViewModel
-    }
-
 }
 

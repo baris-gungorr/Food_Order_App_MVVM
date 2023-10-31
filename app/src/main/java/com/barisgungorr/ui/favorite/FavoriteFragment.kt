@@ -9,19 +9,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteBinding
 import com.barisgungorr.ui.adapter.FavoriteAdapter
 import com.barisgungorr.ui.viewmodel.FavoriteViewModel
+import com.barisgungorr.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
-    private lateinit var viewModel : FavoriteViewModel
+    private val viewModel: FavoriteViewModel by viewModels()
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,16 +71,9 @@ class FavoriteFragment : Fragment() {
             false
         }
 
-
         return binding.root
     }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-
-        val tempViewModel: FavoriteViewModel by viewModels()
-        viewModel = tempViewModel
-    }
     override fun onResume() {
         super.onResume()
         viewModel.getFavorites()
