@@ -30,6 +30,7 @@
     <string name="cardTitle">SEPETİM</string>
     <string name="approvalButton">ONAYLA</string>
     <string name="removeTextOrder">Sepetten silinsin mi?</string>
+    <string name="addProductCard"> "Lütfen sepete ürün ekleyin!"</string>
 
     <string name="favoriteTitle">FAVORİLERİM</string>
     <string name="removeText">silinsin mi?</string>

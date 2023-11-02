@@ -1,4 +1,4 @@
-package com.barisgungorr.utils.Extension
+package com.barisgungorr.utils.extension
 
 import android.graphics.Color
 import android.view.View
@@ -11,11 +11,11 @@ fun View.snackbar(message:String) {
         .setBackgroundTint(resources.getColor(R.color.kk))
         .show()
 
-    fun View.click(func: () -> Unit) {
-        this.setOnClickListener {
-            func()
-        }
-
+    }
+fun View.click(func: () -> Unit) {
+    this.setOnClickListener {
+        func()
     }
 }
+
 

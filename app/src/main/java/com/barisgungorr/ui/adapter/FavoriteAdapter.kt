@@ -1,6 +1,5 @@
 package com.barisgungorr.ui.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,10 +10,11 @@ import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 
-class FavoriteAdapter(var viewModel: FavoriteViewModel,
-                      var mContext: Context,
-                      var favoriteList:List<Favorite>)
-                        :  RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+class FavoriteAdapter(
+    private var viewModel: FavoriteViewModel,
+    private var favoriteList: List<Favorite>
+)
+    :  RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: FavoriteCardBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -34,7 +34,7 @@ class FavoriteAdapter(var viewModel: FavoriteViewModel,
        t.textViewMealName.text = meal.meals_name
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${meal.meals_image_name}"
-        Glide.with(mContext).load(url).into(holder.binding.imageView)
+        Glide.with(holder.itemView.context).load(url).into(holder.binding.imageView)
 
         t.mealsDelete.setOnClickListener {
             Snackbar.make(

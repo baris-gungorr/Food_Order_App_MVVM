@@ -2,18 +2,18 @@ package com.barisgungorr.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
-import com.barisgungorr.ui.viewmodel.MainViewModel
+import com.barisgungorr.utils.extension.click
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,7 +49,7 @@ class DetailsFragment : Fragment() {
            viewModel.save(getMeals.yemek_id,getMeals.yemek_adi,getMeals.yemek_resim_adi)
         }
 
-        binding.buttonMinus.setOnClickListener {
+        binding.buttonMinus.click {
             if (piece > 1) {
                 piece--
                 binding.mealsPieceText.text = "$piece"
@@ -57,14 +57,14 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        binding.buttonPlus.setOnClickListener {
+        binding.buttonPlus.click{
             piece++
             binding.mealsPieceText.text = "$piece"
             binding.textViewPrice.text = "${piece * getMeals.yemek_fiyat.toDouble()} ₺"
 
         }
 
-        binding.buttonAddCard.setOnClickListener {
+        binding.buttonAddCard.click {
             val isAlreadyInCart = viewModel.isProductInBasket(getMeals.yemek_adi)
             if (isAlreadyInCart) {
                 Toast.makeText(requireContext(), "This product is available in your cart", Toast.LENGTH_LONG).show()
@@ -74,8 +74,9 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        binding.imageViewBack.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.detailsToMain)
+        binding.imageViewBack.click {
+            this.view?.let { Navigation.findNavController(it).navigate(R.id.detailsToMain) }
+
         }
 
         return binding.root

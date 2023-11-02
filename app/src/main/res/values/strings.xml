@@ -29,6 +29,7 @@
     <string name="cardTitle">MY CARD</string>
     <string name="approvalButton">CONFİRM</string>
     <string name="removeTextOrder">Remove from card?</string>
+    <string name="addProductCard"> "Please add product to cart!"</string>
 
 
 

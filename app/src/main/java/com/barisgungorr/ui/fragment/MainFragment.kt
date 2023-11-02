@@ -19,9 +19,9 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.adapter.HomeCardAdapter
 import com.barisgungorr.ui.viewmodel.MainViewModel
-import com.google.android.material.snackbar.Snackbar
+import com.barisgungorr.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
+
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
@@ -35,6 +35,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -51,14 +52,14 @@ class MainFragment : Fragment() {
     }
 
     private fun initMealList(mealList: List<Yemekler>) {
-        val adapter = HomeCardAdapter(viewModel, requireContext(), mealList)
-        binding.Rv.adapter = adapter
+        val adapter = HomeCardAdapter(viewModel, mealList)
+        binding.RecyclerViewMain.adapter = adapter
         binding.progressBar.isGone = true
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initViews() {
-        binding.Rv.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.RecyclerViewMain.layoutManager = GridLayoutManager(requireContext(), 3)
 
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -78,7 +79,7 @@ class MainFragment : Fragment() {
             false
         }
 
-        binding.imageViewLogOut.setOnClickListener {
+        binding.imageViewLogOut.click {
 
             val message = AlertDialog.Builder(requireContext())
             message.setMessage(R.string.AreYouExit)
@@ -98,4 +99,3 @@ class MainFragment : Fragment() {
         }
     }
 }
-

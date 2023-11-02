@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 
 class OrderAdapter(
-    private val mContext: Context,
     private val mealList: List<Sepetler>,
     private val viewModel: OrderViewModel)
     : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
@@ -34,9 +33,10 @@ class OrderAdapter(
         val k = holder.binding
         val basket = mealList[position]
 
-
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.meals_image_name}"
-        Glide.with(mContext).load(url).into(k.imageOrder)
+
+        Glide.with(holder.itemView.context).load(url).into(k.imageOrder)
+
             k.OrderMealsName.text = "${basket.meals_name}"
             k.OrderMealsPrice.text = "${basket.meals_price * basket.meals_order_piece} ₺"
             k.PieceText.text = "${basket.meals_order_piece}"
@@ -67,7 +67,6 @@ class OrderAdapter(
                 k.OrderMealsPrice.text = "${basket.meals_order_piece * basket.meals_price} ₺"
                 updateTotalPrice()
             }
-
         }
 
 private fun removeBasket(position: Int) {

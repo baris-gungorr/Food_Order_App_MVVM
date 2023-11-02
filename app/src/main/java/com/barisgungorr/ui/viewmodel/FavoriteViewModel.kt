@@ -11,16 +11,13 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoriteViewModel @Inject constructor(var mRepo: MealsRepository) : ViewModel() {
+class FavoriteViewModel @Inject constructor(private val mRepo: MealsRepository) : ViewModel() {
 
-    var favoriteList = MutableLiveData<List<Favorite>>()
+    val favoriteList = MutableLiveData<List<Favorite>>()
 
-    fun getFavorites() {
+   fun getFavorites() {
         CoroutineScope(Dispatchers.Main).launch {
-            try {
                 favoriteList.value = mRepo.getFavorites()
-            } catch (e: Exception) {
-            }
         }
     }
 
@@ -31,7 +28,7 @@ class FavoriteViewModel @Inject constructor(var mRepo: MealsRepository) : ViewMo
         }
     }
 
-    fun searchF(searchKeyword: String) {
+   fun searchF(searchKeyword: String) {
         CoroutineScope(Dispatchers.Main).launch {
             favoriteList.value = mRepo.searchF(searchKeyword)
         }

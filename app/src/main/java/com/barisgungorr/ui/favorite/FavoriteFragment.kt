@@ -8,16 +8,19 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteBinding
 import com.barisgungorr.ui.adapter.FavoriteAdapter
 import com.barisgungorr.ui.viewmodel.FavoriteViewModel
-import com.barisgungorr.ui.viewmodel.MainViewModel
+import com.barisgungorr.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint
+
+
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
@@ -33,7 +36,7 @@ class FavoriteFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         val layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerViewFavorites?.layoutManager = layoutManager
 
 
         viewModel.favoriteList.observe(viewLifecycleOwner) { favorites ->
@@ -43,13 +46,13 @@ class FavoriteFragment : Fragment() {
                 binding.textViewNull.visibility = View.VISIBLE
             }
 
-            val adapter = FavoriteAdapter(viewModel,requireContext(),favorites)
-            binding.recyclerView.adapter = adapter
+            val adapter = FavoriteAdapter(viewModel, favorites)
+            binding.recyclerViewFavorites?.adapter = adapter
 
         }
 
-        binding.imageViewBack.setOnClickListener {
-           Navigation.findNavController(it).navigate(R.id.favoriteToMain)
+        binding.imageViewBack.click {
+            findNavController().navigate(R.id.favoriteToMain)
 
         }
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -58,7 +61,7 @@ class FavoriteFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                searchF(newText)
+                viewModel.searchF(newText)
                 return false
             }
         })
@@ -77,8 +80,5 @@ class FavoriteFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getFavorites()
-    }
-    fun searchF(searchKeyword:String){
-        viewModel.searchF(searchKeyword)
     }
 }

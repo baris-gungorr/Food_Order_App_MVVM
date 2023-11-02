@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel() {
+class OrderViewModel @Inject constructor(private val mrepo: MealsRepository): ViewModel() {
    var basketList : MutableLiveData<List<Sepetler>?> = MutableLiveData()
 
     var totalPrice = 0
@@ -24,7 +24,7 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
 
     }
 
-    fun getBasketMeals(kullanici_adi:String) {
+    private fun getBasketMeals(kullanici_adi:String) {
 
         CoroutineScope(Dispatchers.Main).launch {
 
@@ -66,7 +66,7 @@ class OrderViewModel @Inject constructor(var mrepo: MealsRepository): ViewModel(
         }
     }
 
-    fun orderLastItem() {
+    private fun orderLastItem() {
         if (!basketList.value.isNullOrEmpty()) {
             val lastItem = basketList.value!!.toMutableList()
             lastItem.removeAt(lastItem.lastIndex)

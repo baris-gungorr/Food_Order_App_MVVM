@@ -1,6 +1,6 @@
 package com.barisgungorr.ui.adapter
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
@@ -13,8 +13,7 @@ import com.bumptech.glide.Glide
 
 class HomeCardAdapter(
     var viewmodel: MainViewModel,
-    var mContext: Context,
-    var mealList: List<Yemekler>
+    private var mealList: List<Yemekler>
 ) : RecyclerView.Adapter<HomeCardAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: HomeCardBinding) : RecyclerView.ViewHolder(binding.root)
@@ -28,6 +27,7 @@ class HomeCardAdapter(
         return mealList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val meal = mealList[position]
