@@ -14,6 +14,7 @@ import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.ui.viewmodel.DetailsViewModel
 import com.barisgungorr.utils.extension.click
+import com.barisgungorr.utils.extension.transition
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -67,16 +68,16 @@ class DetailsFragment : Fragment() {
         binding.buttonAddCard.click {
             val isAlreadyInCart = viewModel.isProductInBasket(getMeals.yemek_adi)
             if (isAlreadyInCart) {
-                Toast.makeText(requireContext(), "This product is available in your cart", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), R.string.AvailableCard, Toast.LENGTH_LONG).show()
+
             } else {
                 viewModel.addMeals(getMeals.yemek_adi,getMeals.yemek_resim_adi,getMeals.yemek_fiyat,piece,"barisGungor")
-                Toast.makeText(requireContext(), "ADDED TO CARD!", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), R.string.AddCard, Toast.LENGTH_LONG).show()
             }
         }
 
         binding.imageViewBack.click {
-            this.view?.let { Navigation.findNavController(it).navigate(R.id.detailsToMain) }
-
+            this.view?.let { Navigation.transition(it,R.id.detailsToMain) }
         }
 
         return binding.root

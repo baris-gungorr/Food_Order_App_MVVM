@@ -46,7 +46,7 @@ private fun getMeals() {
                     }
                 }
 
-            }catch (e:Exception) {
+            }catch (_:Exception) {
 
             }
         }

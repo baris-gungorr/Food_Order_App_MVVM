@@ -25,6 +25,10 @@
 
     <string name="DetailsTitle">DETAİLS SCREEN</string>
     <string name="addCardButton">ADD TO CARD</string>
+    <string name="AvailableCard">"This product is available in your cart"</string>
+    <string name="AddCard">"ADD CARD!"</string>
+
+
 
     <string name="cardTitle">MY CARD</string>
     <string name="approvalButton">CONFİRM</string>

@@ -17,6 +17,7 @@ import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
 import com.barisgungorr.ui.adapter.OrderAdapter
 import com.barisgungorr.ui.viewmodel.OrderViewModel
 import com.barisgungorr.utils.extension.click
+import com.barisgungorr.utils.extension.transition
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -67,7 +68,7 @@ class OrderFragment : Fragment() {
             }
 
         binding.imageViewBackk?.click {
-            this.view?.let { Navigation.findNavController(it).navigate(R.id.orderToMain) }
+            this.view?.let { Navigation.transition(it,R.id.orderToMain)}
 
         }
             return binding.root

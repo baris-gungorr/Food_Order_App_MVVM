@@ -13,7 +13,9 @@ class MealsRepository @Inject constructor (private val mDao: MealsDataSource) {
     suspend fun addMeals(meals_name:String,meals_image_name:String,meals_price:Int,meals_order_piece:Int,userName:String) =
         mDao.addMeals(meals_name, meals_image_name , meals_price,meals_order_piece, userName)
 
-    suspend fun getBasketMeals(userName: String) : List<Sepetler> = mDao.getBasketMeals(userName)
+    suspend fun getBasketMeals(userName: String) : List<Sepetler>  {
+       return  mDao.getBasketMeals(userName)
+    }
 
     suspend fun delete (userName: String,card_meals_id:Int) = mDao.delete(userName, card_meals_id)
 

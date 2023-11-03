@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.data.entity.Yemekler
-import com.barisgungorr.ui.adapter.HomeCardAdapter
+import com.barisgungorr.ui.adapter.MainAdapter
 import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.barisgungorr.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +27,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
-
     private val viewModel: MainViewModel by viewModels()
 
     override fun onCreateView(
@@ -52,7 +51,7 @@ class MainFragment : Fragment() {
     }
 
     private fun initMealList(mealList: List<Yemekler>) {
-        val adapter = HomeCardAdapter(viewModel, mealList)
+        val adapter = MainAdapter(viewModel, mealList)
         binding.RecyclerViewMain.adapter = adapter
         binding.progressBar.isGone = true
     }

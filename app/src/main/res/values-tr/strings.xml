@@ -26,6 +26,8 @@
 
     <string name="DetailsTitle">DETAY SAYFASI</string>
     <string name="addCardButton">SEPETE EKLE</string>
+    <string name="AvailableCard">"Bu ürün daha önce eklenmiş!"</string>
+    <string name="AddCard">"Sepete eklendi!"</string>
 
     <string name="cardTitle">SEPETİM</string>
     <string name="approvalButton">ONAYLA</string>

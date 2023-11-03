@@ -9,12 +9,13 @@ import com.barisgungorr.bootcamprecipeapp.databinding.HomeCardBinding
 import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.fragment.MainFragmentDirections
 import com.barisgungorr.ui.viewmodel.MainViewModel
+import com.barisgungorr.utils.extension.transition
 import com.bumptech.glide.Glide
 
-class HomeCardAdapter(
+class MainAdapter(
     var viewmodel: MainViewModel,
     private var mealList: List<Yemekler>
-) : RecyclerView.Adapter<HomeCardAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: HomeCardBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -44,5 +45,4 @@ class HomeCardAdapter(
         Glide.with(holder.itemView.context).load(url).into(holder.binding.imageMeal)
 
     }
-
 }

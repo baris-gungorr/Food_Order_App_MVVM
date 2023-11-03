@@ -24,7 +24,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
-
     private lateinit var binding: FragmentFavoriteBinding
     private val viewModel: FavoriteViewModel by viewModels()
 
@@ -53,6 +52,7 @@ class FavoriteFragment : Fragment() {
 
         binding.imageViewBack.click {
             findNavController().navigate(R.id.favoriteToMain)
+
 
         }
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {

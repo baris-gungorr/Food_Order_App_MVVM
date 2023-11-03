@@ -2,6 +2,7 @@ package com.barisgungorr.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.data.repo.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,8 +29,7 @@ class DetailsViewModel @Inject constructor(private val mrepo: MealsRepository) :
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val isProductInBasket = isProductInBasket(yemek_adi)
-                if (isProductInBasket) {
-
+                if ( isProductInBasket) {
                 } else {
                     mrepo.addMeals(
                         yemek_adi,
