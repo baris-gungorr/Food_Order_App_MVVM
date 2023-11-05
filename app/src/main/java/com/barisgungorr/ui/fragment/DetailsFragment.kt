@@ -68,7 +68,7 @@ class DetailsFragment : Fragment() {
         binding.buttonAddCard.click {
             val isAlreadyInCart = viewModel.isProductInBasket(getMeals.yemek_adi)
             if (isAlreadyInCart) {
-                Toast.makeText(requireContext(), R.string.AvailableCard, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), R.string.availableCard, Toast.LENGTH_LONG).show()
 
             } else {
                 viewModel.addMeals(
@@ -78,7 +78,7 @@ class DetailsFragment : Fragment() {
                     piece,
                     "barisGungor"
                 )
-                Toast.makeText(requireContext(), R.string.AddCard, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), R.string.addCard, Toast.LENGTH_LONG).show()
             }
         }
 

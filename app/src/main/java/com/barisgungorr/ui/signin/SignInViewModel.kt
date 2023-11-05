@@ -2,6 +2,7 @@ package com.barisgungorr.ui.signin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.barisgungorr.bootcamprecipeapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -24,15 +25,14 @@ class SignInViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-
     fun signIn(email: String, password: String) {
         when {
-            email.isEmpty() || password.isEmpty() -> sendMessage("Fill in the blanks!")
-            password.length < 6 -> sendMessage("Password length must be minimum 6 characters long")
-            isValidEmail(email).not() -> sendMessage("Invalid email address")
+            email.isEmpty() || password.isEmpty() -> sendMessage(R.string.fillBlanksText.toString())
+            password.length < 6 -> sendMessage(R.string.passwordAlert.toString())
+            isValidEmail(email).not() -> sendMessage(R.string.ınvalidAlert.toString())
             else -> auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { navigateToMainScreen() }
-                .addOnFailureListener { sendMessage("Wrong username or password") }
+                .addOnFailureListener { sendMessage(R.string.wrongUsernamePass.toString()) }
         }
     }
 
@@ -41,7 +41,7 @@ class SignInViewModel @Inject constructor() : ViewModel() {
             this@SignInViewModel.message.emit(message)
         }
     }
- 
+
     private fun navigateToMainScreen() {
         viewModelScope.launch { shouldNavigateToMainScreen.emit(Unit) }
     }

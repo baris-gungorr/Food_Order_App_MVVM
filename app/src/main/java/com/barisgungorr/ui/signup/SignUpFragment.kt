@@ -21,8 +21,8 @@ class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
 
     private val viewModel: SignUpViewModel by viewModels()
-    private val email :String? = null
-    private val password:String? = null
+    private val email: String? = null
+    private val password: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,18 +39,19 @@ class SignUpFragment : Fragment() {
 
         if (password != null) {
             if (email != null) {
-                viewModel.checkUserInfo(email,password)
+                viewModel.checkUserInfo(email, password)
             }
         }
     }
+
     private fun observe() {
         lifecycleScope.launch {
             viewModel.shouldNavigateToSignInScreen.collectLatest {
                 findNavController().navigate(R.id.signUpToSignIn)
             }
         }
-        lifecycleScope.launch{
-            viewModel.message.collectLatest {message ->
+        lifecycleScope.launch {
+            viewModel.message.collectLatest { message ->
                 requireView().snackbar(message)
             }
         }
@@ -61,10 +62,11 @@ class SignUpFragment : Fragment() {
             findNavController().navigate(R.id.signUpToSignIn)
         }
 
-            buttonSignUp.click {
-                val email = emailText.text.toString()
-                val pass = passText.text.toString()
-                viewModel.signUp(email, pass)
-            }
+        buttonSignUp.click {
+            val email = emailText.text.toString()
+            val pass = passText.text.toString()
+            viewModel.signUp(email, pass)
+
         }
     }
+}

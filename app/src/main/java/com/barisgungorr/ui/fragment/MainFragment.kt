@@ -81,15 +81,13 @@ class MainFragment : Fragment() {
         binding.imageViewLogOut.click {
 
             val message = AlertDialog.Builder(requireContext())
-            message.setMessage(R.string.AreYouExit)
+            message.setMessage(R.string.areYouExit)
             message.setTitle(R.string.setTitleAlert)
             message.setIcon(R.drawable.ic_app_icon)
 
             message.setPositiveButton(R.string.buttonYes) { _, _ ->
                 viewModel.signOut()
                 findNavController().navigate(R.id.mainToSign)
-                Toast.makeText(requireContext(), R.string.textLogOut, Toast.LENGTH_SHORT).show()
-
             }
             message.setNegativeButton(R.string.buttonNo) { _, _ ->
 

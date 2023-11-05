@@ -25,7 +25,7 @@
         android:layout_height="81dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/DetailsTitle"
+        android:text="@string/detailsTitle"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"

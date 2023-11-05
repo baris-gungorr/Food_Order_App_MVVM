@@ -8,6 +8,12 @@
     <string name="signInButton">GİRİŞ YAP</string>
     <string name="Or">Ya da </string>
     <string name="signUpText">KAYIT OL</string>
+    <string name="fillBlanksText">Alanları doldurunuz!</string>
+    <string name="passwordAlert">Parola 6 karakterdenden kısa olamaz!</string>
+    <string name="ınvalidAlert">Geçersiz email formatı!</string>
+    <string name="wrongUsernamePass">Geçersiz email veya parola!</string>
+
+
 
 
     <string name="signUpTitle">KAYIT OL</string>
@@ -17,17 +23,17 @@
     <string name="signUpButton">KAYIT OL</string>
     <string name="signInText">giriş yap</string>
 
-    <string name="MainTitlee">ANASAYFA</string>
-    <string name="AreYouExit">Çıkış yapmak istiyor musun ?</string>
+    <string name="mainTitlee">ANASAYFA</string>
+    <string name="areYouExit">Çıkış yapmak istiyor musun ?</string>
     <string name="setTitleAlert">Order App</string>
     <string name="buttonYes">EVET</string>
     <string name="buttonNo">HAYIR</string>
     <string name="textLogOut">ÇIKIŞ YAPILDI</string>
 
-    <string name="DetailsTitle">DETAY SAYFASI</string>
+    <string name="detailsTitle">DETAY SAYFASI</string>
     <string name="addCardButton">SEPETE EKLE</string>
-    <string name="AvailableCard">"Bu ürün daha önce eklenmiş!"</string>
-    <string name="AddCard">"Sepete eklendi!"</string>
+    <string name="availableCard">"Bu ürün daha önce eklenmiş!"</string>
+    <string name="addCard">"Sepete eklendi!"</string>
 
     <string name="cardTitle">SEPETİM</string>
     <string name="approvalButton">ONAYLA</string>

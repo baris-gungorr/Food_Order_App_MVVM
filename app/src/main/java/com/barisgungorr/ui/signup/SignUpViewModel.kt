@@ -2,6 +2,7 @@ package com.barisgungorr.ui.signup
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.barisgungorr.bootcamprecipeapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -16,23 +17,25 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     val message = MutableSharedFlow<String>()
     private var auth: FirebaseAuth = Firebase.auth
 
+
     fun checkUserInfo(email: String, password: String) {
 
         auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-
+            shouldNavigateToSignInScreen
         }
     }
+
     fun signUp(email: String, pass: String) {
         when {
-            email.isEmpty() || pass.isEmpty() -> sendMessage("Fill in the blanks!")
-            pass.length < 6 -> sendMessage("Password length must be minimum 6 characters long")
-            isValidEmail(email).not() -> sendMessage("Invalid email address")
+            email.isEmpty() || pass.isEmpty() -> sendMessage(R.string.fillBlanksText.toString())
+            pass.length < 6 -> sendMessage(R.string.passwordAlert.toString())
+            isValidEmail(email).not() -> sendMessage(R.string.ınvalidAlert.toString())
             else -> auth.createUserWithEmailAndPassword(email, pass)
                 .addOnSuccessListener {
-                    navigateToSingInScreen()
+                    navigateToSignInScreen()
 
                 }.addOnFailureListener {
-                    sendMessage("Wrong email or password")
+                    sendMessage(R.string.wrongUsernamePass.toString())
 
                 }
         }
@@ -44,13 +47,13 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    private fun navigateToSingInScreen() {
+    private fun navigateToSignInScreen() {
 
         viewModelScope.launch { shouldNavigateToSignInScreen.emit(Unit) }
     }
 
     private fun isValidEmail(email: String): Boolean {
-        val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
+        val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.com")
         return emailRegex.matches(email)
     }
 }

@@ -7,6 +7,14 @@
     <string name="signInButton">SIGN IN</string>
     <string name="Or">Or</string>
     <string name="signUpText">SIGN UP</string>
+    <string name="fillBlanksText">Fill in the blanks!</string>
+    <string name="passwordAlert">Password length must be minimum 6 characters long!</string>
+    <string name="ınvalidAlert">Invalid email adress!</string>
+    <string name="wrongUsernamePass">Wrong email and password!</string>
+
+
+
+
 
     <string name="signUpTitle">SIGN UP</string>
     <string name="addEmail">Type your Email</string>
@@ -15,18 +23,18 @@
     <string name="signUpButton">SIGN UP</string>
     <string name="signInText">Sign In</string>
 
-    <string name="MainTitlee">HOME SCREEN</string>
-    <string name="AreYouExit">Are you exit ?</string>
+    <string name="mainTitlee">HOME SCREEN</string>
+    <string name="areYouExit">Are you exit ?</string>
     <string name="setTitleAlert">Order App</string>
     <string name="buttonYes">YES</string>
     <string name="buttonNo">NO</string>
     <string name="textLogOut">LOG OUT</string>
 
 
-    <string name="DetailsTitle">DETAİLS SCREEN</string>
+    <string name="detailsTitle">DETAİLS SCREEN</string>
     <string name="addCardButton">ADD TO CARD</string>
-    <string name="AvailableCard">"This product is available in your cart"</string>
-    <string name="AddCard">"ADD CARD!"</string>
+    <string name="availableCard">"This product is available in your cart"</string>
+    <string name="addCard">"ADD CARD!"</string>
 
 
 
