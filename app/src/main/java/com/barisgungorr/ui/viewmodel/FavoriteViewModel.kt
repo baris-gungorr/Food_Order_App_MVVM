@@ -2,6 +2,7 @@ package com.barisgungorr.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.barisgungorr.data.entity.Favorite
 import com.barisgungorr.data.repo.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,21 +16,21 @@ class FavoriteViewModel @Inject constructor(private val mRepo: MealsRepository) 
 
     val favoriteList = MutableLiveData<List<Favorite>>()
 
-   fun getFavorites() {
-        CoroutineScope(Dispatchers.Main).launch {
-                favoriteList.value = mRepo.getFavorites()
+    fun getFavorites() {
+        viewModelScope.launch {
+            favoriteList.value = mRepo.getFavorites()
         }
     }
 
     fun deleteF(yemek_id: Int) {
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch {
             mRepo.deleteF(yemek_id)
             getFavorites()
         }
     }
 
-   fun searchF(searchKeyword: String) {
-        CoroutineScope(Dispatchers.Main).launch {
+    fun searchF(searchKeyword: String) {
+        viewModelScope.launch {
             favoriteList.value = mRepo.searchF(searchKeyword)
         }
     }

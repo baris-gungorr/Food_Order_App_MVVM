@@ -41,38 +41,40 @@ class OrderFragment : Fragment() {
         binding.recyclerView.layoutManager = layoutManager
 
 
-        viewModel.basketList.observe(viewLifecycleOwner) {sepetler->
-            val adapter = sepetler?.let { it1 -> OrderAdapter( it1, viewModel) }
+        viewModel.basketList.observe(viewLifecycleOwner) { sepetler ->
+            val adapter = sepetler?.let { it1 -> OrderAdapter(it1, viewModel) }
 
-                    binding.recyclerView.adapter = adapter
-                    viewModel.orderTotalPrice()
+            binding.recyclerView.adapter = adapter
+            viewModel.orderTotalPrice()
+        }
+
+        binding.buttonAddCard.click {
+
+            val isBasketEmpty =
+                viewModel.basketList.value == null || viewModel.basketList.value?.isEmpty() == true
+            if (isBasketEmpty) {
+                Toast.makeText(requireContext(), R.string.addProductCard, Toast.LENGTH_LONG).show()
+            } else {
+                binding.completeImage.setImageResource(R.drawable.r)
+                binding.completeImage.visibility = View.VISIBLE
+
+                CoroutineScope(Dispatchers.Main).launch {
+                    delay(3000)
+
+                    findNavController().navigate(R.id.orderToMain)
                 }
-
-            binding.buttonAddCard.click {
-
-                val isBasketEmpty = viewModel.basketList.value == null || viewModel.basketList.value?.isEmpty() == true
-                if (isBasketEmpty) {
-                    Toast.makeText(requireContext(), R.string.addProductCard, Toast.LENGTH_LONG).show()
-                } else {
-                    binding.completeImage.setImageResource(R.drawable.r)
-                    binding.completeImage.visibility = View.VISIBLE
-
-                    CoroutineScope(Dispatchers.Main).launch {
-                        delay(3000)
-
-                        findNavController().navigate(R.id.orderToMain)
-                    }
-                }
-
-              viewModel.clearBasket()
             }
 
+            viewModel.clearBasket()
+        }
+
         binding.imageViewBackk?.click {
-            this.view?.let { Navigation.transition(it,R.id.orderToMain)}
+            this.view?.let { Navigation.transition(it, R.id.orderToMain) }
 
         }
-            return binding.root
-        }
+        return binding.root
+    }
+
     override fun onResume() {
         super.onResume()
         viewModel.getOrder()

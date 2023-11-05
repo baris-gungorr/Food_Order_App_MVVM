@@ -47,7 +47,7 @@ class DetailsFragment : Fragment() {
             binding.buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
             Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
 
-           viewModel.save(getMeals.yemek_id,getMeals.yemek_adi,getMeals.yemek_resim_adi)
+            viewModel.save(getMeals.yemek_id, getMeals.yemek_adi, getMeals.yemek_resim_adi)
         }
 
         binding.buttonMinus.click {
@@ -58,7 +58,7 @@ class DetailsFragment : Fragment() {
             }
         }
 
-        binding.buttonPlus.click{
+        binding.buttonPlus.click {
             piece++
             binding.mealsPieceText.text = "$piece"
             binding.textViewPrice.text = "${piece * getMeals.yemek_fiyat.toDouble()} ₺"
@@ -71,13 +71,19 @@ class DetailsFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.AvailableCard, Toast.LENGTH_LONG).show()
 
             } else {
-                viewModel.addMeals(getMeals.yemek_adi,getMeals.yemek_resim_adi,getMeals.yemek_fiyat,piece,"barisGungor")
+                viewModel.addMeals(
+                    getMeals.yemek_adi,
+                    getMeals.yemek_resim_adi,
+                    getMeals.yemek_fiyat,
+                    piece,
+                    "barisGungor"
+                )
                 Toast.makeText(requireContext(), R.string.AddCard, Toast.LENGTH_LONG).show()
             }
         }
 
         binding.imageViewBack.click {
-            this.view?.let { Navigation.transition(it,R.id.detailsToMain) }
+            this.view?.let { Navigation.transition(it, R.id.detailsToMain) }
         }
 
         return binding.root

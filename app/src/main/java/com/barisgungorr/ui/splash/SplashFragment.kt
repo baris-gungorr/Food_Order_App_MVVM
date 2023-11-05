@@ -20,10 +20,10 @@ class SplashFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater, container, false)
 
-   Handler(Looper.getMainLooper()).postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             val action = SplashFragmentDirections.splashToSign()
             findNavController().navigate(action)
-        },2000)
+        }, 2000)
 
         return binding.root
     }

@@ -5,11 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.databinding.HomeCardBinding
+import com.barisgungorr.bootcamprecipeapp.databinding.FragmentHomeCardBinding
 import com.barisgungorr.data.entity.Yemekler
 import com.barisgungorr.ui.fragment.MainFragmentDirections
 import com.barisgungorr.ui.viewmodel.MainViewModel
-import com.barisgungorr.utils.extension.transition
 import com.bumptech.glide.Glide
 
 class MainAdapter(
@@ -17,10 +16,10 @@ class MainAdapter(
     private var mealList: List<Yemekler>
 ) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
-    inner class ViewHolder(var binding: HomeCardBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding: FragmentHomeCardBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = HomeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = FragmentHomeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 

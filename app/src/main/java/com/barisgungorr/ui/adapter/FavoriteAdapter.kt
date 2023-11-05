@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.databinding.FavoriteCardBinding
+import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteCardBinding
 import com.barisgungorr.data.entity.Favorite
 import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.bumptech.glide.Glide
@@ -16,10 +16,10 @@ class FavoriteAdapter(
 )
     :  RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
-    inner class ViewHolder(var binding: FavoriteCardBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(var binding: FragmentFavoriteCardBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = FavoriteCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = FragmentFavoriteCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
     }
 

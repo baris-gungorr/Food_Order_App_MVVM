@@ -10,7 +10,7 @@ import com.barisgungorr.data.entity.Favorite
 @Dao
 interface FavoriteDao {
     @Query("SELECT * FROM fav")
-    suspend fun getFavorites() : List<Favorite>
+    suspend fun getFavorites(): List<Favorite>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun save(favorite: Favorite)
@@ -19,6 +19,6 @@ interface FavoriteDao {
     suspend fun deleteF(favorite: Favorite)
 
     @Query("SELECT * FROM fav WHERE yemek_adi like '%' || :searchKeyword || '%' ")
-    suspend fun searchF(searchKeyword:String) : List<Favorite>
+    suspend fun searchF(searchKeyword: String): List<Favorite>
 
 }

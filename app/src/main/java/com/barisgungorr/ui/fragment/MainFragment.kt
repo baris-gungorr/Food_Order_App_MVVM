@@ -83,7 +83,7 @@ class MainFragment : Fragment() {
             val message = AlertDialog.Builder(requireContext())
             message.setMessage(R.string.AreYouExit)
             message.setTitle(R.string.setTitleAlert)
-            message.setIcon(R.drawable.app_icon)
+            message.setIcon(R.drawable.ic_app_icon)
 
             message.setPositiveButton(R.string.buttonYes) { _, _ ->
                 viewModel.signOut()

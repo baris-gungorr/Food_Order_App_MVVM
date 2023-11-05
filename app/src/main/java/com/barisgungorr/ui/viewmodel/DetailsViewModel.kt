@@ -6,8 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.data.repo.MealsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,6 +17,7 @@ class DetailsViewModel @Inject constructor(private val mrepo: MealsRepository) :
     init {
         getBasketMeals()
     }
+
     fun addMeals(
         yemek_adi: String,
         yemek_resim_adi: String,
@@ -26,19 +25,16 @@ class DetailsViewModel @Inject constructor(private val mrepo: MealsRepository) :
         yemek_siparis_adet: Int,
         kullanici_adi: String
     ) {
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch {
             try {
-                val isProductInBasket = isProductInBasket(yemek_adi)
-                if ( isProductInBasket) {
-                } else {
-                    mrepo.addMeals(
-                        yemek_adi,
-                        yemek_resim_adi,
-                        yemek_fiyat,
-                        yemek_siparis_adet,
-                        kullanici_adi
-                    )
-                }
+                mrepo.addMeals(
+                    yemek_adi,
+                    yemek_resim_adi,
+                    yemek_fiyat,
+                    yemek_siparis_adet,
+                    kullanici_adi
+                )
+
             } catch (e: Exception) {
 
             }
@@ -47,7 +43,7 @@ class DetailsViewModel @Inject constructor(private val mrepo: MealsRepository) :
 
     private fun getBasketMeals() {
 
-        CoroutineScope(Dispatchers.Main).launch {
+        viewModelScope.launch {
             try {
                 basketList.value = mrepo.getBasketMeals("BarisGungor")
 
@@ -57,11 +53,12 @@ class DetailsViewModel @Inject constructor(private val mrepo: MealsRepository) :
         }
     }
 
-    fun save(yemek_id:Int,yemek_adi: String, yemek_resim_adi: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            mrepo.save(yemek_id,yemek_adi, yemek_resim_adi)
+    fun save(yemek_id: Int, yemek_adi: String, yemek_resim_adi: String) {
+        viewModelScope.launch {
+            mrepo.save(yemek_id, yemek_adi, yemek_resim_adi)
         }
     }
+
     fun isProductInBasket(productName: String): Boolean {
         val basketItems = basketList.value ?: emptyList()
         return basketItems.any { it.meals_name == productName }

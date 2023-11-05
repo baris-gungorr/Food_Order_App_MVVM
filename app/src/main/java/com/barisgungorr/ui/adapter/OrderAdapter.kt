@@ -1,13 +1,11 @@
 package com.barisgungorr.ui.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.databinding.CardDesignBinding
+import com.barisgungorr.bootcamprecipeapp.databinding.FragmentCardDesignBinding
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.ui.viewmodel.OrderViewModel
 import com.bumptech.glide.Glide
@@ -17,10 +15,10 @@ class OrderAdapter(
     private val mealList: List<Sepetler>,
     private val viewModel: OrderViewModel)
     : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
-    inner class ViewHolder(val binding: CardDesignBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: FragmentCardDesignBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CardDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = FragmentCardDesignBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 

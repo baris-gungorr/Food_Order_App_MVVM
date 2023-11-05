@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.barisgungorr.ui.auth.SignUpFragment">
+    tools:context="com.barisgungorr.ui.signup.SignUpFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -138,10 +138,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/animationtwo" />
+        app:lottie_rawRes="@raw/animation_two" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewBackSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"

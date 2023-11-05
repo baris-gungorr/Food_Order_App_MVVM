@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.barisgungorr.ui.auth.SignInFragment">
+    tools:context="com.barisgungorr.ui.signin.SignInFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/animationthree" />
+        app:lottie_rawRes="@raw/animation_three" />
 
     <TextView
         android:id="@+id/textViewSign"
