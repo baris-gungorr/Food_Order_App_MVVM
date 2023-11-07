@@ -21,22 +21,6 @@ import javax.inject.Singleton
 @InstallIn (SingletonComponent::class)
 class AppModule {
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(Constans.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideMealsApi(retrofit: Retrofit): HomeMealsApi {
-        return retrofit.create(HomeMealsApi::class.java)
-    }
-
-
 
     @Provides
     @Singleton
