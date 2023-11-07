@@ -1,4 +1,4 @@
-package com.barisgungorr.room
+package com.barisgungorr.data.source.locale
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

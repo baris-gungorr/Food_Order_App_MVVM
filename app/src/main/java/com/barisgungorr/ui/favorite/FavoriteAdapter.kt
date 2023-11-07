@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.adapter
+package com.barisgungorr.ui.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteCardBinding
 import com.barisgungorr.data.entity.Favorite
-import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,9 +22,8 @@ class FavoriteAdapter(
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-      return favoriteList.size
-    }
+    override fun getItemCount(): Int = favoriteList.size
+
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val meal = favoriteList[position]

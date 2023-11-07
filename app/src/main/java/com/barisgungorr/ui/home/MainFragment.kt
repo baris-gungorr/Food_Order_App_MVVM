@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.fragment
+package com.barisgungorr.ui.home
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -8,7 +8,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
-import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,8 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentMainBinding
 import com.barisgungorr.data.entity.Yemekler
-import com.barisgungorr.ui.adapter.MainAdapter
-import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.barisgungorr.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -51,7 +48,7 @@ class MainFragment : Fragment() {
     }
 
     private fun initMealList(mealList: List<Yemekler>) {
-        val adapter = MainAdapter(viewModel, mealList)
+        val adapter = HomeAdapter(viewModel, mealList)
         binding.RecyclerViewMain.adapter = adapter
         binding.progressBar.isGone = true
     }

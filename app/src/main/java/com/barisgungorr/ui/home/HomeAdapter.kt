@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.adapter
+package com.barisgungorr.ui.home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,14 +7,12 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentHomeCardBinding
 import com.barisgungorr.data.entity.Yemekler
-import com.barisgungorr.ui.fragment.MainFragmentDirections
-import com.barisgungorr.ui.viewmodel.MainViewModel
 import com.bumptech.glide.Glide
 
-class MainAdapter(
+class HomeAdapter(
     var viewmodel: MainViewModel,
     private var mealList: List<Yemekler>
-) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     inner class ViewHolder(var binding: FragmentHomeCardBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -23,9 +21,9 @@ class MainAdapter(
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return mealList.size
-    }
+
+    override fun getItemCount(): Int = mealList.size
+
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

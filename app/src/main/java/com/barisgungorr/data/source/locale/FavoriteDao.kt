@@ -1,4 +1,4 @@
-package com.barisgungorr.room
+package com.barisgungorr.data.source.locale
 
 import androidx.room.Dao
 import androidx.room.Delete

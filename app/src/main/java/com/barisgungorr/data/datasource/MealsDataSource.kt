@@ -3,12 +3,12 @@ package com.barisgungorr.data.datasource
 import com.barisgungorr.data.entity.Favorite
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.data.entity.Yemekler
-import com.barisgungorr.room.FavoriteDao
-import com.barisgungorr.ui.retrofit.HomeMealsApi
+import com.barisgungorr.data.source.locale.FavoriteDao
+import com.barisgungorr.data.source.remote.HomeMealsApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MealsDataSource(private val mdao:HomeMealsApi, private val fdao:FavoriteDao) {
+class MealsDataSource(private val mdao: HomeMealsApi, private val fdao: FavoriteDao) {
     suspend fun getMeals() : List<Yemekler> = withContext(Dispatchers.IO) {
         return@withContext mdao.getMeals().yemekler
     }

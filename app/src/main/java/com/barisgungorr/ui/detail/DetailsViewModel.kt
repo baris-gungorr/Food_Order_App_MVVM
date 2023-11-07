@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.viewmodel
+package com.barisgungorr.ui.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,27 +13,31 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailsViewModel @Inject constructor(private val mrepo: MealsRepository) : ViewModel() {
     private var basketList: MutableLiveData<List<Sepetler>> = MutableLiveData()
+    var piece = MutableLiveData<Int>()
 
     init {
         getBasketMeals()
+        piece.value = 1
+    }
+    fun buttonMinus() {
+        val currentPiece = piece.value ?: 1
+        if (currentPiece > 1) {
+            piece.value = currentPiece - 1
+        }
     }
 
+    fun buttonPlus() {
+        val currentPiece = piece.value ?: 1
+        piece.value = currentPiece + 1
+    }
+
+
     fun addMeals(
-        yemek_adi: String,
-        yemek_resim_adi: String,
-        yemek_fiyat: Int,
-        yemek_siparis_adet: Int,
-        kullanici_adi: String
+        yemek_adi: String, yemek_resim_adi: String, yemek_fiyat: Int, yemek_siparis_adet: Int, kullanici_adi: String
     ) {
         viewModelScope.launch {
             try {
-                mrepo.addMeals(
-                    yemek_adi,
-                    yemek_resim_adi,
-                    yemek_fiyat,
-                    yemek_siparis_adet,
-                    kullanici_adi
-                )
+                mrepo.addMeals(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
 
             } catch (e: Exception) {
 

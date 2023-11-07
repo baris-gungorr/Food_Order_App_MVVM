@@ -18,13 +18,6 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     private var auth: FirebaseAuth = Firebase.auth
 
 
-    fun checkUserInfo(email: String, password: String) {
-
-        auth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
-            shouldNavigateToSignInScreen
-        }
-    }
-
     fun signUp(email: String, pass: String) {
         when {
             email.isEmpty() || pass.isEmpty() -> sendMessage(R.string.fillBlanksText.toString())
@@ -53,7 +46,7 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun isValidEmail(email: String): Boolean {
-        val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.com")
+        val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.")
         return emailRegex.matches(email)
     }
 }

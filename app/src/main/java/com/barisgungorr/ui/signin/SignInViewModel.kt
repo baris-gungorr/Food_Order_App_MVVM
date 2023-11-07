@@ -27,12 +27,12 @@ class SignInViewModel @Inject constructor() : ViewModel() {
 
     fun signIn(email: String, password: String) {
         when {
-            email.isEmpty() || password.isEmpty() -> sendMessage(R.string.fillBlanksText.toString())
-            password.length < 6 -> sendMessage(R.string.passwordAlert.toString())
-            isValidEmail(email).not() -> sendMessage(R.string.ınvalidAlert.toString())
+            email.isEmpty() || password.isEmpty() -> sendMessage( "Fill in the blanks")
+            password.length < 6 -> sendMessage("Password length must be minimum 6 characters long!")
+            isValidEmail(email).not() -> sendMessage("Invalid email adress")
             else -> auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { navigateToMainScreen() }
-                .addOnFailureListener { sendMessage(R.string.wrongUsernamePass.toString()) }
+                .addOnFailureListener { sendMessage("Wrong email and password") }
         }
     }
 

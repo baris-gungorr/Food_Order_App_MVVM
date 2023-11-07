@@ -21,13 +21,11 @@ class SignUpFragment : Fragment() {
     private lateinit var binding: FragmentSignUpBinding
 
     private val viewModel: SignUpViewModel by viewModels()
-    private val email: String? = null
-    private val password: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,12 +34,6 @@ class SignUpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observe()
-
-        if (password != null) {
-            if (email != null) {
-                viewModel.checkUserInfo(email, password)
-            }
-        }
     }
 
     private fun observe() {

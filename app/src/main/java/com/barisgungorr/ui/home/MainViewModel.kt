@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.viewmodel
+package com.barisgungorr.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,7 +20,6 @@ class MainViewModel @Inject constructor(private val mRepo: MealsRepository) : Vi
     init {
         getMeals()
     }
-// TODO (baris) yapılacak
 
     private fun getMeals() {
         viewModelScope.launch {

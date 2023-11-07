@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.retrofit
+package com.barisgungorr.data.source.remote
 
 import com.barisgungorr.data.entity.CRUDmeals
 import com.barisgungorr.data.entity.Meals
@@ -10,8 +10,6 @@ import retrofit2.http.POST
 
 interface HomeMealsApi {
 
-    // http://kasimadalan.pe.hu/ -> BASE_URL
-  //  @GET("yemekler/tumYemekleriGetir.php")
 
     @GET("yemekler/tumYemekleriGetir.php")
     suspend fun getMeals() : Meals

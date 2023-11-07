@@ -8,15 +8,11 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.core.view.isGone
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteBinding
-import com.barisgungorr.ui.adapter.FavoriteAdapter
-import com.barisgungorr.ui.viewmodel.FavoriteViewModel
 import com.barisgungorr.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint
 

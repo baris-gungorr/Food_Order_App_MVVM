@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.viewmodel
+package com.barisgungorr.ui.favorite
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

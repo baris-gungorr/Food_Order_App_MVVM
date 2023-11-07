@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.fragment
+package com.barisgungorr.ui.order
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,16 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
-import com.barisgungorr.ui.adapter.OrderAdapter
-import com.barisgungorr.ui.viewmodel.OrderViewModel
 import com.barisgungorr.utils.extension.click
 import com.barisgungorr.utils.extension.transition
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +54,7 @@ class OrderFragment : Fragment() {
                 Toast.makeText(requireContext(), R.string.addProductCard, Toast.LENGTH_LONG).show()
             } else {
                 binding.completeImage.setImageResource(R.drawable.r)
-                binding.completeImage.visibility = View.VISIBLE
+                binding.completeImage.isVisible = true
 
                 CoroutineScope(Dispatchers.Main).launch {
                     delay(3000)

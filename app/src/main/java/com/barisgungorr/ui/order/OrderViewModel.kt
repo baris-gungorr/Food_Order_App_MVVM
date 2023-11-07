@@ -1,4 +1,4 @@
-package com.barisgungorr.ui.viewmodel
+package com.barisgungorr.ui.order
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

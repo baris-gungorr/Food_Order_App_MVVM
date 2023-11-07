@@ -4,11 +4,15 @@ import com.barisgungorr.data.datasource.MealsDataSource
 import com.barisgungorr.data.entity.Favorite
 import com.barisgungorr.data.entity.Sepetler
 import com.barisgungorr.data.entity.Yemekler
+import com.barisgungorr.data.source.remote.HomeMealsApi
+import com.barisgungorr.ui.retrofit.ApiUtils
 import javax.inject.Inject
 
-class MealsRepository @Inject constructor (private val mDao: MealsDataSource) {
+class MealsRepository @Inject constructor (private val mDao: MealsDataSource,val api: HomeMealsApi) {
 
     suspend fun getMeals(): List<Yemekler> = mDao.getMeals()
+
+
 
     suspend fun addMeals(meals_name:String,meals_image_name:String,meals_price:Int,meals_order_piece:Int,userName:String) =
         mDao.addMeals(meals_name, meals_image_name , meals_price,meals_order_piece, userName)
