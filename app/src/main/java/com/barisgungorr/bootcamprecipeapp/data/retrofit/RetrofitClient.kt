@@ -1,4 +1,4 @@
-package com.barisgungorr.bootcamprecipeapp.ui.retrofit
+package com.barisgungorr.bootcamprecipeapp.data.retrofit
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

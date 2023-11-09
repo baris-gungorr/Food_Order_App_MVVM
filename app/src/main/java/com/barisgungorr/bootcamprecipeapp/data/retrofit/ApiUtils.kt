@@ -1,4 +1,4 @@
-package com.barisgungorr.bootcamprecipeapp.ui.retrofit
+package com.barisgungorr.bootcamprecipeapp.data.retrofit
 
 import com.barisgungorr.bootcamprecipeapp.data.source.remote.HomeMealsApi
 import com.barisgungorr.bootcamprecipeapp.utils.constans.Constans

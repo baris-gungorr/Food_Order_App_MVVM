@@ -6,7 +6,7 @@ import com.barisgungorr.bootcamprecipeapp.data.datasource.MealsDataSource
 import com.barisgungorr.bootcamprecipeapp.data.source.locale.Database
 import com.barisgungorr.bootcamprecipeapp.data.source.locale.FavoriteDao
 import com.barisgungorr.bootcamprecipeapp.data.source.remote.HomeMealsApi
-import com.barisgungorr.bootcamprecipeapp.ui.retrofit.ApiUtils
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.ApiUtils
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

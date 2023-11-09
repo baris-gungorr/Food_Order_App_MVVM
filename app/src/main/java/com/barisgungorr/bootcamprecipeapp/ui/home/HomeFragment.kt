@@ -8,9 +8,11 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
@@ -22,8 +24,8 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-
     private lateinit var binding: FragmentMainBinding
+    private lateinit var adapter: HomeAdapter
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -39,6 +41,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observe()
+
     }
 
     private fun observe() {
@@ -48,7 +51,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun initMealList(mealList: List<Yemekler>) {
-        val adapter = HomeAdapter(viewModel, mealList)
+        adapter = HomeAdapter(mealList, object : HomeAdapter.FoodCallback {
+            override fun onClickDetail(meal: Yemekler) {
+               val bundle =  Bundle().apply {
+                    putSerializable("meal",meal)
+                }
+                findNavController().navigate(R.id.action_mainFragment_to_detailsFragment, bundle)
+            }
+        })
         binding.RecyclerViewMain.adapter = adapter
         binding.progressBar.isGone = true
     }

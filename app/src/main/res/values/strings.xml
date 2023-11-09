@@ -29,6 +29,7 @@
     <string name="buttonYes">YES</string>
     <string name="buttonNo">NO</string>
     <string name="textLogOut">LOG OUT</string>
+    <string name="price">%s₺</string>
 
 
     <string name="detailsTitle">DETAİLS SCREEN</string>
