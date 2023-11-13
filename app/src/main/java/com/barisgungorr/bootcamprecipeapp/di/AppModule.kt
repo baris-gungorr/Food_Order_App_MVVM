@@ -20,8 +20,8 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideMealsDataSource(mdao: HomeMealsApi, fdao: FavoriteDao): MealsDataSource {
-        return MealsDataSource(mdao,fdao)
+    fun provideMealsDataSource(mealsDatasource: HomeMealsApi, favoriteDao: FavoriteDao): MealsDataSource {
+        return MealsDataSource(mealsDatasource,favoriteDao)
     }
 
     @Provides

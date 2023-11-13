@@ -5,19 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
+import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
 import com.barisgungorr.bootcamprecipeapp.utils.extension.click
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 
 
 @AndroidEntryPoint
@@ -28,7 +27,7 @@ class OrderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,44 +45,63 @@ class OrderFragment : Fragment() {
     }
 
     private fun observe() {
-        viewModel.basketList.observe(viewLifecycleOwner) { sepetler ->
-            val adapter = sepetler?.let { it1 -> OrderAdapter(it1, viewModel) }
 
+        lifecycleScope.launchWhenStarted {
+            viewModel.message.collectLatest { message ->
+                Toast.makeText(context, getString(message), Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.navigateMainScreen.collectLatest {
+                findNavController().navigate(OrderFragmentDirections.orderToMain())
+            }
+        }
+
+        viewModel.basketList.observe(viewLifecycleOwner) { baskets ->
+            val adapter = OrderAdapter(
+                mealList = baskets.orEmpty(),
+                callbacks = object : OrderAdapter.OrderCallbacks {
+                    override fun onDeleteOrder(basket: Basket) {
+                        showDeleteBasketDialog(basket)
+                    }
+
+                    override fun onDecreaseOrderQuantity(basket: Basket) {
+                        viewModel.decreaseOrderQuantity(basket)
+                    }
+
+                    override fun onIncreaseOrderQuantity(basket: Basket) {
+                        viewModel.increaseOrderQuantity(basket)
+                    }
+                }
+            )
             binding.recyclerView.adapter = adapter
-            viewModel.orderTotalPrice()
         }
     }
+
+    private fun showDeleteBasketDialog(basket: Basket) {
+        Snackbar.make(
+            binding.root,
+            getString(R.string.are_you_sure_want_to_delete_meal, basket.mealsName),
+            Snackbar.LENGTH_LONG
+        ).setAction(R.string.yesText) {
+            viewModel.delete(mealId = basket.cardMealsId)
+        }.show()
+    }
+
     private fun initViews() = with(binding) {
 
         buttonAddCard.click {
-
-            val isBasketEmpty =
-                viewModel.basketList.value == null || viewModel.basketList.value?.isEmpty() == true
-            if (isBasketEmpty) {
-                Toast.makeText(requireContext(), R.string.addProductCard, Toast.LENGTH_LONG).show()
-            } else {
-                binding.completeImage.setImageResource(R.drawable.r)
-                binding.completeImage.isVisible = true
-
-                CoroutineScope(Dispatchers.Main).launch {
-                    delay(3000)
-
-                    findNavController().navigate(R.id.orderToMain)
-                }
-            }
-
-            viewModel.clearBasket()
+            viewModel.completeOrders()
         }
-
-        binding.imageViewBackk?.click {
+        imageViewBackk?.click {
             findNavController().navigate(R.id.orderToMain)
-
         }
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.getOrder()
+        viewModel.getBasketMeals()
     }
 }
 

@@ -20,9 +20,9 @@ class FavoriteViewModel @Inject constructor(private val mRepo: MealsRepository) 
         }
     }
 
-    fun deleteF(yemek_id: Int) {
+    fun deleteF(yemekId: Int) {
         viewModelScope.launch {
-            mRepo.deleteF(yemek_id)
+            mRepo.deleteF(yemekId)
             getFavorites()
         }
     }

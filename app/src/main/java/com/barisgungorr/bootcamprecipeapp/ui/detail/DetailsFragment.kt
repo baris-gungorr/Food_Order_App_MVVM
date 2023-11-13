@@ -12,7 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
-import com.barisgungorr.bootcamprecipeapp.data.entity.Yemekler
+import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import com.barisgungorr.bootcamprecipeapp.utils.extension.click
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,10 +22,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
-    private lateinit var getMeals: Yemekler
+    private lateinit var getMeals: Meal
 
 
-    @SuppressLint("SetTextI18n")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,30 +35,33 @@ class DetailsFragment : Fragment() {
 
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observe()
 
     }
+
     private fun observe() {
 
         viewModel.piece.observe(viewLifecycleOwner) { newPiece ->
 
             binding.mealsPieceText.text = "$newPiece"
-            binding.textViewPrice.text = "${newPiece * getMeals.meals_price.toDouble()} ₺"
+            binding.textViewPrice.text = "${newPiece * getMeals.price.toDouble()} ₺"
         }
     }
-    private fun initViews()  = with(binding){
+
+    private fun initViews() = with(binding) {
         val bundle: DetailsFragmentArgs by navArgs()
         getMeals = bundle.meal
 
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${getMeals.meals_image_name}"
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${getMeals.imageName}"
         Glide.with(this@DetailsFragment).load(url).into(imageViewMeals)
 
-        textMealsName.text = getMeals.meals_name
-        textViewPrice.text = "${getMeals.meals_price} ₺"
-        mealsPieceText.text= "${viewModel.piece.value}"
+        textMealsName.text = getMeals.name
+        textViewPrice.text = "${getMeals.price} ₺"
+        mealsPieceText.text = "${viewModel.piece.value}"
 
 
         buttonFavoriteNull.click {
@@ -65,26 +69,28 @@ class DetailsFragment : Fragment() {
             buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
             Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
 
-            viewModel.save(getMeals.meals_id, getMeals.meals_name, getMeals.meals_image_name)
+            viewModel.save(getMeals.id, getMeals.name, getMeals.imageName)
         }
 
         buttonMinus.click {
-                viewModel.buttonMinus()
-            }
+            viewModel.buttonMinus()
+        }
 
         buttonPlus.click {
             viewModel.buttonPlus()
         }
 
         buttonAddCard.click {
-            val isAlreadyInCart = viewModel.isProductInBasket(getMeals.meals_name)
+            val isAlreadyInCart = viewModel.isProductInBasket(getMeals.name)
             if (isAlreadyInCart) {
                 Toast.makeText(requireContext(), R.string.availableCard, Toast.LENGTH_LONG).show()
 
             } else {
                 viewModel.piece.value?.let {
-                    viewModel.addMeals(getMeals.meals_name, getMeals.meals_image_name, getMeals.meals_price,
-                        it, "barisGungor")
+                    viewModel.addMeals(
+                        getMeals.name, getMeals.imageName, getMeals.price,
+                        it, AppConstants.USERNAME
+                    )
                 }
                 Toast.makeText(requireContext(), R.string.addCard, Toast.LENGTH_LONG).show()
             }

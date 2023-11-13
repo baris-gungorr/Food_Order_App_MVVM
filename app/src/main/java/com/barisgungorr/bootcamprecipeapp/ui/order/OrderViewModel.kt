@@ -3,62 +3,62 @@ package com.barisgungorr.bootcamprecipeapp.ui.order
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.barisgungorr.bootcamprecipeapp.data.entity.Sepetler
+import com.barisgungorr.bootcamprecipeapp.R
+import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
 import com.barisgungorr.bootcamprecipeapp.data.repo.MealsRepository
+import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : ViewModel() {
-    var basketList: MutableLiveData<List<Sepetler>?> = MutableLiveData()
-    var totalPrice = 0
 
-    init {
-        getOrder()
-        getBasketMeals("BarisGungor")
-    }
+    var basketList: MutableLiveData<List<Basket>?> = MutableLiveData()
+    private var totalPrice = 0
 
-    private fun getBasketMeals(userName: String) {
+    val message = MutableSharedFlow<Int>()
+    val navigateMainScreen = MutableSharedFlow<Boolean>()
 
+    fun getBasketMeals() {
         viewModelScope.launch {
-
             try {
-                basketList.value = mRepo.getBasketMeals(userName)
-                orderTotalPrice()
+                val baskets = mRepo.getMeals(AppConstants.USERNAME)
+                basketList.value = baskets
+                calculateTotalPrice(baskets)
             } catch (e: Exception) {
                 basketList.value = null
             }
         }
     }
 
-    fun delete(card_meals_id: Int, userName: String) {
-        viewModelScope.launch {
-            mRepo.delete(userName, card_meals_id)
-            getBasketMeals(userName)
-            orderLastItem()
-        }
-    }
-
-    fun orderTotalPrice(): String {
+    private fun calculateTotalPrice(baskets: List<Basket>) {
         var total = 0
-        basketList.value?.forEach { orders ->
-            total += orders.meals_order_piece * orders.meals_price
-
+        baskets.forEach { orders ->
+            total += orders.mealsOrderPiece * orders.mealsPrice
         }
         totalPrice = total
-        return totalPrice.toString()
     }
 
-    fun getOrder() {
-        viewModelScope.launch {
-            try {
-                mRepo.getBasketMeals("BarisGungor")
-                orderTotalPrice()
-            } catch (e: Exception) {
+    fun decreaseOrderQuantity(basket: Basket) {
+        if (basket.mealsOrderPiece > 1) {
+            basket.mealsOrderPiece.dec()
+            // Update basket object with using Api
+        }
+    }
 
-            }
+    fun increaseOrderQuantity(basket: Basket) {
+        basket.mealsOrderPiece.inc()
+        // Update basket object with using Api
+    }
+
+    fun delete(mealId: Int) {
+        viewModelScope.launch {
+            mRepo.delete(userName = AppConstants.USERNAME, cardMealsId = mealId)
+            getBasketMeals()
+            orderLastItem()
         }
     }
 
@@ -67,12 +67,26 @@ class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : V
             val lastItem = basketList.value!!.toMutableList()
             lastItem.removeAt(lastItem.lastIndex)
             basketList.value = lastItem
-            totalPrice = lastItem.sumOf { it.meals_price * it.meals_order_piece }
+            totalPrice = lastItem.sumOf { it.mealsPrice * it.mealsOrderPiece }
         }
     }
 
-    fun clearBasket() {
-        basketList.value = mutableListOf()
+
+    fun completeOrders() {
+        val isBasketEmpty = basketList.value.isNullOrEmpty()
+        if (isBasketEmpty) {
+            sendMessage(R.string.addProductCard)
+        } else {
+            navigateToMainScreen()
+        }
+    }
+
+    private fun navigateToMainScreen() {
+        navigateMainScreen.tryEmit(true)
+    }
+
+    private fun sendMessage(messageResId: Int) {
+        message.tryEmit(messageResId)
     }
 
 }

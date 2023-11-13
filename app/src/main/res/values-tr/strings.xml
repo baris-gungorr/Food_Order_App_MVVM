@@ -29,7 +29,7 @@
     <string name="buttonYes">EVET</string>
     <string name="buttonNo">HAYIR</string>
     <string name="textLogOut">ÇIKIŞ YAPILDI</string>
-    <string name="price">%s₺</string>
+    <string name="price">%d ₺</string>
 
     <string name="detailsTitle">DETAY SAYFASI</string>
     <string name="addCardButton">SEPETE EKLE</string>

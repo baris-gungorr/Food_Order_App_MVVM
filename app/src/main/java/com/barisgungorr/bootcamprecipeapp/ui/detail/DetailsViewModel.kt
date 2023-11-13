@@ -3,8 +3,9 @@ package com.barisgungorr.bootcamprecipeapp.ui.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.barisgungorr.bootcamprecipeapp.data.entity.Sepetler
+import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
 import com.barisgungorr.bootcamprecipeapp.data.repo.MealsRepository
+import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) : ViewModel() {
-    private var basketList: MutableLiveData<List<Sepetler>> = MutableLiveData()
+    private var basketList: MutableLiveData<List<Basket>> = MutableLiveData()
     var piece = MutableLiveData<Int>()
 
     init {
@@ -33,11 +34,11 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
 
 
     fun addMeals(
-        meals_name: String, meals_image_name: String, meals_price: Int, meals_order_piece: Int, userName: String
+        s: String, mealsImageName: String, mealsPrice: Int, mealsOrderPiece: Int, userName: String
     ) {
         viewModelScope.launch {
             try {
-                mRepo.addMeals(meals_name, meals_image_name, meals_price, meals_order_piece, userName)
+                mRepo.addMeals(s, mealsImageName, mealsPrice, mealsOrderPiece, userName)
 
             } catch (e: Exception) {
 
@@ -49,7 +50,7 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
 
         viewModelScope.launch {
             try {
-                basketList.value = mRepo.getBasketMeals("BarisGungor")
+                basketList.value = mRepo.getMeals(AppConstants.USERNAME)
 
             } catch (e: Exception) {
 
@@ -57,15 +58,15 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
         }
     }
 
-    fun save(meals_id: Int, meals_name: String, meals_image_name: String) {
+    fun save(mealsId: Int, mealsName: String, mealsImageName: String) {
         viewModelScope.launch {
-            mRepo.save(meals_id, meals_name, meals_image_name)
+            mRepo.save(mealsId, mealsName, mealsImageName)
         }
     }
 
     fun isProductInBasket(productName: String): Boolean {
         val basketItems = basketList.value ?: emptyList()
-        return basketItems.any { it.meals_name == productName }
+        return basketItems.any { it.mealsName == productName }
     }
 }
 

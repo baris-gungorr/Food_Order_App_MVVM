@@ -8,8 +8,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="960dp"
-        android:layout_height="114dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/kk"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -17,14 +17,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/white">
-
-
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
         android:id="@+id/imageViewLogOut"
-        android:layout_width="67dp"
-        android:layout_height="69dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
@@ -34,24 +32,23 @@
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="333dp"
-        android:layout_height="62dp"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
         android:text="@string/mainTitlee"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="48sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="953dp"
-        android:layout_height="94dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -63,9 +60,9 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerViewMain"
+        android:id="@+id/rvHome"
         android:layout_width="0dp"
-        android:layout_height="1272dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,10 +78,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"
+        tools:visibility="gone"
         />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

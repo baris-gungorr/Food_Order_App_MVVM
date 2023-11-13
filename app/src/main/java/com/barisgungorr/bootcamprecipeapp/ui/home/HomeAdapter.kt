@@ -1,37 +1,29 @@
 package com.barisgungorr.bootcamprecipeapp.ui.home
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.databinding.FragmentHomeCardBinding
-import com.barisgungorr.bootcamprecipeapp.data.entity.Yemekler
-import com.bumptech.glide.Glide
+import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewHomeCardBinding
 
 class HomeAdapter(
-    private var mealList: List<Yemekler>,
+    private var meals: List<Meal>,
     private val foodCallbacks: FoodCallback
-
 ) : RecyclerView.Adapter<HomeViewHolder>() {
+
     interface FoodCallback {
-        fun onClickDetail(food: Yemekler)
+        fun onClickDetail(food: Meal)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val binding =
-            FragmentHomeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemViewHomeCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HomeViewHolder(binding, foodCallbacks)
     }
 
-    override fun getItemCount(): Int = mealList.size
+    override fun getItemCount(): Int = meals.size
 
-
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-
-        val meal = mealList[position]
+        val meal = meals[position]
         holder.bind(meal)
-
     }
 }

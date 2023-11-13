@@ -29,7 +29,7 @@
     <string name="buttonYes">YES</string>
     <string name="buttonNo">NO</string>
     <string name="textLogOut">LOG OUT</string>
-    <string name="price">%s₺</string>
+    <string name="price">%d ₺</string>
 
 
     <string name="detailsTitle">DETAİLS SCREEN</string>
@@ -50,6 +50,7 @@
     <string name="removeText">Delete?</string>
     <string name="yesText">YES</string>
 
+    <string name="are_you_sure_want_to_delete_meal"> %s  ürününü silmek istediğinizden emin misiniz ? </string>
 
 
 

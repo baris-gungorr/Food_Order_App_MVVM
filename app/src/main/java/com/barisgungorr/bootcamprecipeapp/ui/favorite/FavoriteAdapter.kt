@@ -29,22 +29,22 @@ class FavoriteAdapter(
         val meal = favoriteList[position]
         val t = holder.binding
 
-       t.textViewMealName.text = meal.meals_name
+       t.textViewMealName.text = meal.mealsName
 
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${meal.meals_image_name}"
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${meal.mealsImageName}"
         Glide.with(holder.itemView.context).load(url).into(holder.binding.imageView)
 
         t.mealsDelete.setOnClickListener {
             Snackbar.make(
-                it, "${meal.meals_name} ${it.resources.getString(R.string.removeText)}", Snackbar.LENGTH_LONG
+                it, "${meal.mealsName} ${it.resources.getString(R.string.removeText)}", Snackbar.LENGTH_LONG
 
             ).setAction(R.string.yesText) {
-                deleteF(meal.meals_id)
+                deleteF(meal.mealsId)
 
             }.show()
         }
     }
-    private fun deleteF(meals_id:Int) {
-        viewModel.deleteF(meals_id )
+    private fun deleteF(mealsId:Int) {
+        viewModel.deleteF(mealsId )
     }
 }
