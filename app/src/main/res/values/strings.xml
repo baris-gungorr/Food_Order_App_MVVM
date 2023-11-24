@@ -13,9 +13,6 @@
     <string name="wrongUsernamePass">Wrong email and password!</string>
 
 
-
-
-
     <string name="signUpTitle">SIGN UP</string>
     <string name="addEmail">Type your Email</string>
     <string name="addPassword">Type your Password</string>
@@ -38,24 +35,17 @@
     <string name="addCard">"ADD CARD!"</string>
 
 
-
     <string name="cardTitle">MY CARD</string>
     <string name="approvalButton">CONFİRM</string>
     <string name="removeTextOrder">Remove from card?</string>
     <string name="addProductCard"> "Please add product to cart!"</string>
 
 
-
     <string name="favoriteTitle">MY FAVORİTES</string>
     <string name="removeText">Delete?</string>
     <string name="yesText">YES</string>
 
-    <string name="are_you_sure_want_to_delete_meal"> %s  ürününü silmek istediğinizden emin misiniz ? </string>
-
-
-
-
-
+    <string name="are_you_sure_want_to_delete_meal"> %s  Are you sure you want to delete the product ? </string>
 
 
 </resources>

@@ -44,12 +44,12 @@ class MealsDataSource(
         return@withContext favoriteDao.getFavorites()
     }
 
-    suspend fun deleteF(mealsId: Int) {
+    suspend fun deleteFavorite(mealsId: Int) {
         val deleteF = Favorite(mealsId, "", "")
         favoriteDao.deleteF(deleteF)
     }
 
-    suspend fun searchF(searchKeyword: String): List<Favorite> = withContext(Dispatchers.IO) {
+    suspend fun searchFavorite(searchKeyword: String): List<Favorite> = withContext(Dispatchers.IO) {
         return@withContext favoriteDao.searchF(searchKeyword)
     }
 }

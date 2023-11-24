@@ -1,5 +1,6 @@
 package com.barisgungorr.bootcamprecipeapp.ui.order
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -79,15 +80,24 @@ class OrderFragment : Fragment() {
         }
     }
 
+
     private fun showDeleteBasketDialog(basket: Basket) {
-        Snackbar.make(
-            binding.root,
-            getString(R.string.are_you_sure_want_to_delete_meal, basket.mealsName),
-            Snackbar.LENGTH_LONG
-        ).setAction(R.string.yesText) {
+
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle(R.string.setTitleAlert)
+        builder.setMessage(getString(R.string.are_you_sure_want_to_delete_meal, basket.mealsName))
+        builder.setIcon(R.drawable.ic_app_icon)
+        builder.setPositiveButton(R.string.yesText) { dialog, which ->
+
             viewModel.delete(mealId = basket.cardMealsId)
-        }.show()
+            dialog.dismiss()
+        }
+        builder.setNegativeButton(R.string.buttonNo) { dialog, which ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
+
 
     private fun initViews() = with(binding) {
 

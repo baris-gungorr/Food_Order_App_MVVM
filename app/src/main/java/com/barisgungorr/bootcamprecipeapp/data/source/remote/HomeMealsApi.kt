@@ -16,22 +16,22 @@ interface HomeMealsApi {
     @POST("yemekler/sepeteYemekEkle.php")
     @FormUrlEncoded
     suspend fun addMeals(
-        @Field("yemek_adi") yemek_adi: String,
-        @Field("yemek_resim_adi") yemek_resim_adi: String,
-        @Field("yemek_fiyat") yemek_fiyat: Int,
-        @Field("yemek_siparis_adet") yemek_siparis_adet: Int,
-        @Field("kullanici_adi") kullanici_adi: String
+        @Field("yemek_adi") mealsName: String,
+        @Field("yemek_resim_adi") mealsImageName: String,
+        @Field("yemek_fiyat") mealsPrice: Int,
+        @Field("yemek_siparis_adet") mealsOrderPiece: Int,
+        @Field("kullanici_adi") userName: String
     ): CRUDmeals
 
     @POST("yemekler/sepettekiYemekleriGetir.php")
     @FormUrlEncoded
-    suspend fun getMeals(@Field("kullanici_adi") kullanici_adi: String): BasketResponse
+    suspend fun getMeals(@Field("kullanici_adi") userName: String): BasketResponse
 
     @POST("yemekler/sepettenYemekSil.php")
     @FormUrlEncoded
     suspend fun delete(
-        @Field("kullanici_adi") kullanici_adi: String,
-        @Field("sepet_yemek_id") sepet_yemek_id: Int
+        @Field("kullanici_adi") userName: String,
+        @Field("sepet_yemek_id") basketMealId: Int
     ): CRUDmeals
 
 }

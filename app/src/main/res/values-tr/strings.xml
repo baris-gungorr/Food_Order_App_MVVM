@@ -40,6 +40,7 @@
     <string name="approvalButton">ONAYLA</string>
     <string name="removeTextOrder">Sepetten silinsin mi?</string>
     <string name="addProductCard"> "Lütfen sepete ürün ekleyin!"</string>
+    <string name="are_you_sure_want_to_delete_meal"> %s  ürününü silmek istediğinizden emin misiniz ? </string>
 
     <string name="favoriteTitle">FAVORİLERİM</string>
     <string name="removeText">silinsin mi?</string>

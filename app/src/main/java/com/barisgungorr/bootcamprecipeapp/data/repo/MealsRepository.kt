@@ -33,7 +33,7 @@ class MealsRepository @Inject constructor(
 
     suspend fun getFavorites(): List<Favorite> = dataSource.getFavorites()
 
-    suspend fun deleteF(mealsId: Int) = dataSource.deleteF(mealsId)
+    suspend fun deleteFavorite(mealsId: Int) = dataSource.deleteFavorite(mealsId)
 
-    suspend fun searchF(searchKeyword: String): List<Favorite> = dataSource.searchF(searchKeyword)
+    suspend fun searchFavorite(searchKeyword: String): List<Favorite> = dataSource.searchFavorite(searchKeyword)
 }

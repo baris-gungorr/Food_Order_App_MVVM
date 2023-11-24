@@ -20,6 +20,7 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
         getBasketMeals()
         piece.value = 1
     }
+
     fun buttonMinus() {
         val currentPiece = piece.value ?: 1
         if (currentPiece > 1) {
@@ -41,7 +42,7 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
                 mRepo.addMeals(s, mealsImageName, mealsPrice, mealsOrderPiece, userName)
 
             } catch (e: Exception) {
-
+                e.printStackTrace()
             }
         }
     }
@@ -53,7 +54,7 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
                 basketList.value = mRepo.getMeals(AppConstants.USERNAME)
 
             } catch (e: Exception) {
-
+                e.printStackTrace()
             }
         }
     }

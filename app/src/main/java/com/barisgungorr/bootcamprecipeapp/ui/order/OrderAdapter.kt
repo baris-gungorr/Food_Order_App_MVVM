@@ -29,6 +29,5 @@ class OrderAdapter(
         val basket = mealList[position]
         viewHolder.bind(basket)
     }
-
 }
 

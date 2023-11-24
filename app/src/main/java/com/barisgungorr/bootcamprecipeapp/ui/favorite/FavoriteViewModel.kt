@@ -10,26 +10,26 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoriteViewModel @Inject constructor(private val mRepo: MealsRepository) : ViewModel() {
+class FavoriteViewModel @Inject constructor(private val mealsRepository: MealsRepository) : ViewModel() {
 
     val favoriteList = MutableLiveData<List<Favorite>>()
 
     fun getFavorites() {
         viewModelScope.launch {
-            favoriteList.value = mRepo.getFavorites()
+            favoriteList.value = mealsRepository.getFavorites()
         }
     }
 
-    fun deleteF(yemekId: Int) {
+    fun deleteFavorite(mealId: Int) {
         viewModelScope.launch {
-            mRepo.deleteF(yemekId)
+            mealsRepository.deleteFavorite(mealId)
             getFavorites()
         }
     }
 
-    fun searchF(searchKeyword: String) {
+    fun searchFavorite(searchKeyword: String) {
         viewModelScope.launch {
-            favoriteList.value = mRepo.searchF(searchKeyword)
+            favoriteList.value = mealsRepository.searchFavorite(searchKeyword)
         }
     }
 }
