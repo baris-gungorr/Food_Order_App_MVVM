@@ -20,9 +20,9 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
 
     fun signUp(email: String, pass: String) {
         when {
-            email.isEmpty() || pass.isEmpty() -> sendMessage("Fill in the blanks")
-            pass.length < 6 -> sendMessage("Password")
-            isValidEmail(email).not() -> sendMessage("absda")
+            email.isEmpty() || pass.isEmpty() -> sendMessage(R.string.fillBlanksText.toString())
+            pass.length < 6 -> sendMessage(R.string.passwordAlert.toString())
+            isValidEmail(email).not() -> sendMessage(R.string.ınvalidAlert.toString())
             else -> auth.createUserWithEmailAndPassword(email, pass)
                 .addOnSuccessListener {
                     navigateToSignInScreen()
