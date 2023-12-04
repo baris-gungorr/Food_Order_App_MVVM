@@ -53,7 +53,7 @@
             app:destination="@id/favoriteFragment" />
         <argument
             android:name="meal"
-            app:argType="com.barisgungorr.bootcamprecipeapp.data.entity.Meal" />
+            app:argType="com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal" />
 
 
         <action
@@ -103,6 +103,6 @@
             app:destination="@id/mainFragment" />
         <argument
             android:name="meal"
-            app:argType="com.barisgungorr.bootcamprecipeapp.data.entity.Meal" />
+            app:argType="com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal" />
     </fragment>
 </navigation>

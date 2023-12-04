@@ -3,7 +3,7 @@ package com.barisgungorr.bootcamprecipeapp.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
 import com.barisgungorr.bootcamprecipeapp.data.repo.MealsRepository
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

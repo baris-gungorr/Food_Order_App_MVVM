@@ -3,7 +3,7 @@ package com.barisgungorr.bootcamprecipeapp.ui.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
 import com.barisgungorr.bootcamprecipeapp.data.repo.MealsRepository
 import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,11 +35,11 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
 
 
     fun addMeals(
-        s: String, mealsImageName: String, mealsPrice: Int, mealsOrderPiece: Int, userName: String
+        mealsName: String, mealsImageName: String, mealsPrice: Int, mealsOrderPiece: Int, userName: String
     ) {
         viewModelScope.launch {
             try {
-                mRepo.addMeals(s, mealsImageName, mealsPrice, mealsOrderPiece, userName)
+                mRepo.addMeals(mealsName, mealsImageName, mealsPrice, mealsOrderPiece, userName)
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -66,7 +66,7 @@ class DetailsViewModel @Inject constructor(private val mRepo: MealsRepository) :
     }
 
     fun isProductInBasket(productName: String): Boolean {
-        val basketItems = basketList.value ?: emptyList()
+        val basketItems = basketList.value.orEmpty()
         return basketItems.any { it.mealsName == productName }
     }
 }

@@ -1,10 +1,9 @@
 package com.barisgungorr.bootcamprecipeapp.ui.home
 
-import android.annotation.SuppressLint
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewHomeCardBinding
 import com.bumptech.glide.Glide
 

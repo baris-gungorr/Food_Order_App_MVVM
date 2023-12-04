@@ -1,8 +1,8 @@
 package com.barisgungorr.bootcamprecipeapp.data.source.remote
 
-import com.barisgungorr.bootcamprecipeapp.data.entity.CRUDmeals
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meals
-import com.barisgungorr.bootcamprecipeapp.data.entity.BasketResponse
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.CRUDmeals
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meals
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET

@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
 import com.barisgungorr.bootcamprecipeapp.data.repo.MealsRepository
 import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import dagger.hilt.android.lifecycle.HiltViewModel

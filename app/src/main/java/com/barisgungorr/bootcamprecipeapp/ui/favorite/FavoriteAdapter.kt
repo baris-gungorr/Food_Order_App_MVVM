@@ -3,7 +3,6 @@ package com.barisgungorr.bootcamprecipeapp.ui.favorite
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
 import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewFavoriteCardBinding
 

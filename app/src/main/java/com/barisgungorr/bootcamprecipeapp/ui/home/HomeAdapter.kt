@@ -3,7 +3,7 @@ package com.barisgungorr.bootcamprecipeapp.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewHomeCardBinding
 
 class HomeAdapter(

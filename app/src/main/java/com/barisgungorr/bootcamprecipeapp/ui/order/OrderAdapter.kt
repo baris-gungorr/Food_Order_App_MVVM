@@ -3,7 +3,7 @@ package com.barisgungorr.bootcamprecipeapp.ui.order
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewOrderCardBinding
 
 class OrderAdapter(

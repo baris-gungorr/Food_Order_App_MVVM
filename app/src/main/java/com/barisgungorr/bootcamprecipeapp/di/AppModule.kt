@@ -7,11 +7,14 @@ import com.barisgungorr.bootcamprecipeapp.data.source.locale.Database
 import com.barisgungorr.bootcamprecipeapp.data.source.locale.FavoriteDao
 import com.barisgungorr.bootcamprecipeapp.data.source.remote.HomeMealsApi
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.ApiUtils
+import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -27,7 +30,11 @@ class AppModule {
     @Provides
     @Singleton
     fun provideMealsDao(): HomeMealsApi {
-        return ApiUtils.getMealsDao()
+        return Retrofit.Builder()
+            .baseUrl(AppConstants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build().create(HomeMealsApi::class.java)
+
     }
 
     @Provides

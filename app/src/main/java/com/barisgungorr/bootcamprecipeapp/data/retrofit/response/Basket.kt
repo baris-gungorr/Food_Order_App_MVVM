@@ -1,4 +1,4 @@
-package com.barisgungorr.bootcamprecipeapp.data.entity
+package com.barisgungorr.bootcamprecipeapp.data.retrofit.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

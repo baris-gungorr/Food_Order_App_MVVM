@@ -14,7 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentHomeBinding
 import com.barisgungorr.bootcamprecipeapp.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint

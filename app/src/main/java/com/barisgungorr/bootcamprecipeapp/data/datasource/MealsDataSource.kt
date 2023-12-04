@@ -1,8 +1,8 @@
 package com.barisgungorr.bootcamprecipeapp.data.datasource
 
 import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
-import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
 import com.barisgungorr.bootcamprecipeapp.data.source.locale.FavoriteDao
 import com.barisgungorr.bootcamprecipeapp.data.source.remote.HomeMealsApi
 import kotlinx.coroutines.Dispatchers
@@ -45,8 +45,8 @@ class MealsDataSource(
     }
 
     suspend fun deleteFavorite(mealsId: Int) {
-        val deleteF = Favorite(mealsId, "", "")
-        favoriteDao.deleteF(deleteF)
+        val deleteFavorite = Favorite(mealsId, "", "")
+        favoriteDao.deleteFavorite(deleteFavorite)
     }
 
     suspend fun searchFavorite(searchKeyword: String): List<Favorite> = withContext(Dispatchers.IO) {

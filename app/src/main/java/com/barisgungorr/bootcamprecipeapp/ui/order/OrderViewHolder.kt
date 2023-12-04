@@ -1,7 +1,7 @@
 package com.barisgungorr.bootcamprecipeapp.ui.order
 
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewOrderCardBinding
 import com.bumptech.glide.Glide
 

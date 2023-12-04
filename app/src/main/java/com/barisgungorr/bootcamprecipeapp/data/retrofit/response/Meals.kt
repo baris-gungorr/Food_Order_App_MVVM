@@ -1,4 +1,4 @@
-package com.barisgungorr.bootcamprecipeapp.data.entity
+package com.barisgungorr.bootcamprecipeapp.data.retrofit.response
 
 data class Meals(
     val success: Int,

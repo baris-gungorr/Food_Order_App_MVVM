@@ -28,7 +28,7 @@ class FavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
@@ -49,10 +49,11 @@ class FavoriteFragment : Fragment() {
     private fun observe() {
         viewModel.favoriteList.observe(viewLifecycleOwner) { favorites ->
 
-            if (favorites.isEmpty()) {
-                binding.imageViewNull.isGone = true
-                binding.textViewNull.isGone = true
-            }
+            val isFavoritesEmpty = favorites.isEmpty()
+
+                binding.imageViewNull.isGone =  isFavoritesEmpty
+                binding.textViewNull.isGone = isFavoritesEmpty
+
 
             val adapter = FavoriteAdapter(
                 favoriteList = favorites.orEmpty(),

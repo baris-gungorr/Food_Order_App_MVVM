@@ -2,8 +2,8 @@ package com.barisgungorr.bootcamprecipeapp.data.repo
 
 import com.barisgungorr.bootcamprecipeapp.data.datasource.MealsDataSource
 import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
-import com.barisgungorr.bootcamprecipeapp.data.entity.Basket
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
 import javax.inject.Inject
 
 class MealsRepository @Inject constructor(

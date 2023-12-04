@@ -1,4 +1,4 @@
-package com.barisgungorr.bootcamprecipeapp.di
+package com.barisgungorr.bootcamprecipeapp
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

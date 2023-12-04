@@ -1,13 +1,9 @@
 package com.barisgungorr.bootcamprecipeapp.ui.favorite
 
-import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
-import com.barisgungorr.bootcamprecipeapp.data.entity.Meal
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewFavoriteCardBinding
 import com.bumptech.glide.Glide
-import com.google.android.material.snackbar.Snackbar
 
 class FavoriteViewHolder(
     private val binding: ItemViewFavoriteCardBinding,

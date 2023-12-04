@@ -16,7 +16,8 @@ interface FavoriteDao {
     suspend fun save(favorite: Favorite)
 
     @Delete
-    suspend fun deleteF(favorite: Favorite)
+    suspend fun deleteFavorite(favorite: Favorite)
+
 
     @Query("SELECT * FROM fav WHERE yemek_adi like '%' || :searchKeyword || '%' ")
     suspend fun searchF(searchKeyword: String): List<Favorite>
