@@ -50,7 +50,7 @@ class MealsDataSource(
     }
 
     suspend fun searchFavorite(searchKeyword: String): List<Favorite> = withContext(Dispatchers.IO) {
-        return@withContext favoriteDao.searchF(searchKeyword)
+        return@withContext favoriteDao.searchFavorite(searchKeyword)
     }
 }
 

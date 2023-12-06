@@ -26,7 +26,5 @@ class FavoriteAdapter(
     override fun onBindViewHolder(viewHolder: FavoriteViewHolder, position: Int) {
         val favorite = favoriteList[position]
         viewHolder.bind(favorite)
-
-
     }
 }

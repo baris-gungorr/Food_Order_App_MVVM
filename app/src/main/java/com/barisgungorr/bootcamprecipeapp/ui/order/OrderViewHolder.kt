@@ -1,8 +1,10 @@
 package com.barisgungorr.bootcamprecipeapp.ui.order
 
 import androidx.recyclerview.widget.RecyclerView
+import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewOrderCardBinding
+import com.barisgungorr.bootcamprecipeapp.utils.extension.load
 import com.bumptech.glide.Glide
 
 class OrderViewHolder(
@@ -15,13 +17,14 @@ class OrderViewHolder(
 
         val context = binding.root.context
 
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.mealsImageName}"
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.imageName}"
+        binding.imageOrder.load(imageUrl = url)
 
-        Glide.with(context).load(url).into(binding.imageOrder)
+        OrderMealsName.text = basket.name
+        OrderMealsPrice.text = context.getString(R.string.price, basket.price)
 
-        OrderMealsName.text = basket.mealsName
-        OrderMealsPrice.text = "${basket.mealsPrice * basket.mealsOrderPiece} ₺"
-        PieceText.text = "${basket.mealsOrderPiece}"
+
+        PieceText.text = "${basket.piece}"
 
         OrderDeleteImage.setOnClickListener {
             callbacks.onDeleteOrder(basket = basket)

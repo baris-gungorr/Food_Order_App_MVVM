@@ -35,12 +35,15 @@
     <string name="addCardButton">SEPETE EKLE</string>
     <string name="availableCard">"Bu ürün daha önce eklenmiş!"</string>
     <string name="addCard">"Sepete eklendi!"</string>
+    <string name="price_text">%1\$d ₺</string>
+
 
     <string name="cardTitle">SEPETİM</string>
     <string name="approvalButton">ONAYLA</string>
     <string name="removeTextOrder">Sepetten silinsin mi?</string>
     <string name="addProductCard"> "Lütfen sepete ürün ekleyin!"</string>
     <string name="are_you_sure_want_to_delete_meal"> %s  ürününü silmek istediğinizden emin misiniz ? </string>
+    <string name="order_meals_price">Order Price: %1$d ₺</string>
 
     <string name="favoriteTitle">FAVORİLERİM</string>
     <string name="removeText">silinsin mi?</string>

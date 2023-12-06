@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignInBinding
 import com.barisgungorr.bootcamprecipeapp.utils.extension.click
-import com.barisgungorr.bootcamprecipeapp.utils.extension.snackbar
+import com.barisgungorr.bootcamprecipeapp.utils.extension.snack
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -45,7 +45,7 @@ class SignInFragment : Fragment() {
         }
         lifecycleScope.launch {
             viewModel.message.collectLatest { message ->
-                requireView().snackbar(message)
+                requireView().snack(message)
             }
         }
     }

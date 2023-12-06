@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,8 +52,8 @@ class FavoriteFragment : Fragment() {
 
             val isFavoritesEmpty = favorites.isEmpty()
 
-                binding.imageViewNull.isGone =  isFavoritesEmpty
-                binding.textViewNull.isGone = isFavoritesEmpty
+                binding.imageViewNull.isVisible =  isFavoritesEmpty
+                binding.textViewNull.isVisible = isFavoritesEmpty
 
 
             val adapter = FavoriteAdapter(

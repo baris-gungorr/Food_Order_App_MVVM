@@ -84,11 +84,11 @@ class OrderFragment : Fragment() {
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.setTitleAlert)
-        builder.setMessage(getString(R.string.are_you_sure_want_to_delete_meal, basket.mealsName))
+        builder.setMessage(getString(R.string.are_you_sure_want_to_delete_meal, basket.name))
         builder.setIcon(R.drawable.ic_app_icon)
         builder.setPositiveButton(R.string.yesText) { dialog, which ->
 
-            viewModel.delete(mealId = basket.cardMealsId)
+            viewModel.delete(mealId = basket.id)
             dialog.dismiss()
         }
         builder.setNegativeButton(R.string.buttonNo) { dialog, which ->

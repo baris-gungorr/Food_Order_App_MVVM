@@ -20,6 +20,6 @@ interface FavoriteDao {
 
 
     @Query("SELECT * FROM fav WHERE yemek_adi like '%' || :searchKeyword || '%' ")
-    suspend fun searchF(searchKeyword: String): List<Favorite>
+    suspend fun searchFavorite(searchKeyword: String): List<Favorite>
 
 }

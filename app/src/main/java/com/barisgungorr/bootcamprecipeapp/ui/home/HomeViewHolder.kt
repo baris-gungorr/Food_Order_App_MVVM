@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewHomeCardBinding
+import com.barisgungorr.bootcamprecipeapp.utils.extension.Size
+import com.barisgungorr.bootcamprecipeapp.utils.extension.load
 import com.bumptech.glide.Glide
 
 class HomeViewHolder(
@@ -17,16 +19,14 @@ class HomeViewHolder(
         binding.imageTitle.text = meal.name
         setupFoodInfo(context = context, foodPrice = meal.price)
         setDetailClickListener(meal)
-        loadImage(context = context, food = meal)
+        loadImage(food = meal)
     }
 
-    private fun loadImage(context: Context, food: Meal) {
-        val imageUrl = "http://kasimadalan.pe.hu/yemekler/resimler/${food.imageName}"
-        Glide.with(context)
-            .load(imageUrl)
-            .override(300, 300)
-            .into(binding.imageMeal)
+    private fun loadImage(food: Meal) {
+        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.imageName}"
+        binding.imageMeal.load(imageUrl = url,size = Size(300,300))
     }
+
 
     private fun setupFoodInfo(context: Context, foodPrice: Int) {
         val priceText = context.getString(R.string.price, foodPrice)

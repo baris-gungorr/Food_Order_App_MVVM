@@ -37,20 +37,20 @@ class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : V
     private fun calculateTotalPrice(baskets: List<Basket>) {
         var total = 0
         baskets.forEach { orders ->
-            total += orders.mealsOrderPiece * orders.mealsPrice
+            total += orders.piece * orders.price
         }
         totalPrice = total
     }
 
     fun decreaseOrderQuantity(basket: Basket) {
-        if (basket.mealsOrderPiece > 1) {
-            basket.mealsOrderPiece.dec()
+        if (basket.piece > 1) {
+            basket.piece.dec()
             // Update basket object with using Api
         }
     }
 
     fun increaseOrderQuantity(basket: Basket) {
-        basket.mealsOrderPiece.inc()
+        basket.piece.inc()
         // Update basket object with using Api
     }
 
@@ -67,7 +67,7 @@ class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : V
             val lastItem = basketList.value!!.toMutableList()
             lastItem.removeAt(lastItem.lastIndex)
             basketList.value = lastItem
-            totalPrice = lastItem.sumOf { it.mealsPrice * it.mealsOrderPiece }
+            totalPrice = lastItem.sumOf { it.price * it.piece }
         }
     }
 

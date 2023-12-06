@@ -49,10 +49,10 @@ class HomeFragment : Fragment() {
 
     private fun initMealList(mealList: List<Meal>) {
         adapter = HomeAdapter(mealList, object : HomeAdapter.FoodCallback {
-            override fun onClickDetail(meal: Meal) {
+            override fun onClickDetail(food: Meal) {
                 findNavController().navigate(
                     HomeFragmentDirections.actionMainFragmentToDetailsFragment(
-                        meal = meal
+                        meal = food
                     )
                 )
             }

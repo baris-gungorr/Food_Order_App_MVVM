@@ -9,7 +9,7 @@
     <string name="signUpText">SIGN UP</string>
     <string name="fillBlanksText">Fill in the blanks!</string>
     <string name="passwordAlert">Password length must be minimum 6 characters long!</string>
-    <string name="ınvalidAlert">Invalid email adress!</string>
+    <string name="ınvalidAlert">Invalid email address!</string>
     <string name="wrongUsernamePass">Wrong email and password!</string>
 
 
@@ -33,12 +33,16 @@
     <string name="addCardButton">ADD TO CARD</string>
     <string name="availableCard">"This product is available in your cart"</string>
     <string name="addCard">"ADD CARD!"</string>
+    <string name="price_text">%1\$d ₺</string>
+
 
 
     <string name="cardTitle">MY CARD</string>
     <string name="approvalButton">CONFİRM</string>
     <string name="removeTextOrder">Remove from card?</string>
     <string name="addProductCard"> "Please add product to cart!"</string>
+    <string name="order_meals_price">Order Price: %1$d ₺</string>
+
 
 
     <string name="favoriteTitle">MY FAVORİTES</string>
