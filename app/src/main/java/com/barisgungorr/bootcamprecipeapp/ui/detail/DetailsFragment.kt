@@ -1,24 +1,19 @@
 package com.barisgungorr.bootcamprecipeapp.ui.detail
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
-import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
-import com.barisgungorr.bootcamprecipeapp.utils.extension.click
 import com.barisgungorr.bootcamprecipeapp.utils.extension.load
 import com.barisgungorr.bootcamprecipeapp.utils.extension.snack
-import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,7 +22,7 @@ import kotlinx.coroutines.launch
 class DetailsFragment : Fragment() {
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
-    private lateinit var meals: Meal
+    private lateinit var meals: MealResponse
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +43,7 @@ class DetailsFragment : Fragment() {
         viewModel.piece.observe(viewLifecycleOwner) { newPiece ->
 
             mealsPieceText.text = "$newPiece"
-            textViewPrice.text = getString(R.string.price, meals.price * newPiece)
+            tvPrice.text = getString(R.string.home_page_price, meals.price * newPiece)
         }
     }
 
@@ -57,39 +52,33 @@ class DetailsFragment : Fragment() {
         meals = bundle.meal
 
         val photo = "http://kasimadalan.pe.hu/yemekler/resimler/${meals.imageName}"
-        imageViewMeals.load(photo)
+        ivMeals.load(photo)
 
-        textMealsName.text = meals.name
-        textViewPrice.text = getString(R.string.price, meals.price)
+        tvName.text = meals.name
+        tvPrice.text = getString(R.string.home_page_price, meals.price)
         mealsPieceText.text = "${viewModel.piece.value}"
 
 
-        buttonFavoriteNull.click {
+        btnFavEmpty.setOnClickListener{
 
-            buttonFavoriteNull.setImageResource(R.drawable.baseline_favorite_24)
+            btnFavEmpty.setImageResource(R.drawable.baseline_favorite_24)
 
-            Toast.makeText(requireContext(), "ADD YOUR FAVORİTE!", Toast.LENGTH_LONG).show()
+            lifecycleScope.launch {
+                viewModel.message.collectLatest { messageResId ->
+                    requireView().snack(getString(messageResId))
+                }
+            }
             viewModel.save(meals.id, meals.name, meals.imageName)
         }
 
-        buttonMinus.click { viewModel.buttonMinus() }
+        buttonMinus.setOnClickListener { viewModel.buttonMinus() }
 
-        buttonPlus.click { viewModel.buttonPlus() }
+        buttonPlus.setOnClickListener { viewModel.buttonPlus() }
 
-        buttonAddCard.click {
-            val isAlreadyInCart = viewModel.isProductInBasket(meals.name)
-            if (isAlreadyInCart) {
-                Toast.makeText(requireContext(), R.string.availableCard, Toast.LENGTH_LONG).show()
-
-            } else {
-                viewModel.piece.value?.let {
-                    viewModel.addMeals(meals.name, meals.imageName, meals.price, it, AppConstants.USERNAME)
-                }
-                Toast.makeText(requireContext(), R.string.addCard, Toast.LENGTH_LONG).show()
-
-            }
+        btnAddCard.setOnClickListener {
+            viewModel.handleButtonClick(meals)
         }
-        imageViewBack.click {
+        ivHome.setOnClickListener {
             findNavController().navigate(R.id.detailsToMain)
         }
     }

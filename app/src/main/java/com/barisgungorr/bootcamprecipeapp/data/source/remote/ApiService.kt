@@ -1,17 +1,17 @@
 package com.barisgungorr.bootcamprecipeapp.data.source.remote
 
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealOperationResponse
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meals
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealListResponse
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketResponse
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface HomeMealsApi {
+interface ApiService {
 
     @GET("yemekler/tumYemekleriGetir.php")
-    suspend fun getMeals(): Meals
+    suspend fun getMeals(): MealListResponse
 
     @POST("yemekler/sepeteYemekEkle.php")
     @FormUrlEncoded

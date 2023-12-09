@@ -1,4 +1,4 @@
-package com.barisgungorr.bootcamprecipeapp.ui.order
+package com.barisgungorr.bootcamprecipeapp.ui.card
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -12,23 +12,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
-import com.barisgungorr.bootcamprecipeapp.databinding.FragmentOrderBinding
-import com.barisgungorr.bootcamprecipeapp.utils.extension.click
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketMealResponse
+import com.barisgungorr.bootcamprecipeapp.databinding.FragmentCardBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 
 @AndroidEntryPoint
-class OrderFragment : Fragment() {
-    private lateinit var binding: FragmentOrderBinding
-    private val viewModel: OrderViewModel by viewModels()
+class CardFragment : Fragment() {
+    private lateinit var binding: FragmentCardBinding
+    private val viewModel: CardViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentOrderBinding.inflate(inflater, container, false)
+        binding = FragmentCardBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -41,7 +40,7 @@ class OrderFragment : Fragment() {
 
     private fun initVariables() {
         val layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.layoutManager = layoutManager
+        binding.rv.layoutManager = layoutManager
     }
 
     private fun observe() {
@@ -54,44 +53,44 @@ class OrderFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             viewModel.navigateMainScreen.collectLatest {
-                findNavController().navigate(OrderFragmentDirections.orderToMain())
+                findNavController().navigate(CardFragmentDirections.orderToMain())
             }
         }
 
         viewModel.basketList.observe(viewLifecycleOwner) { baskets ->
-            val adapter = OrderAdapter(
+            val adapter = CardAdapter(
                 mealList = baskets.orEmpty(),
-                callbacks = object : OrderAdapter.OrderCallbacks {
-                    override fun onDeleteOrder(basket: Basket) {
+                callbacks = object : CardAdapter.OrderCallbacks {
+                    override fun onDeleteOrder(basket: BasketMealResponse) {
                         showDeleteBasketDialog(basket)
                     }
 
-                    override fun onDecreaseOrderQuantity(basket: Basket) {
+                    override fun onDecreaseOrderQuantity(basket: BasketMealResponse) {
                         viewModel.decreaseOrderQuantity(basket)
                     }
 
-                    override fun onIncreaseOrderQuantity(basket: Basket) {
+                    override fun onIncreaseOrderQuantity(basket: BasketMealResponse) {
                         viewModel.increaseOrderQuantity(basket)
                     }
                 }
             )
-            binding.recyclerView.adapter = adapter
+            binding.rv.adapter = adapter
         }
     }
 
 
-    private fun showDeleteBasketDialog(basket: Basket) {
+    private fun showDeleteBasketDialog(basket: BasketMealResponse) {
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(R.string.setTitleAlert)
-        builder.setMessage(getString(R.string.are_you_sure_want_to_delete_meal, basket.name))
+        builder.setTitle(R.string.card_page_title)
+        builder.setMessage(getString(R.string.favorite_page_delete_tv, basket.name))
         builder.setIcon(R.drawable.ic_app_icon)
-        builder.setPositiveButton(R.string.yesText) { dialog, which ->
+        builder.setPositiveButton(R.string.favorite_page_yes_tv) { dialog, which ->
 
             viewModel.delete(mealId = basket.id)
             dialog.dismiss()
         }
-        builder.setNegativeButton(R.string.buttonNo) { dialog, which ->
+        builder.setNegativeButton(R.string.home_page_button_no) { dialog, which ->
             dialog.dismiss()
         }
         builder.show()
@@ -100,10 +99,10 @@ class OrderFragment : Fragment() {
 
     private fun initViews() = with(binding) {
 
-        buttonAddCard.click {
+        btnAddCard.setOnClickListener {
             viewModel.completeOrders()
         }
-        imageViewBackk?.click {
+        ivBack?.setOnClickListener {
             findNavController().navigate(R.id.orderToMain)
         }
     }

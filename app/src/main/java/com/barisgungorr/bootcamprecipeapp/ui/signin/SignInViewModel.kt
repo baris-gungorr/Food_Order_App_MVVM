@@ -1,6 +1,5 @@
 package com.barisgungorr.bootcamprecipeapp.ui.signin
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.barisgungorr.bootcamprecipeapp.R
@@ -16,7 +15,7 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor() : ViewModel() {
 
     val shouldNavigateToMainScreen = MutableSharedFlow<Unit>()
-    val message = MutableSharedFlow<String>()
+    val message = MutableSharedFlow<Int>()
     private var auth: FirebaseAuth = Firebase.auth
 
     fun checkUserInfo() {
@@ -27,17 +26,17 @@ class SignInViewModel @Inject constructor() : ViewModel() {
     }
     fun signIn(email: String, password: String) {
         when {
-            email.isEmpty() || password.isEmpty() -> sendMessage("Fill in the blanks")
+            email.isEmpty() || password.isEmpty() -> sendMessage(R.string.sign_in_fill_in_blanks)
 
-            password.length < 6 -> sendMessage("Password length must be minimum 6 characters long!")
-            isValidEmail(email).not() -> sendMessage("Invalid email adress")
+            password.length < 6 -> sendMessage(R.string.sign_in_password_alert)
+            isValidEmail(email).not() -> sendMessage(R.string.sign_in_invalid_alert)
             else -> auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { navigateToMainScreen() }
-                .addOnFailureListener { sendMessage("Wrong email and password") }
+                .addOnFailureListener { sendMessage(R.string.sign_in_wrong_email_password) }
         }
     }
 
-    private fun sendMessage(message: String) {
+    private fun sendMessage(message: Int) {
         viewModelScope.launch {
             this@SignInViewModel.message.emit(message)
         }
@@ -51,4 +50,6 @@ class SignInViewModel @Inject constructor() : ViewModel() {
         val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
         return emailRegex.matches(email)
     }
+
+
 }

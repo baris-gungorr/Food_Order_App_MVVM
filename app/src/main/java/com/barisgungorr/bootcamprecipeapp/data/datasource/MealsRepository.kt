@@ -1,19 +1,19 @@
 package com.barisgungorr.bootcamprecipeapp.data.datasource
 
 import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketMealResponse
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.data.source.locale.FavoriteDao
-import com.barisgungorr.bootcamprecipeapp.data.source.remote.HomeMealsApi
+import com.barisgungorr.bootcamprecipeapp.data.source.remote.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MealsDataSource(
-    private val api: HomeMealsApi,
+class MealsRepository(
+    private val service: ApiService,
     private val favoriteDao: FavoriteDao
 ) {
-    suspend fun getMeals(): List<Meal> = withContext(Dispatchers.IO) {
-        return@withContext api.getMeals().yemekler
+    suspend fun getMeals(): List<MealResponse> = withContext(Dispatchers.IO) {
+        return@withContext service.getMeals().yemekler
     }
 
     suspend fun addMeals(
@@ -23,16 +23,16 @@ class MealsDataSource(
         mealsOrderPrice: Int,
         userName: String
     ) {
-        api.addMeals(mealsName, mealsImageName, mealsPrice, mealsOrderPrice, userName)
+        service.addMeals(mealsName, mealsImageName, mealsPrice, mealsOrderPrice, userName)
     }
 
-    suspend fun getMeals(userName: String): List<Basket> = withContext(Dispatchers.IO) {
-        val success = api.getMeals(userName)
+    suspend fun getMeals(userName: String): List<BasketMealResponse> = withContext(Dispatchers.IO) {
+        val success = service.getMeals(userName)
         return@withContext success.meals
     }
 
     suspend fun delete(userName: String, cardMealsId: Int) {
-        api.delete(userName, cardMealsId)
+        service.delete(userName, cardMealsId)
     }
 
     suspend fun save(mealsId: Int, mealsName: String, mealsImageName: String) {

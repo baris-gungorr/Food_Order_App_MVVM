@@ -22,7 +22,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailLayout"
+        android:id="@+id/tvEmail"
         style="@style/LoginTextInputOuterFieldStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/addEmailSignIn"
+            android:hint="@string/sign_in_type_your_e_mail"
             android:inputType="textEmailAddress"
             android:textSize="34sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -59,23 +59,23 @@
         tools:layout_editor_absoluteY="696dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passText"
+            android:id="@+id/passwordTv"
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/addPasswordSignIn"
+            android:hint="@string/sign_in_type_your_password"
             android:inputType="textPassword"
             android:textSize="34sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSignIn"
+        android:id="@+id/btnSignIn"
         android:layout_width="927dp"
         android:layout_height="105dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="628dp"
         android:background="@color/kk"
-        android:text="@string/signInButton"
+        android:text="@string/sign_in_button"
         android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -85,7 +85,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/signin_lottie"
+        android:id="@+id/animation"
         android:layout_width="0dp"
         android:layout_height="210dp"
         android:layout_marginTop="148dp"
@@ -98,11 +98,11 @@
         app:lottie_rawRes="@raw/animation_three" />
 
     <TextView
-        android:id="@+id/textViewSign"
+        android:id="@+id/tvSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
-        android:text="@string/signUpText"
+        android:text="@string/sign_up_tv"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,12 +111,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="267dp"
         android:layout_height="78dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/signInTitle"
+        android:text="@string/sign_in_page_title"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"
@@ -126,7 +126,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewoR"
+        android:id="@+id/tvOr"
         android:layout_width="152dp"
         android:layout_height="67dp"
         android:layout_marginBottom="224dp"
@@ -135,7 +135,7 @@
         android:textColor="#121111"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSign"
+        app:layout_constraintBottom_toTopOf="@+id/tvSign"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />

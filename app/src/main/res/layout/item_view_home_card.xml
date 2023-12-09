@@ -31,7 +31,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageMeal"
+                android:id="@+id/iv"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:scaleType="fitCenter"
@@ -41,7 +41,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/imageTitle"
+                android:id="@+id/ivTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/kk"
@@ -49,23 +49,24 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageMeal"
+                app:layout_constraintTop_toBottomOf="@id/iv"
                 tools:text="Product Title" />
 
             <TextView
-                android:id="@+id/imagePrice"
+                android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageTitle"
+                app:layout_constraintTop_toBottomOf="@id/ivTitle"
                 tools:text="12.50 $" />
 
             <TextView
-                android:id="@+id/tv_price"
+                android:id="@+id/tvv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
@@ -73,7 +74,7 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imagePrice"
+                app:layout_constraintTop_toBottomOf="@id/tvPrice"
                 tools:text="6.90 $" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

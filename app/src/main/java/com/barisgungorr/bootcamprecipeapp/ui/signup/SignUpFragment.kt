@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignUpBinding
-import com.barisgungorr.bootcamprecipeapp.utils.extension.click
 import com.barisgungorr.bootcamprecipeapp.utils.extension.snack
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -44,19 +43,20 @@ class SignUpFragment : Fragment() {
         }
         lifecycleScope.launch {
             viewModel.message.collectLatest { message ->
-                requireView().snack(message)
+                requireView().snack(getString(message))
+
             }
         }
     }
 
     private fun initViews() = with(binding) {
-        textViewBackSignIn.click {
+        tvBack.setOnClickListener {
             findNavController().navigate(R.id.signUpToSignIn)
         }
 
-        buttonSignUp.click {
+        btnSignUp.setOnClickListener {
             val email = emailText.text.toString()
-            val pass = passText.text.toString()
+            val pass = passwordTv.text.toString()
             viewModel.signUp(email, pass)
 
         }

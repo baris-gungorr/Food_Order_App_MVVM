@@ -3,8 +3,10 @@ package com.barisgungorr.bootcamprecipeapp.ui.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
-import com.barisgungorr.bootcamprecipeapp.data.repo.MealsRepository
+import com.barisgungorr.bootcamprecipeapp.R
+import com.barisgungorr.bootcamprecipeapp.data.datasource.MealsRepository
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketMealResponse
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -13,9 +15,12 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(private val mealsRepository: MealsRepository) : ViewModel() {
-    private var basketList: MutableLiveData<List<Basket>> = MutableLiveData()
+class DetailsViewModel @Inject constructor(private val mealsRepository: MealsRepository) :
+    ViewModel() {
+    private var basketList: MutableLiveData<List<BasketMealResponse>> = MutableLiveData()
     var piece = MutableLiveData<Int>()
+    val message = MutableSharedFlow<Int>()
+
 
     init {
         getBasketMeals()
@@ -34,13 +39,12 @@ class DetailsViewModel @Inject constructor(private val mealsRepository: MealsRep
         piece.value = currentPiece + 1
     }
 
-
-    fun addMeals(
+    private fun addMeals(
         mealsName: String,
         mealsImageName: String,
         mealsPrice: Int,
         mealsOrderPiece: Int,
-        userName: String
+        username: String
     ) {
         viewModelScope.launch {
             try {
@@ -49,8 +53,10 @@ class DetailsViewModel @Inject constructor(private val mealsRepository: MealsRep
                     mealsImageName,
                     mealsPrice,
                     mealsOrderPiece,
-                    userName
+                    username
                 )
+
+                getBasketMeals()
 
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -76,9 +82,39 @@ class DetailsViewModel @Inject constructor(private val mealsRepository: MealsRep
         }
     }
 
-    fun isProductInBasket(productName: String): Boolean {
+    private fun isProductInBasket(productName: String): Boolean {
         val basketItems = basketList.value.orEmpty()
         return basketItems.any { it.name == productName }
+    }
+
+    fun handleButtonClick(meals: MealResponse) {
+        viewModelScope.launch {
+            getBasketMeals()
+
+            val isAlreadyInCart = isProductInBasket(meals.name)
+
+            when {
+                isAlreadyInCart -> sendMessage(R.string.detail_page_card_error)
+                else -> {
+                    piece.value?.let {
+                        addMeals(
+                            meals.name,
+                            meals.imageName,
+                            meals.price,
+                            it,
+                            AppConstants.USERNAME)
+                    }
+                    sendMessage(R.string.detail_page_add_card)
+                }
+            }
+        }
+    }
+
+    private fun sendMessage(messageResId: Int) {
+        viewModelScope.launch {
+
+            this@DetailsViewModel.message.emit(messageResId)
+        }
     }
 }
 

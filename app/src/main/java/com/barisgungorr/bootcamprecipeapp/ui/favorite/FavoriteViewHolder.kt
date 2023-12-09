@@ -16,12 +16,12 @@ class FavoriteViewHolder(
 
         val imageUrl = "http://kasimadalan.pe.hu/yemekler/resimler/${favorite.mealsImageName}"
 
-        Glide.with(context).load(imageUrl).override(300, 300).into(binding.favoriteImageMeal)
+        Glide.with(context).load(imageUrl).override(300, 300).into(binding.ivMeal)
 
-        favoriteTextMealName.text = favorite.mealsName
+        tvName.text = favorite.mealsName
 
 
-        favoriteMealsDelete.setOnClickListener {
+        ivDelete.setOnClickListener {
             favoriteCallBacks.onDeleteFavorite(favorite = favorite)
 
         }

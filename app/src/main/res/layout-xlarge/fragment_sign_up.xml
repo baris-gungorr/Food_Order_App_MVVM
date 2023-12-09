@@ -22,12 +22,12 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="348dp"
         android:layout_height="67dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/signUpTitle"
+        android:text="@string/sign_up_page_title"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailLayout"
+        android:id="@+id/tvEmail"
         style="@style/LoginTextInputOuterFieldStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/addEmail"
+            android:hint="@string/sign_up_type_your_e_mail"
             android:inputType="textEmailAddress"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,21 +73,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailLayout"
+        app:layout_constraintTop_toBottomOf="@id/tvEmail"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passText"
+            android:id="@+id/passwordTv"
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/addPassword"
+            android:hint="@string/sign_up_type_your_password"
             android:inputType="textPassword"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/confirmPasswordLayout"
+        android:id="@+id/etRetyPassword"
         style="@style/LoginTextInputOuterFieldStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,22 +102,22 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confirmPassText"
+            android:id="@+id/etConfirm"
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/retryPassword"
+            android:hint="@string/sign_up_retype_your_password"
             android:inputType="textPassword"
             android:textSize="20sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSignUp"
+        android:id="@+id/btnSignUp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:background="@color/kk"
-        android:text="@string/signUpButton"
+        android:text="@string/sign_up_button"
         android:textColor="@color/white"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -125,10 +125,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/etRetyPassword" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/signin_lottie"
+        android:id="@+id/animation"
         android:layout_width="0dp"
         android:layout_height="210dp"
         android:layout_marginTop="140dp"
@@ -141,11 +141,11 @@
         app:lottie_rawRes="@raw/animation_two" />
 
     <TextView
-        android:id="@+id/textViewBackSignIn"
+        android:id="@+id/tvBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
-        android:text="@string/signInText"
+        android:text="@string/sign_in_text"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

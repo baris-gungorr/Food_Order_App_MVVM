@@ -14,9 +14,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Meal
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentHomeBinding
-import com.barisgungorr.bootcamprecipeapp.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,9 +46,9 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initMealList(mealList: List<Meal>) {
+    private fun initMealList(mealList: List<MealResponse>) {
         adapter = HomeAdapter(mealList, object : HomeAdapter.FoodCallback {
-            override fun onClickDetail(food: Meal) {
+            override fun onClickDetail(food: MealResponse) {
                 findNavController().navigate(
                     HomeFragmentDirections.actionMainFragmentToDetailsFragment(
                         meal = food
@@ -82,16 +81,16 @@ class HomeFragment : Fragment() {
             false
         }
 
-        imageViewLogOut.click {
+        ivLogout.setOnClickListener {
             AlertDialog.Builder(requireContext()).apply {
-                setMessage(R.string.areYouExit)
-                setTitle(R.string.setTitleAlert)
+                setMessage(R.string.home_page_are_you_exit)
+                setTitle(R.string.home_page_set_title_alert)
                 setIcon(R.drawable.ic_app_icon)
-                setPositiveButton(R.string.buttonYes) { _, _ ->
+                setPositiveButton(R.string.home_page_button_yes) { _, _ ->
                     viewModel.signOut()
                     findNavController().navigate(R.id.mainToSign)
                 }
-                setNegativeButton(R.string.buttonNo) { _, _ -> }
+                setNegativeButton(R.string.home_page_button_no) { _, _ -> }
             }.show()
 
         }

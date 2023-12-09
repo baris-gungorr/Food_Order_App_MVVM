@@ -14,27 +14,27 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor() : ViewModel() {
     val shouldNavigateToSignInScreen = MutableSharedFlow<Unit>()
-    val message = MutableSharedFlow<String>()
+    val message = MutableSharedFlow<Int>()
     private var auth: FirebaseAuth = Firebase.auth
 
 
     fun signUp(email: String, pass: String) {
         when {
-            email.isEmpty() || pass.isEmpty() -> sendMessage(R.string.fillBlanksText.toString())
-            pass.length < 6 -> sendMessage(R.string.passwordAlert.toString())
-            isValidEmail(email).not() -> sendMessage(R.string.ınvalidAlert.toString())
+            email.isEmpty() || pass.isEmpty() -> sendMessage(R.string.sign_in_fill_in_blanks)
+            pass.length < 6 -> sendMessage(R.string.sign_in_password_alert)
+            isValidEmail(email).not() -> sendMessage(R.string.sign_in_invalid_alert)
             else -> auth.createUserWithEmailAndPassword(email, pass)
                 .addOnSuccessListener {
                     navigateToSignInScreen()
 
                 }.addOnFailureListener {
-                    sendMessage(R.string.wrongUsernamePass.toString())
+                    sendMessage(R.string.sign_in_wrong_email_password)
 
                 }
         }
     }
 
-    private fun sendMessage(message: String) {
+    private fun sendMessage(message: Int) {
         viewModelScope.launch {
             this@SignUpViewModel.message.emit(message)
         }

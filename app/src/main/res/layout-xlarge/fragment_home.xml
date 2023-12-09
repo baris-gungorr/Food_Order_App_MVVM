@@ -22,7 +22,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
-        android:id="@+id/imageViewLogOut"
+        android:id="@+id/ivLogout"
         android:layout_width="67dp"
         android:layout_height="69dp"
         android:layout_marginTop="16dp"
@@ -33,12 +33,12 @@
         tools:src="@drawable/ic_logout_icon" />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="333dp"
         android:layout_height="62dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/mainTitlee"
+        android:text="@string/home_page_title"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="48sp"

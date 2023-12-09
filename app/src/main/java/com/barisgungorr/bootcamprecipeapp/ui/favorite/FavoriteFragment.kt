@@ -3,21 +3,19 @@ package com.barisgungorr.bootcamprecipeapp.ui.favorite
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteBinding
-import com.barisgungorr.bootcamprecipeapp.utils.extension.click
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -44,7 +42,7 @@ class FavoriteFragment : Fragment() {
 
     private fun initVariables() {
         val layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerViewFavorites?.layoutManager = layoutManager
+        binding.rv.layoutManager = layoutManager
     }
 
     private fun observe() {
@@ -52,8 +50,8 @@ class FavoriteFragment : Fragment() {
 
             val isFavoritesEmpty = favorites.isEmpty()
 
-                binding.imageViewNull.isVisible =  isFavoritesEmpty
-                binding.textViewNull.isVisible = isFavoritesEmpty
+                binding.ivEmpty.isVisible =  isFavoritesEmpty
+                binding.tvEmpty.isVisible = isFavoritesEmpty
 
 
             val adapter = FavoriteAdapter(
@@ -64,21 +62,21 @@ class FavoriteFragment : Fragment() {
                     }
                 }
             )
-            binding.recyclerViewFavorites?.adapter = adapter
+            binding.rv.adapter = adapter
 
         }
     }
     private fun showDeleteFavoriteDialog(favorite: Favorite) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle(R.string.setTitleAlert)
-        builder.setMessage(getString(R.string.are_you_sure_want_to_delete_meal, favorite.mealsName))
+        builder.setTitle(R.string.favorite_page_title)
+        builder.setMessage(getString(R.string.favorite_page_delete_tv, favorite.mealsName))
         builder.setIcon(R.drawable.ic_app_icon)
-        builder.setPositiveButton(R.string.yesText) { dialog, which ->
+        builder.setPositiveButton(R.string.favorite_page_yes_tv) { dialog, which ->
 
             viewModel.deleteFavorite(mealId = favorite.mealsId)
             dialog.dismiss()
         }
-        builder.setNegativeButton(R.string.buttonNo) { dialog, which ->
+        builder.setNegativeButton(R.string.home_page_button_no) { dialog, which ->
             dialog.dismiss()
         }
         builder.show()
@@ -103,7 +101,7 @@ class FavoriteFragment : Fragment() {
             }
             false
         }
-        imageViewBack.click {
+        ivHome.setOnClickListener {
             findNavController().navigate(R.id.favoriteToMain)
         }
     }

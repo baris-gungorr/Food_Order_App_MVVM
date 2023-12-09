@@ -1,55 +1,49 @@
 <resources>
     <string name="app_name">OrderApp</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="signInTitle">SIGN IN</string>
-    <string name="addEmailSignIn">Type your Email</string>
-    <string name="addPasswordSignIn">Type your Password</string>
-    <string name="signInButton">SIGN IN</string>
+
+    <string name="sign_in_page_title">SIGN IN</string>
+    <string name="sign_in_type_your_e_mail">Type your Email</string>
+    <string name="sign_in_type_your_password">Type your Password</string>
+    <string name="sign_in_button">SIGN IN</string>
     <string name="Or">Or</string>
-    <string name="signUpText">SIGN UP</string>
-    <string name="fillBlanksText">Fill in the blanks!</string>
-    <string name="passwordAlert">Password length must be minimum 6 characters long!</string>
-    <string name="ınvalidAlert">Invalid email address!</string>
-    <string name="wrongUsernamePass">Wrong email and password!</string>
+    <string name="sign_up_tv">SIGN UP</string>
+    <string name="sign_in_fill_in_blanks">Fill in the blanks!</string>
+    <string name="sign_in_password_alert">Password length must be minimum 6 characters long!</string>
+    <string name="sign_in_invalid_alert">Invalid email address!</string>
+    <string name="sign_in_wrong_email_password">Wrong email and password!</string>
 
+    <string name="sign_up_page_title">SIGN UP</string>
+    <string name="sign_up_type_your_e_mail">Type your Email</string>
+    <string name="sign_up_type_your_password">Type your Password</string>
+    <string name="sign_up_retype_your_password">Retype Your Password</string>
+    <string name="sign_up_button">SIGN UP</string>
+    <string name="sign_in_text">Sign In</string>
 
-    <string name="signUpTitle">SIGN UP</string>
-    <string name="addEmail">Type your Email</string>
-    <string name="addPassword">Type your Password</string>
-    <string name="retryPassword">Retype Your Password</string>
-    <string name="signUpButton">SIGN UP</string>
-    <string name="signInText">Sign In</string>
+    <string name="home_page_title">HOME SCREEN</string>
+    <string name="home_page_are_you_exit">Are you exit ?</string>
+    <string name="home_page_set_title_alert">Order App</string>
+    <string name="home_page_button_yes">YES</string>
+    <string name="home_page_button_no">NO</string>
+    <string name="home_page_text_logout">LOG OUT</string>
+    <string name="home_page_price">%d ₺</string>
 
-    <string name="mainTitlee">HOME SCREEN</string>
-    <string name="areYouExit">Are you exit ?</string>
-    <string name="setTitleAlert">Order App</string>
-    <string name="buttonYes">YES</string>
-    <string name="buttonNo">NO</string>
-    <string name="textLogOut">LOG OUT</string>
-    <string name="price">%d ₺</string>
+    <string name="details_page_title">DETAİLS SCREEN</string>
+    <string name="detail_page_add_card_button">ADD TO CARD</string>
+    <string name="detail_page_card_error">"This product is available in your cart"</string>
+    <string name="detail_page_add_card">"ADD CARD!"</string>
+    <string name="detail_page_price_tv">%1\$d ₺</string>
 
+    <string name="card_page_title">MY CARD</string>
+    <string name="card_page_confirm_button">CONFİRM</string>
+    <string name="card_page_remove_tv">Remove from card?</string>
+    <string name="card_page_add_product_card"> "Please add product to cart!"</string>
+    <string name="card_page_meals_price">Order Price: %1$d ₺</string>
 
-    <string name="detailsTitle">DETAİLS SCREEN</string>
-    <string name="addCardButton">ADD TO CARD</string>
-    <string name="availableCard">"This product is available in your cart"</string>
-    <string name="addCard">"ADD CARD!"</string>
-    <string name="price_text">%1\$d ₺</string>
-
-
-
-    <string name="cardTitle">MY CARD</string>
-    <string name="approvalButton">CONFİRM</string>
-    <string name="removeTextOrder">Remove from card?</string>
-    <string name="addProductCard"> "Please add product to cart!"</string>
-    <string name="order_meals_price">Order Price: %1$d ₺</string>
-
-
-
-    <string name="favoriteTitle">MY FAVORİTES</string>
-    <string name="removeText">Delete?</string>
-    <string name="yesText">YES</string>
-
-    <string name="are_you_sure_want_to_delete_meal"> %s  Are you sure you want to delete the product ? </string>
-
+    <string name="favorite_page_title">MY FAVORİTES</string>
+    <string name="favorite_page_remove_tv">Delete?</string>
+    <string name="favorite_page_yes_tv">YES</string>
+    <string name="favorite_page_add_favorite">Add Favorite</string>
+    <string name="favorite_page_delete_tv"> %s  Are you sure you want to delete the product ? </string>
 
 </resources>

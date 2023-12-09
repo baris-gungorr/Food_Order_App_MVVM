@@ -1,4 +1,5 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,7 +23,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailLayout"
+        android:id="@+id/tvEmail"
         style="@style/LoginTextInputOuterFieldStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +41,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/addEmailSignIn"
+            android:hint="@string/sign_in_type_your_e_mail"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,26 +57,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailLayout"
+        app:layout_constraintTop_toBottomOf="@id/tvEmail"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passText"
+            android:id="@+id/passwordTv"
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/addPasswordSignIn"
+            android:hint="@string/sign_in_type_your_password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonSignIn"
+        android:id="@+id/btnSignIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
         android:background="@color/kk"
-        android:text="@string/signInButton"
+        android:text="@string/sign_in_button"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -85,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/signin_lottie"
+        android:id="@+id/animation"
         android:layout_width="0dp"
         android:layout_height="210dp"
         android:layout_marginTop="70dp"
@@ -98,11 +99,11 @@
         app:lottie_rawRes="@raw/animation_three" />
 
     <TextView
-        android:id="@+id/textViewSign"
+        android:id="@+id/tvSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="59dp"
-        android:text="@string/signUpText"
+        android:text="@string/sign_up_tv"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -111,12 +112,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
-        android:text="@string/signInTitle"
+        android:text="@string/sign_in_page_title"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -126,14 +127,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewoR"
+        android:id="@+id/tvOr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/Or"
         android:textColor="#121111"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewSign"
+        app:layout_constraintBottom_toTopOf="@+id/tvSign"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />

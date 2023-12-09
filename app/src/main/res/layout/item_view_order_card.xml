@@ -22,7 +22,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageOrder"
+                android:id="@+id/ivMeal"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="8dp"
@@ -32,7 +32,7 @@
                  />
 
             <TextView
-                android:id="@+id/OrderMealsName"
+                android:id="@+id/tvMealName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -41,10 +41,10 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageOrder" />
+                app:layout_constraintTop_toBottomOf="@+id/ivMeal" />
 
             <TextView
-                android:id="@+id/OrderMealsPrice"
+                android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -57,17 +57,17 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
-                android:id="@+id/OrderDeleteImage"
+                android:id="@+id/ivDelete"
                 android:layout_width="30dp"
                 android:layout_height="36dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/OrderMealsPrice"
+                app:layout_constraintBottom_toTopOf="@+id/tvPrice"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/ic_delete_icon" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/CardViewButton"
+                android:id="@+id/cvButton"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
                 android:layout_marginStart="16dp"
@@ -76,7 +76,7 @@
                 app:cardCornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/OrderMealsName">
+                app:layout_constraintTop_toBottomOf="@+id/tvMealName">
 
 
                 <LinearLayout
@@ -84,9 +84,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/ButtonMinus"
+                        android:id="@+id/btnDecrease"
                         android:layout_width="33dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -98,7 +97,7 @@
                         tools:layout_editor_absoluteY="352dp" />
 
                     <TextView
-                        android:id="@+id/PieceText"
+                        android:id="@+id/tvPiece"
                         android:layout_width="@dimen/_30ssp"
                         android:layout_height="wrap_content"
                         android:text="1"
@@ -108,7 +107,7 @@
                         tools:layout_editor_absoluteY="363dp" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/ButtonPlus"
+                        android:id="@+id/btnIncrease"
                         android:layout_width="33dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

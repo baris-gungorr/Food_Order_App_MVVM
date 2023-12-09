@@ -1,11 +1,11 @@
-package com.barisgungorr.bootcamprecipeapp.ui.order
+package com.barisgungorr.bootcamprecipeapp.ui.card
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.Basket
-import com.barisgungorr.bootcamprecipeapp.data.repo.MealsRepository
+import com.barisgungorr.bootcamprecipeapp.data.datasource.MealsRepository
+import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketMealResponse
 import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,9 +14,9 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : ViewModel() {
+class CardViewModel @Inject constructor(private val mRepo: MealsRepository) : ViewModel() {
 
-    var basketList: MutableLiveData<List<Basket>?> = MutableLiveData()
+    var basketList: MutableLiveData<List<BasketMealResponse>?> = MutableLiveData()
     private var totalPrice = 0
 
     val message = MutableSharedFlow<Int>()
@@ -34,7 +34,7 @@ class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : V
         }
     }
 
-    private fun calculateTotalPrice(baskets: List<Basket>) {
+    private fun calculateTotalPrice(baskets: List<BasketMealResponse>) {
         var total = 0
         baskets.forEach { orders ->
             total += orders.piece * orders.price
@@ -42,14 +42,14 @@ class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : V
         totalPrice = total
     }
 
-    fun decreaseOrderQuantity(basket: Basket) {
+    fun decreaseOrderQuantity(basket: BasketMealResponse) {
         if (basket.piece > 1) {
             basket.piece.dec()
             // Update basket object with using Api
         }
     }
 
-    fun increaseOrderQuantity(basket: Basket) {
+    fun increaseOrderQuantity(basket: BasketMealResponse) {
         basket.piece.inc()
         // Update basket object with using Api
     }
@@ -75,7 +75,7 @@ class OrderViewModel @Inject constructor(private val mRepo: MealsRepository) : V
     fun completeOrders() {
         val isBasketEmpty = basketList.value.isNullOrEmpty()
         if (isBasketEmpty) {
-            sendMessage(R.string.addProductCard)
+            sendMessage(R.string.card_page_add_product_card)
         } else {
             navigateToMainScreen()
         }
