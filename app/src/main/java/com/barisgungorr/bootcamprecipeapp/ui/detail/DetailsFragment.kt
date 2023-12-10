@@ -44,6 +44,17 @@ class DetailsFragment : Fragment() {
 
             mealsPieceText.text = "$newPiece"
             tvPrice.text = getString(R.string.home_page_price, meals.price * newPiece)
+
+            lifecycleScope.launch {
+                viewModel.message.collectLatest { message ->
+                    requireView().snack(getString(message))
+                }
+            }
+            lifecycleScope.launch {
+                viewModel.shouldNavigateToMainScreen.collectLatest {
+                    findNavController().navigate(R.id.detailsToMain)
+                }
+            }
         }
     }
 
@@ -59,27 +70,24 @@ class DetailsFragment : Fragment() {
         mealsPieceText.text = "${viewModel.piece.value}"
 
 
-        btnFavEmpty.setOnClickListener{
+        ivHome.setOnClickListener {
+            findNavController().navigate(R.id.detailsToMain)
+        }
+
+        btnFavEmpty.setOnClickListener {
 
             btnFavEmpty.setImageResource(R.drawable.baseline_favorite_24)
 
-            lifecycleScope.launch {
-                viewModel.message.collectLatest { messageResId ->
-                    requireView().snack(getString(messageResId))
-                }
-            }
+            requireView().snack(getString(R.string.favorite_page_add_favorite))
             viewModel.save(meals.id, meals.name, meals.imageName)
+
         }
+        btnMinus.setOnClickListener { viewModel.buttonDecrease() }
 
-        buttonMinus.setOnClickListener { viewModel.buttonMinus() }
-
-        buttonPlus.setOnClickListener { viewModel.buttonPlus() }
+        btnPlus.setOnClickListener { viewModel.buttonQuantity() }
 
         btnAddCard.setOnClickListener {
             viewModel.handleButtonClick(meals)
-        }
-        ivHome.setOnClickListener {
-            findNavController().navigate(R.id.detailsToMain)
         }
     }
 }

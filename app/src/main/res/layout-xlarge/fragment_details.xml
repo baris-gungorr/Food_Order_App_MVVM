@@ -103,7 +103,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonMinus"
+                android:id="@+id/btn_minus"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@color/kk"
@@ -122,7 +122,7 @@
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonPlus"
+                android:id="@+id/btn_plus"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@color/kk"

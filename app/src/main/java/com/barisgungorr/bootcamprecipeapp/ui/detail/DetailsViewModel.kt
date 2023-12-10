@@ -20,21 +20,23 @@ class DetailsViewModel @Inject constructor(private val mealsRepository: MealsRep
     private var basketList: MutableLiveData<List<BasketMealResponse>> = MutableLiveData()
     var piece = MutableLiveData<Int>()
     val message = MutableSharedFlow<Int>()
+    val shouldNavigateToMainScreen = MutableSharedFlow<Unit>()
 
 
     init {
         getBasketMeals()
         piece.value = 1
+
     }
 
-    fun buttonMinus() {
+    fun buttonDecrease() {
         val currentPiece = piece.value ?: 1
         if (currentPiece > 1) {
             piece.value = currentPiece - 1
         }
     }
 
-    fun buttonPlus() {
+    fun buttonQuantity() {
         val currentPiece = piece.value ?: 1
         piece.value = currentPiece + 1
     }
@@ -103,12 +105,14 @@ class DetailsViewModel @Inject constructor(private val mealsRepository: MealsRep
                             meals.price,
                             it,
                             AppConstants.USERNAME)
+
                     }
                     sendMessage(R.string.detail_page_add_card)
                 }
             }
         }
     }
+
 
     private fun sendMessage(messageResId: Int) {
         viewModelScope.launch {

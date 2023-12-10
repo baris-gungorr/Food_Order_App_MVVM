@@ -30,6 +30,7 @@ class SignInViewModel @Inject constructor() : ViewModel() {
 
             password.length < 6 -> sendMessage(R.string.sign_in_password_alert)
             isValidEmail(email).not() -> sendMessage(R.string.sign_in_invalid_alert)
+
             else -> auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { navigateToMainScreen() }
                 .addOnFailureListener { sendMessage(R.string.sign_in_wrong_email_password) }
