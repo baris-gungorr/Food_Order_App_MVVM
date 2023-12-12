@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class CardViewModel @Inject constructor(private val mRepo: MealsRepository) : ViewModel() {
+class CardViewModel @Inject constructor(private val mealsRepository: MealsRepository) : ViewModel() {
 
     var basketList: MutableLiveData<List<BasketMealResponse>?> = MutableLiveData()
     private var totalPrice = 0
@@ -25,7 +25,7 @@ class CardViewModel @Inject constructor(private val mRepo: MealsRepository) : Vi
     fun getBasketMeals() {
         viewModelScope.launch {
             try {
-                val baskets = mRepo.getMeals(AppConstants.USERNAME)
+                val baskets = mealsRepository.getMeals(AppConstants.USERNAME)
                 basketList.value = baskets
                 calculateTotalPrice(baskets)
             } catch (e: Exception) {
@@ -56,7 +56,7 @@ class CardViewModel @Inject constructor(private val mRepo: MealsRepository) : Vi
 
     fun delete(mealId: Int) {
         viewModelScope.launch {
-            mRepo.delete(userName = AppConstants.USERNAME, cardMealsId = mealId)
+            mealsRepository.delete(userName = AppConstants.USERNAME, cardMealsId = mealId)
             getBasketMeals()
             orderLastItem()
         }
