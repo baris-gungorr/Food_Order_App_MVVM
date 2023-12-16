@@ -11,20 +11,14 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_4sdp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="@dimen/_2sdp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/_6sdp"
-        app:contentPaddingBottom="@dimen/_8sdp"
-        app:contentPaddingLeft="@dimen/_8sdp"
-        app:contentPaddingRight="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="@color/kk"
-        app:strokeWidth="@dimen/_2sdp">
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,8 +26,8 @@
 
             <ImageView
                 android:id="@+id/iv"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
+                android:layout_width="330dp"
+                android:layout_height="300dp"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/kk"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -56,9 +50,9 @@
                 android:id="@+id/tvPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
+
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="40sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ivTitle"
@@ -68,9 +62,9 @@
                 android:id="@+id/tvv_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
+
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="40sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPrice"

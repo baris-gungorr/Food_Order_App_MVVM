@@ -26,10 +26,8 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
             else -> auth.createUserWithEmailAndPassword(email, pass)
                 .addOnSuccessListener {
                     navigateToSignInScreen()
-
                 }.addOnFailureListener {
                     sendMessage(R.string.sign_in_wrong_email_password)
-
                 }
         }
     }
@@ -41,7 +39,6 @@ class SignUpViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun navigateToSignInScreen() {
-
         viewModelScope.launch { shouldNavigateToSignInScreen.emit(Unit) }
     }
 

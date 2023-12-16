@@ -61,8 +61,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddCard"
-        android:layout_width="@dimen/_280sdp"
-        android:layout_height="@dimen/_48sdp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/kk"
         android:text="@string/card_page_confirm_button"

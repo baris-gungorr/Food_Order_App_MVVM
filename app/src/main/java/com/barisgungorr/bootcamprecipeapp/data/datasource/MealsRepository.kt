@@ -35,8 +35,8 @@ class MealsRepository(
         service.delete(userName, cardMealsId)
     }
 
-    suspend fun save(mealsId: Int, mealsName: String, mealsImageName: String) {
-        val newFavorite = Favorite(mealsId, mealsName, mealsImageName)
+    suspend fun save(mealId: Int, mealName: String, mealImage: String) {
+        val newFavorite = Favorite(mealId, mealName, mealImage)
         favoriteDao.save(newFavorite)
     }
 

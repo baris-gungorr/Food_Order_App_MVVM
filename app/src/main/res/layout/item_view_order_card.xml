@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_250sdp">
+    android:layout_height="320dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -98,7 +98,7 @@
 
                     <TextView
                         android:id="@+id/tvPiece"
-                        android:layout_width="@dimen/_30ssp"
+                        android:layout_width="40sp"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:textAlignment="center"

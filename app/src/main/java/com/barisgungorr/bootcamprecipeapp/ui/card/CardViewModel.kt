@@ -63,7 +63,7 @@ class CardViewModel @Inject constructor(private val mealsRepository: MealsReposi
     }
 
     private fun orderLastItem() {
-        if (!basketList.value.isNullOrEmpty()) {
+        if (basketList.value.isNullOrEmpty().not()) {
             val lastItem = basketList.value!!.toMutableList()
             lastItem.removeAt(lastItem.lastIndex)
             basketList.value = lastItem

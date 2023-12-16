@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="430dp"
-        android:layout_height="81dp"
+        android:layout_width="538dp"
+        android:layout_height="84dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
         android:text="@string/details_page_title"
@@ -88,7 +88,6 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv"
         android:layout_width="500dp"
-
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         app:cardCornerRadius="15dp"
@@ -135,8 +134,8 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAddCard"
-        android:layout_width="@dimen/_280sdp"
-        android:layout_height="@dimen/_48sdp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/kk"
         android:text="@string/detail_page_add_card_button"

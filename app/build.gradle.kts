@@ -60,9 +60,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     // Lottie
     implementation("com.airbnb.android:lottie:5.2.0")
-    //ssp-dsp
-    implementation("com.intuit.ssp:ssp-android:1.1.0")
-    implementation("com.intuit.sdp:sdp-android:1.1.0")
+
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.6.0")
     implementation("com.google.code.gson:gson:2.9.0")

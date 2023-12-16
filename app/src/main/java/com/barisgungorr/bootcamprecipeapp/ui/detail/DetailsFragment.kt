@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.barisgungorr.bootcamprecipeapp.R
-import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentDetailsBinding
 import com.barisgungorr.bootcamprecipeapp.utils.extension.load
 import com.barisgungorr.bootcamprecipeapp.utils.extension.snack
@@ -20,75 +19,78 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DetailsFragment : Fragment() {
+
     private lateinit var binding: FragmentDetailsBinding
     private val viewModel: DetailsViewModel by viewModels()
-    private lateinit var meals: MealResponse
+
+    private val args: DetailsFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initVariables()
         initViews()
         observe()
     }
 
+    private fun initVariables() {
+        viewModel.initMeal(args.meal)
+    }
+
     private fun observe() = with(binding) {
-        viewModel.piece.observe(viewLifecycleOwner) { newPiece ->
 
-            mealsPieceText.text = "$newPiece"
-            tvPrice.text = getString(R.string.home_page_price, meals.price * newPiece)
-
-            lifecycleScope.launch {
-                viewModel.message.collectLatest { message ->
-                    requireView().snack(getString(message))
-                }
-            }
-            lifecycleScope.launch {
-                viewModel.shouldNavigateToMainScreen.collectLatest {
-                    findNavController().navigate(R.id.detailsToMain)
-                }
+        lifecycleScope.launch {
+            viewModel.uiModel.collectLatest { uiModel ->
+                mealsPieceText.text = uiModel.piece.toString()
+                tvPrice.text = getString(R.string.home_page_price, uiModel.price)
             }
         }
+
+        lifecycleScope.launch {
+            viewModel.message.collectLatest { message ->
+                requireView().snack(getString(message))
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.shouldNavigateToMainScreen.collectLatest {
+                findNavController().navigate(R.id.detailsToMain)
+            }
+        }
+
     }
 
     private fun initViews() = with(binding) {
-        val bundle: DetailsFragmentArgs by navArgs()
-        meals = bundle.meal
 
-        val photo = "http://kasimadalan.pe.hu/yemekler/resimler/${meals.imageName}"
+        val meal = args.meal
+        val photo = "http://kasimadalan.pe.hu/yemekler/resimler/${meal.imageName}"
         ivMeals.load(photo)
-
-        tvName.text = meals.name
-        tvPrice.text = getString(R.string.home_page_price, meals.price)
-        mealsPieceText.text = "${viewModel.piece.value}"
-
+        tvName.text = meal.name
+        tvPrice.text = getString(R.string.home_page_price, meal.price)
 
         ivHome.setOnClickListener {
             findNavController().navigate(R.id.detailsToMain)
         }
 
         btnFavEmpty.setOnClickListener {
-
             btnFavEmpty.setImageResource(R.drawable.baseline_favorite_24)
-
             requireView().snack(getString(R.string.favorite_page_add_favorite))
-            viewModel.save(meals.id, meals.name, meals.imageName)
-
+            viewModel.save()
         }
-        btnMinus.setOnClickListener { viewModel.buttonDecrease() }
 
-        btnPlus.setOnClickListener { viewModel.buttonQuantity() }
+        btnMinus.setOnClickListener { viewModel.decreaseQuantity() }
 
-        btnAddCard.setOnClickListener {
-            viewModel.handleButtonClick(meals)
-        }
+        btnPlus.setOnClickListener { viewModel.increaseQuantity() }
+
+        btnAddCard.setOnClickListener { viewModel.addToCart() }
     }
+
 }
 

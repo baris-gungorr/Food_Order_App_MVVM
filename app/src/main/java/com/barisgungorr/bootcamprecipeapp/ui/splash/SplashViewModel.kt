@@ -1,23 +1,30 @@
 package com.barisgungorr.bootcamprecipeapp.ui.splash
 
-import android.os.Handler
-import android.os.Looper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 
 @HiltViewModel
 class SplashViewModel @Inject constructor() : ViewModel() {
 
-    private val _navigateToSign = MutableLiveData<Boolean>()
-    val navigateToSign: LiveData<Boolean>
-        get() = _navigateToSign
+    private val _navigateToSign = MutableLiveData<Unit>()
+    val navigateToSign: LiveData<Unit> get() = _navigateToSign
+
     init {
-        Handler(Looper.getMainLooper()).postDelayed({
-            _navigateToSign.value = true
-        }, 2000)
+        startSplash()
+    }
+
+    private fun startSplash() {
+        viewModelScope.launch {
+            delay(2.seconds)
+            _navigateToSign.value = Unit
+        }
     }
 
 }
