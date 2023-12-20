@@ -8,6 +8,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,8 +16,11 @@ import javax.inject.Inject
 class SignInViewModel @Inject constructor() : ViewModel() {
 
     val shouldNavigateToMainScreen = MutableSharedFlow<Unit>()
-    val message = MutableSharedFlow<Int>()
+
     private var auth: FirebaseAuth = Firebase.auth
+
+    private val _error = MutableSharedFlow<SignInError>()
+    val error: SharedFlow<SignInError> get() = _error
 
     fun checkUserInfo() {
         val currentUser = auth.currentUser
@@ -26,23 +30,16 @@ class SignInViewModel @Inject constructor() : ViewModel() {
     }
     fun signIn(email: String, password: String) {
         when {
-            email.isEmpty() || password.isEmpty() -> sendMessage(R.string.sign_in_fill_in_blanks)
+            email.isEmpty() || password.isEmpty() -> sendError(SignInError.FILL_IN_BLANKS)
 
-            password.length < 6 -> sendMessage(R.string.sign_in_password_alert)
-            isValidEmail(email).not() -> sendMessage(R.string.sign_in_invalid_alert)
+            password.length < 6 -> sendError(SignInError.PASSWORD_ALERT)
+            isValidEmail(email).not() -> sendError(SignInError.INVALID_ALERT)
 
             else -> auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener { navigateToMainScreen() }
-                .addOnFailureListener { sendMessage(R.string.sign_in_wrong_email_password) }
+                .addOnFailureListener { sendError(SignInError.WRONG_EMAIL_PASSWORD) }
         }
     }
-
-    private fun sendMessage(message: Int) {
-        viewModelScope.launch {
-            this@SignInViewModel.message.emit(message)
-        }
-    }
-
     private fun navigateToMainScreen() {
         viewModelScope.launch { shouldNavigateToMainScreen.emit(Unit) }
     }
@@ -51,6 +48,9 @@ class SignInViewModel @Inject constructor() : ViewModel() {
         val emailRegex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}")
         return emailRegex.matches(email)
     }
-
-
+    private fun sendError(error: SignInError) {
+        viewModelScope.launch {
+            _error.emit(error)
+        }
+    }
 }

@@ -36,36 +36,14 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initVariables()
-        initViews()
         observe()
-    }
+        initViews()
 
+    }
     private fun initVariables() {
         viewModel.initMeal(args.meal)
     }
 
-    private fun observe() = with(binding) {
-
-        lifecycleScope.launch {
-            viewModel.uiModel.collectLatest { uiModel ->
-                mealsPieceText.text = uiModel.piece.toString()
-                tvPrice.text = getString(R.string.home_page_price, uiModel.price)
-            }
-        }
-
-        lifecycleScope.launch {
-            viewModel.message.collectLatest { message ->
-                requireView().snack(getString(message))
-            }
-        }
-
-        lifecycleScope.launch {
-            viewModel.shouldNavigateToMainScreen.collectLatest {
-                findNavController().navigate(R.id.detailsToMain)
-            }
-        }
-
-    }
 
     private fun initViews() = with(binding) {
 
@@ -91,6 +69,26 @@ class DetailsFragment : Fragment() {
 
         btnAddCard.setOnClickListener { viewModel.addToCart() }
     }
+    private fun observe() = with(binding) {
 
+        lifecycleScope.launch {
+            viewModel.uiModel.collectLatest { uiModel ->
+                mealsPieceText.text = uiModel.piece.toString()
+                tvPrice.text = getString(R.string.home_page_price, uiModel.price)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.message.collectLatest { message ->
+                requireView().snack(getString(message))
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.shouldNavigateToMainScreen.collectLatest {
+                findNavController().navigate(R.id.detailsToMain)
+            }
+        }
+    }
 }
 

@@ -10,10 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
-
     private lateinit var binding: FragmentSplashBinding
     private val viewModel: SplashViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,17 +19,14 @@ class SplashFragment : Fragment() {
         binding = FragmentSplashBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe()
     }
-
     private fun observe() {
         viewModel.navigateToSign.observe(viewLifecycleOwner) {
             val action = SplashFragmentDirections.splashToSign()
             findNavController().navigate(action)
         }
     }
-
 }

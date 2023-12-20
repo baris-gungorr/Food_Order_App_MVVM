@@ -133,8 +133,6 @@ class DetailsViewModel @Inject constructor(
             }
         }
     }
-
-
     private fun sendMessage(messageResId: Int) {
         viewModelScope.launch {
             this@DetailsViewModel.message.emit(messageResId)

@@ -15,7 +15,6 @@ class SplashViewModel @Inject constructor() : ViewModel() {
 
     private val _navigateToSign = MutableLiveData<Unit>()
     val navigateToSign: LiveData<Unit> get() = _navigateToSign
-
     init {
         startSplash()
     }
@@ -26,5 +25,4 @@ class SplashViewModel @Inject constructor() : ViewModel() {
             _navigateToSign.value = Unit
         }
     }
-
 }

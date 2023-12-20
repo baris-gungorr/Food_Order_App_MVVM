@@ -22,7 +22,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adapter: HomeAdapter
-
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
@@ -92,7 +91,6 @@ class HomeFragment : Fragment() {
                 }
                 setNegativeButton(R.string.home_page_button_no) { _, _ -> }
             }.show()
-
         }
     }
 }

@@ -10,15 +10,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentSignInBinding
-import com.barisgungorr.bootcamprecipeapp.utils.extension.snack
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SignInFragment : Fragment() {
-    private lateinit var binding: FragmentSignInBinding
 
+    private lateinit var binding: FragmentSignInBinding
     private val viewModel: SignInViewModel by viewModels()
 
     override fun onCreateView(
@@ -42,10 +42,10 @@ class SignInFragment : Fragment() {
                 findNavController().navigate(R.id.signToMain)
             }
         }
-
-        lifecycleScope.launch {
-            viewModel.message.collectLatest { message ->
-                requireView().snack(getString(message))
+        viewLifecycleOwner.lifecycleScope.launch{
+            viewModel.error.collect {error : SignInError ->
+                val stringResourceId = SignInError.getErrorMessage(error)
+                Snackbar.make(binding.root, stringResourceId, Snackbar.LENGTH_SHORT).show()
             }
         }
     }
@@ -61,6 +61,5 @@ class SignInFragment : Fragment() {
             val password = passwordTv.text.toString()
             viewModel.signIn(email, password)
         }
-
     }
 }

@@ -78,7 +78,6 @@ class CardFragment : Fragment() {
         }
     }
 
-
     private fun showDeleteBasketDialog(basket: BasketMealResponse) {
 
         val builder = AlertDialog.Builder(requireContext())
@@ -95,7 +94,6 @@ class CardFragment : Fragment() {
         }
         builder.show()
     }
-
 
     private fun initViews() = with(binding) {
 

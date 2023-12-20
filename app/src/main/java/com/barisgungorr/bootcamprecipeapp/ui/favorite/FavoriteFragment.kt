@@ -63,7 +63,6 @@ class FavoriteFragment : Fragment() {
                 }
             )
             binding.rv.adapter = adapter
-
         }
     }
     private fun showDeleteFavoriteDialog(favorite: Favorite) {
@@ -105,7 +104,6 @@ class FavoriteFragment : Fragment() {
             findNavController().navigate(R.id.favoriteToMain)
         }
     }
-
     override fun onResume() {
         super.onResume()
         viewModel.getFavorites()
