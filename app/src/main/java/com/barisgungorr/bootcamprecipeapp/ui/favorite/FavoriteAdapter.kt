@@ -19,11 +19,11 @@ class FavoriteAdapter(
 
     class FavoriteDiff : DiffUtil.ItemCallback<Favorite>() {
         override fun areItemsTheSame(oldItem: Favorite, newItem: Favorite): Boolean {
-            return oldItem.mealsId == newItem.mealsId // favori öğelerin eşitliğini nasıl kontrol ettiğinize bağlıdır
+            return oldItem.mealsId == newItem.mealsId
         }
 
         override fun areContentsTheSame(oldItem: Favorite, newItem: Favorite): Boolean {
-            return oldItem == newItem // favori öğelerin içeriklerinin eşitliğini nasıl kontrol ettiğinize bağlıdır
+            return oldItem == newItem
         }
     }
 
@@ -33,7 +33,7 @@ class FavoriteAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: FavoriteViewHolder, position: Int) {
-        val favorite = getItem(position) // ListAdapter sınıfının getItem () metodunu kullanın
+        val favorite = getItem(position)
         viewHolder.bind(favorite)
     }
 }
