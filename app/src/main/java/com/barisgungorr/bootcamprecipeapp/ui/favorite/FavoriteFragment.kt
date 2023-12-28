@@ -17,12 +17,11 @@ import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentFavoriteBinding
 import dagger.hilt.android.AndroidEntryPoint
-
-
 @AndroidEntryPoint
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
     private val viewModel: FavoriteViewModel by viewModels()
+    private lateinit var adapter: FavoriteAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,25 +45,27 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun observe() {
+
         viewModel.favoriteList.observe(viewLifecycleOwner) { favorites ->
 
             val isFavoritesEmpty = favorites.isEmpty()
 
-                binding.ivEmpty.isVisible =  isFavoritesEmpty
-                binding.tvEmpty.isVisible = isFavoritesEmpty
+            binding.ivEmpty.isVisible =  isFavoritesEmpty
+            binding.tvEmpty.isVisible = isFavoritesEmpty
 
 
-            val adapter = FavoriteAdapter(
-                favoriteList = favorites.orEmpty(),
-                callbacks = object : FavoriteAdapter.FavoriteCallBack {
-                    override fun onDeleteFavorite(favorite: Favorite) {
-                        showDeleteFavoriteDialog(favorite)
+                adapter = FavoriteAdapter(
+                    callbacks = object : FavoriteAdapter.FavoriteCallBack {
+                        override fun onDeleteFavorite(favorite: Favorite) {
+                            showDeleteFavoriteDialog(favorite)
+                        }
                     }
-                }
-            )
-            binding.rv.adapter = adapter
+                )
+                binding.rv.adapter = adapter
+                 adapter.submitList(favorites.orEmpty())
+            }
         }
-    }
+
     private fun showDeleteFavoriteDialog(favorite: Favorite) {
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(R.string.favorite_page_title)

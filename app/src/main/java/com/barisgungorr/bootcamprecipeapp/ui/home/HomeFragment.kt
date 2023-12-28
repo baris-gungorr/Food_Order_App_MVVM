@@ -17,7 +17,6 @@ import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -41,12 +40,16 @@ class HomeFragment : Fragment() {
     private fun observe() {
         viewModel.mealList.observe(viewLifecycleOwner) { mealList ->
             binding.progressBar.isGone = true
-            initMealList(mealList)
+
+            adapter.submitList(mealList)
         }
     }
 
-    private fun initMealList(mealList: List<MealResponse>) {
-        adapter = HomeAdapter(mealList, object : HomeAdapter.FoodCallback {
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initViews() = with(binding) {
+        rvHome.layoutManager = GridLayoutManager(requireContext(), 3)
+
+        adapter = HomeAdapter(object : HomeAdapter.FoodCallback {
             override fun onClickDetail(food: MealResponse) {
                 findNavController().navigate(
                     HomeFragmentDirections.actionMainFragmentToDetailsFragment(
@@ -55,12 +58,8 @@ class HomeFragment : Fragment() {
                 )
             }
         })
-        binding.rvHome.adapter = adapter
-    }
 
-    @SuppressLint("ClickableViewAccessibility")
-    private fun initViews() = with(binding) {
-        rvHome.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.rvHome.adapter = adapter
 
         searchView.setOnQueryTextListener(object : OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {

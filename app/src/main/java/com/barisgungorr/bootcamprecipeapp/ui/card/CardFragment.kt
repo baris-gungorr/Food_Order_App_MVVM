@@ -33,51 +33,49 @@ class CardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initVariables()
         observe()
         initViews()
     }
 
-    private fun initVariables() {
-        val layoutManager = LinearLayoutManager(requireContext())
-        binding.rv.layoutManager = layoutManager
-    }
+
 
     private fun observe() {
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.message.collectLatest { message ->
-                Toast.makeText(context, getString(message), Toast.LENGTH_SHORT).show()
-            }
-        }
+        val adapter = CardAdapter(
+            callbacks = object : CardAdapter.OrderCallbacks {
+                override fun onDeleteOrder(basket: BasketMealResponse) {
+                    showDeleteBasketDialog(basket)
+                }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.navigateMainScreen.collectLatest {
-                findNavController().navigate(CardFragmentDirections.orderToMain())
+                override fun onDecreaseOrderQuantity(basket: BasketMealResponse) {
+                    viewModel.decreaseOrderQuantity(basket)
+                }
+
+                override fun onIncreaseOrderQuantity(basket: BasketMealResponse) {
+                    viewModel.increaseOrderQuantity(basket)
+                }
             }
-        }
+        )
+
+        binding.rv.adapter = adapter
 
         viewModel.basketList.observe(viewLifecycleOwner) { baskets ->
-            val adapter = CardAdapter(
-                mealList = baskets.orEmpty(),
-                callbacks = object : CardAdapter.OrderCallbacks {
-                    override fun onDeleteOrder(basket: BasketMealResponse) {
-                        showDeleteBasketDialog(basket)
-                    }
 
-                    override fun onDecreaseOrderQuantity(basket: BasketMealResponse) {
-                        viewModel.decreaseOrderQuantity(basket)
-                    }
-
-                    override fun onIncreaseOrderQuantity(basket: BasketMealResponse) {
-                        viewModel.increaseOrderQuantity(basket)
-                    }
-                }
-            )
-            binding.rv.adapter = adapter
+            adapter.submitList(baskets.orEmpty())
         }
     }
 
+    private fun initViews() = with(binding) {
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rv.layoutManager = layoutManager
+
+        btnAddCard.setOnClickListener {
+            viewModel.completeOrders()
+        }
+        ivBack?.setOnClickListener {
+            findNavController().navigate(R.id.orderToMain)
+        }
+    }
     private fun showDeleteBasketDialog(basket: BasketMealResponse) {
 
         val builder = AlertDialog.Builder(requireContext())
@@ -93,16 +91,6 @@ class CardFragment : Fragment() {
             dialog.dismiss()
         }
         builder.show()
-    }
-
-    private fun initViews() = with(binding) {
-
-        btnAddCard.setOnClickListener {
-            viewModel.completeOrders()
-        }
-        ivBack?.setOnClickListener {
-            findNavController().navigate(R.id.orderToMain)
-        }
     }
 
     override fun onResume() {

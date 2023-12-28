@@ -48,4 +48,3 @@ class HomeViewModel @Inject constructor(private val mRepo: MealsRepository) : Vi
         Firebase.auth.signOut()
     }
 }
-

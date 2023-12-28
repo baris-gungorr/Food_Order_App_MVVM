@@ -23,7 +23,7 @@ class HomeViewHolder(
 
     private fun loadImage(food: MealResponse) {
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.imageName}"
-        binding.iv.load(imageUrl = url,size = Size(300,300))
+        binding.iv.load(url,size = Size(300,300))
     }
 
 
