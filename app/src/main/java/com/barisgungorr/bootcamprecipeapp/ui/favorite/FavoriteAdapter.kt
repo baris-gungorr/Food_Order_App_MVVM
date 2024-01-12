@@ -4,32 +4,31 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewFavoriteCardBinding
-import com.bumptech.glide.Glide
+import com.barisgungorr.bootcamprecipeapp.domain.FavoriteMeal
 
 class FavoriteAdapter(
     private val callbacks: FavoriteCallBack
-) :  ListAdapter<Favorite, FavoriteViewHolder>(FavoriteDiff()) {
+) : ListAdapter<FavoriteMeal, FavoriteViewHolder>(FavoriteDiff()) {
 
-    interface FavoriteCallBack  {
-        fun onDeleteFavorite(favorite:Favorite)
+    interface FavoriteCallBack {
+        fun onDeleteFavorite(favorite: FavoriteMeal)
     }
 
-    class FavoriteDiff : DiffUtil.ItemCallback<Favorite>() {
-        override fun areItemsTheSame(oldItem: Favorite, newItem: Favorite): Boolean {
-            return oldItem.mealsId == newItem.mealsId
+    class FavoriteDiff : DiffUtil.ItemCallback<FavoriteMeal>() {
+        override fun areItemsTheSame(oldItem: FavoriteMeal, newItem: FavoriteMeal): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Favorite, newItem: Favorite): Boolean {
+        override fun areContentsTheSame(oldItem: FavoriteMeal, newItem: FavoriteMeal): Boolean {
             return oldItem == newItem
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
-        val binding = ItemViewFavoriteCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return FavoriteViewHolder(binding,callbacks)
+        val binding =
+            ItemViewFavoriteCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return FavoriteViewHolder(binding, callbacks)
     }
 
     override fun onBindViewHolder(viewHolder: FavoriteViewHolder, position: Int) {
@@ -37,3 +36,4 @@ class FavoriteAdapter(
         viewHolder.bind(favorite)
     }
 }
+

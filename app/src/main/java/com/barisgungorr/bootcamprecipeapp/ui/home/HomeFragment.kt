@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView.OnQueryTextListener
 import androidx.core.view.isGone
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,9 +21,19 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapter: HomeAdapter
     private val viewModel: HomeViewModel by viewModels()
 
+    private val adapter by lazy {
+        HomeAdapter(object : HomeAdapter.FoodCallback {
+            override fun onClickDetail(food: MealResponse) {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionMainFragmentToDetailsFragment(
+                        meal = food
+                    )
+                )
+            }
+        })
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,48 +47,10 @@ class HomeFragment : Fragment() {
         initViews()
         observe()
     }
-
-    private fun observe() {
-        viewModel.mealList.observe(viewLifecycleOwner) { mealList ->
-            binding.progressBar.isGone = true
-
-            adapter.submitList(mealList)
-        }
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     private fun initViews() = with(binding) {
         rvHome.layoutManager = GridLayoutManager(requireContext(), 3)
-
-        adapter = HomeAdapter(object : HomeAdapter.FoodCallback {
-            override fun onClickDetail(food: MealResponse) {
-                findNavController().navigate(
-                    HomeFragmentDirections.actionMainFragmentToDetailsFragment(
-                        meal = food
-                    )
-                )
-            }
-        })
-
         binding.rvHome.adapter = adapter
-
-        searchView.setOnQueryTextListener(object : OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                viewModel.search(newText)
-                return false
-            }
-        })
-
-        searchView.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                searchView.isIconified = false
-            }
-            false
-        }
 
         ivLogout.setOnClickListener {
             AlertDialog.Builder(requireContext()).apply {
@@ -90,6 +63,15 @@ class HomeFragment : Fragment() {
                 }
                 setNegativeButton(R.string.home_page_button_no) { _, _ -> }
             }.show()
+        }
+        etSearch.addTextChangedListener {
+            viewModel.search(it.toString())
+        }
+    }
+    private fun observe() {
+        viewModel.mealList.observe(viewLifecycleOwner) { mealList ->
+            binding.progressBar.isGone = true
+            adapter.submitList(mealList)
         }
     }
 }

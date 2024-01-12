@@ -1,10 +1,13 @@
-package com.barisgungorr.bootcamprecipeapp.data.datasource
+package com.barisgungorr.bootcamprecipeapp.data.repository
 
-import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
+import android.util.Log
+import com.barisgungorr.bootcamprecipeapp.data.entity.FavoriteEntity
+import com.barisgungorr.bootcamprecipeapp.data.entity.toMeal
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketMealResponse
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.data.source.locale.FavoriteDao
 import com.barisgungorr.bootcamprecipeapp.data.source.remote.ApiService
+import com.barisgungorr.bootcamprecipeapp.domain.FavoriteMeal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -36,22 +39,25 @@ class MealsRepository(
     }
 
     suspend fun save(mealId: Int, mealName: String, mealImage: String) {
-        val newFavorite = Favorite(mealId, mealName, mealImage)
+        val newFavorite = FavoriteEntity(mealId, mealName, mealImage)
         favoriteDao.save(newFavorite)
+        Log.e("Save", "Character saved successfully: $newFavorite")
     }
 
-    suspend fun getFavorites(): List<Favorite> = withContext(Dispatchers.IO) {
-        return@withContext favoriteDao.getFavorites()
+    suspend fun getFavorites(): List<FavoriteMeal> = withContext(Dispatchers.IO) {
+        return@withContext favoriteDao.getFavorites().map { entity -> entity.toMeal() }
     }
 
     suspend fun deleteFavorite(mealsId: Int) {
-        val deleteFavorite = Favorite(mealsId, "", "")
+        val deleteFavorite = FavoriteEntity(mealsId, "", "")
         favoriteDao.deleteFavorite(deleteFavorite)
     }
 
-    suspend fun searchFavorite(searchKeyword: String): List<Favorite> = withContext(Dispatchers.IO) {
-        return@withContext favoriteDao.searchFavorite(searchKeyword)
-    }
+    suspend fun searchFavorite(searchKeyword: String): List<FavoriteMeal> =
+        withContext(Dispatchers.IO) {
+            return@withContext favoriteDao.searchFavorite(searchKeyword)
+                .map { entity -> entity.toMeal() }
+        }
 }
 
 

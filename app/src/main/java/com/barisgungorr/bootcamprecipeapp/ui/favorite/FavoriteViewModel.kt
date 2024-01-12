@@ -3,17 +3,18 @@ package com.barisgungorr.bootcamprecipeapp.ui.favorite
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.barisgungorr.bootcamprecipeapp.data.datasource.MealsRepository
-import com.barisgungorr.bootcamprecipeapp.data.entity.Favorite
+import com.barisgungorr.bootcamprecipeapp.data.repository.MealsRepository
+import com.barisgungorr.bootcamprecipeapp.domain.FavoriteMeal
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FavoriteViewModel @Inject constructor(private val mealsRepository: MealsRepository) :
-    ViewModel() {
+class FavoriteViewModel @Inject constructor(
+    private val mealsRepository: MealsRepository
+) : ViewModel() {
 
-    val favoriteList = MutableLiveData<List<Favorite>>()
+    val favoriteList = MutableLiveData<List<FavoriteMeal>>()
 
     fun getFavorites() {
         viewModelScope.launch {

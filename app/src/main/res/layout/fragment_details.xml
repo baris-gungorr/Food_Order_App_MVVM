@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="250dp"
-        android:layout_height="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/autour_one"
         android:text="@string/details_page_title"
@@ -51,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Meals Name"
+        android:text="@string/detail_page_meal_name"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
@@ -63,7 +63,7 @@
     <RatingBar
         android:id="@+id/rating_bar"
         android:layout_width="wrap_content"
-        android:layout_height="49dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:isIndicator="false"
         android:numStars="5"
@@ -82,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="@string/detail_page_price_tv"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -123,16 +123,16 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@color/kk"
-                android:text="-"
+                android:text="@string/detail_page_minus"
                 android:textAlignment="center"
                 android:textSize="34sp" />
 
             <TextView
                 android:id="@+id/mealsPieceText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="1"
+                android:text="@string/detail_page_const_number"
                 android:textAlignment="center"
                 android:textSize="34sp"
                 android:textStyle="bold" />
@@ -142,7 +142,7 @@
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:background="@color/kk"
-                android:text="+"
+                android:text="@string/detail_page_plus"
                 android:textSize="34sp" />
         </LinearLayout>
 
@@ -157,7 +157,6 @@
         android:backgroundTint="@color/kk"
         android:text="@string/detail_page_add_card_button"
         android:textColor="@color/white"
-
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

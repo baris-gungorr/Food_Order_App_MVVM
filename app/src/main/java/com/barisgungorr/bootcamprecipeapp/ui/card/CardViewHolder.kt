@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.BasketMealResponse
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewOrderCardBinding
+import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import com.barisgungorr.bootcamprecipeapp.utils.extension.load
 
 class CardViewHolder(
@@ -16,7 +17,7 @@ class CardViewHolder(
 
         val context = binding.root.context
 
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${basket.imageName}"
+        val url = "${AppConstants.BASE_IMAGE_URL}${basket.imageName}"
         binding.ivMeal.load(imageUrl = url)
 
         tvMealName.text = basket.name

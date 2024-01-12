@@ -33,6 +33,11 @@
     <string name="detail_page_card_error">"This product is available in your cart"</string>
     <string name="detail_page_add_card">"ADD CARD!"</string>
     <string name="detail_page_price_tv">%1\$d ₺</string>
+    <string name="detail_page_meal_name">"Meal Name"</string>
+    <string name="detail_page_minus">"-"</string>
+    <string name="detail_page_plus">"+"</string>
+    <string name="detail_page_const_number">"1"</string>
+
 
     <string name="card_page_title">MY CARD</string>
     <string name="card_page_confirm_button">CONFİRM</string>
@@ -45,5 +50,8 @@
     <string name="favorite_page_yes_tv">YES</string>
     <string name="favorite_page_add_favorite">Add Favorite</string>
     <string name="favorite_page_delete_tv"> %s  Are you sure you want to delete the product ? </string>
+    <string name="favorite_page_not_item"> There are no desseerts in favorites</string>
+
+
 
 </resources>

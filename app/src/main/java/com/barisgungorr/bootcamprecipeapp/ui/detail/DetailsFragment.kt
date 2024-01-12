@@ -43,8 +43,6 @@ class DetailsFragment : Fragment() {
     private fun initVariables() {
         viewModel.initMeal(args.meal)
     }
-
-
     private fun initViews() = with(binding) {
 
         val meal = args.meal
@@ -59,7 +57,6 @@ class DetailsFragment : Fragment() {
 
         btnFavEmpty.setOnClickListener {
             btnFavEmpty.setImageResource(R.drawable.baseline_favorite_24)
-            requireView().snack(getString(R.string.favorite_page_add_favorite))
             viewModel.save()
         }
 

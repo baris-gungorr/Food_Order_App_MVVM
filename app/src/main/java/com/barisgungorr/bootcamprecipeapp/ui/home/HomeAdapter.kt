@@ -21,7 +21,7 @@ class HomeAdapter(
 
     class HomeDiffCallback: DiffUtil.ItemCallback<MealResponse>() {
         override fun areItemsTheSame(oldItem: MealResponse, newItem: MealResponse): Boolean {
-            return oldItem.imageName == newItem.imageName
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: MealResponse, newItem: MealResponse): Boolean {

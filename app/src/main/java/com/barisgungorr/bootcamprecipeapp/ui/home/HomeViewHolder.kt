@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barisgungorr.bootcamprecipeapp.R
 import com.barisgungorr.bootcamprecipeapp.data.retrofit.response.MealResponse
 import com.barisgungorr.bootcamprecipeapp.databinding.ItemViewHomeCardBinding
+import com.barisgungorr.bootcamprecipeapp.utils.constans.AppConstants
 import com.barisgungorr.bootcamprecipeapp.utils.extension.Size
 import com.barisgungorr.bootcamprecipeapp.utils.extension.load
 
@@ -22,7 +23,7 @@ class HomeViewHolder(
     }
 
     private fun loadImage(food: MealResponse) {
-        val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.imageName}"
+        val url = "${AppConstants.BASE_IMAGE_URL}${food.imageName}"
         binding.iv.load(url,size = Size(300,300))
     }
 
